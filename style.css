@@ -1,0 +1,85 @@
+/* -------------------------------------------------- */
+/* size of my entire page */
+
+
+*{margin: 0}
+
+body html{height: 2000px;}
+/* background image properties */
+
+
+
+
+.header-menu-container {
+  background: wheat;
+  display: flex;
+  height: 74px;
+  padding-left: 6%;
+  padding-right: 6%;
+  gap: 10px;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("./images/bg-img.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+button{margin-top: 2000px;}
+
+  /*---------------------------------------------------------------------------------------/
+
+
+ /*----------------- 2. navbar image --------------------------------------------------*/
+
+.nb-img{
+width: 50px;
+border-radius: 50px;
+margin-left: 10px;
+margin-top: 10px;
+
+  
+}
+
+
+ /*----------------- 3. navbar elements--------------------------------------------------*/
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+  }
+
+ 
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  li a:hover {
+    background-color: #111111;
+    transition: 0.2s ease;
+  }
+
