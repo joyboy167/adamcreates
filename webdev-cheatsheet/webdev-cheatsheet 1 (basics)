@@ -1,0 +1,37 @@
+
+(language)
+
+HTML - Hyper Text Markeup Language
+-> for writing content to websites. 
+
+(opening a website)
+
+all elements go in <element> format. 
+
+
+(common elements)
+
+<p> - paragraph element.
+<b> - bold
+<li> - ordered list
+<ul> unordered list. 
+
+<---------------------------------------------------------------------------------->
+
+(family tree structure)
+
+hmtl stuctured like so: 
+
+<html> 
+ <body> 
+  <p>
+  </p>
+ <body>
+<hmtl>
+
+so open, open, open, close close close. 
+parents and children. 
+
+<---------------------------------------------------------------------------------->
+
+
