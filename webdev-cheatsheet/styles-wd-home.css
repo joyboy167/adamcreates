@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    line-height: 1.6;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+.section-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #2980b9;
+}
+
+.divider {
+    margin: 20px 0;
+    border-bottom: 2px dashed #bdc3c7;
+}
+
+.code {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #ecf0f1;
+    padding: 5px;
+    border-left: 4px solid #3498db;
+    display: inline-block;
+}
