@@ -7,12 +7,25 @@ body {
     color: #333;
 }
 
-/* Page Title */
-h1 {
+/* Sticky Header with Borders */
+header {
+    background-color: #2c3e50;
+    padding: 20px 0;
     text-align: center;
-    margin-top: 20px;
-    font-size: 36px;
-    color: #2c3e50;
+    color: white;
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 6px solid #1abc9c; /* Fancy bottom border */
+    border-top: 6px solid #2980b9;    /* Fancy top border */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Title */
+header h1 {
+    margin: 0;
+    font-size: 48px;
 }
 
 /* Section Titles */
@@ -51,8 +64,8 @@ ol li a:hover {
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    h1 {
-        font-size: 28px;
+    header h1 {
+        font-size: 36px;
     }
 
     h2 {
@@ -68,11 +81,4 @@ ol li a:hover {
 .container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
-}
-
-/* Topic List */
-ol li::marker {
-    color: #1abc9c;
-    font-size: 1.2em;
-}
+    padding: 20
