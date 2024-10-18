@@ -4,15 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Basic Template</title>
-    <!-- Link to external stylesheet -->
+    <title>HTML Fundamentals: A Beginner's Guide</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Main container -->
+    <div class="container">
+        <header>
+            <h1>HTML Fundamentals: A Beginner's Guide to Understanding Elements</h1>
+        </header>
 
-    <!-- Content goes here -->
-    <h1>Hello, World!</h1>
+        <section>
+            <h2>What are HTML Elements?</h2>
+            <p>
+                HTML (HyperText Markup Language) is the backbone of all web pages. Elements in HTML are like building blocks—they define the structure and content of a webpage. Every element is made up of tags, which tell the browser how to display the content.
+            </p>
+            <p>An HTML element generally looks like this:</p>
+            <div class="code-block">
+                <code>
+                    &lt;tagname&gt;Content goes here&lt;/tagname&gt;
+                </code>
+            </div>
+            <p>The tag consists of the element's name enclosed in angle brackets (< >). There is usually an opening tag (&lt;tagname&gt;) and a closing tag (&lt;/tagname&gt;), with the content placed in between.</p>
+        </section>
 
+        <section>
+            <h2>Basic Structure of an HTML Document</h2>
+            <p>Before we dive into individual elements, it's important to understand the overall structure of an HTML document. Here's an example of a basic HTML page:</p>
+            <div class="code-block">
+                <code>
+                    &lt;!DOCTYPE html&gt;<br>
+                    &lt;html&gt;<br>
+                    &nbsp;&nbsp;&lt;head&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Your Page Title&lt;/title&gt;<br>
+                    &nbsp;&nbsp;&lt;/head&gt;<br>
+                    &nbsp;&nbsp;&lt;body&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Welcome to My Website&lt;/h1&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;This is a paragraph of text.&lt;/p&gt;<br>
+                    &nbsp;&nbsp;&lt;/body&gt;<br>
+                    &lt;/html&gt;
+                </code>
+            </div>
+            <p>Let’s break it down:</p>
+            <ul>
+                <li><strong>&lt;!DOCTYPE html&gt;</strong>: This declaration tells the browser that you're using HTML5.</li>
+                <li><strong>&lt;html&gt;</strong>: The root element that wraps all the content on your page.</li>
+                <li><strong>&lt;head&gt;</strong>: Contains meta-information like title and links to stylesheets or scripts.</li>
+                <li><strong>&lt;title&gt;</strong>: Sets the title of your webpage, which appears on the browser tab.</li>
+                <li><strong>&lt;body&gt;</strong>: Where all the visible content of the webpage goes (e.g., headings, paragraphs).</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Common HTML Elements</h2>
+
+            <h3>1. Headings</h3>
+            <p>Headings are used to define titles and subtitles on a webpage. There are six heading levels in HTML, ranging from &lt;h1&gt; (most important) to &lt;h6&gt; (least important).</p>
+            <div class="code-block">
+                <code>
+                    &lt;h1&gt;Main Heading&lt;/h1&gt;<br>
+                    &lt;h2&gt;Subheading&lt;/h2&gt;<br>
+                    &lt;h3&gt;Smaller Subheading&lt;/h3&gt;
+                </code>
+            </div>
+
+            <h3>2. Paragraphs</h3>
+            <p>Paragraphs are used to add blocks of text to your webpage. To create a paragraph, use the &lt;p&gt; tag.</p>
+            <div class="code-block">
+                <code>
+                    &lt;p&gt;This is a paragraph of text. You can add multiple sentences within a paragraph.&lt;/p&gt;
+                </code>
+            </div>
+
+            <h3>3. Links</h3>
+            <p>To add links to other webpages, use the &lt;a&gt; tag. It stands for "anchor" and is used to link to other pages or resources.</p>
+            <div class="code-block">
+                <code>
+                    &lt;a href="https://www.example.com"&gt;Click here to visit Example.com&lt;/a&gt;
+                </code>
+            </div>
+
+            <h3>4. Images</h3>
+            <p>To display images on your webpage, use the &lt;img&gt; tag. The &lt;img&gt; tag is self-closing, meaning it doesn't need a separate closing tag.</p>
+            <div class="code-block">
+                <code>
+                    &lt;img src="image.jpg" alt="Description of the image"&gt;
+                </code>
+            </div>
+
+            <h3>5. Lists</h3>
+            <p>Lists are perfect for organizing content. There are two main types of lists:</p>
+            <ul>
+                <li><strong>Ordered lists</strong> (&lt;ol&gt;) for numbered items.</li>
+                <li><strong>Unordered lists</strong> (&lt;ul&gt;) for bulleted items.</li>
+            </ul>
+            <div class="code-block">
+                <code>
+                    &lt;ol&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;First item&lt;/li&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;Second item&lt;/li&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;Third item&lt;/li&gt;<br>
+                    &lt;/ol&gt;
+                </code>
+            </div>
+            <div class="code-block">
+                <code>
+                    &lt;ul&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;First item&lt;/li&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;Second item&lt;/li&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;Third item&lt;/li&gt;<br>
+                    &lt;/ul&gt;
+                </code>
+            </div>
+        </section>
+
+        <section>
+            <h2>Attributes in HTML</h2>
+            <p>HTML elements can have attributes that provide additional information. Attributes are included in the opening tag as name/value pairs.</p>
+            <div class="code-block">
+                <code>
+                    &lt;tagname attribute="value"&gt;Content goes here&lt;/tagname&gt;
+                </code>
+            </div>
+            <p>For example, in the &lt;img&gt; element, <strong>src</strong> and <strong>alt</strong> are attributes that define the image source and alternative text, respectively.</p>
+        </section>
+
+        <section>
+            <h2>Wrapping Up</h2>
+            <p>This tutorial covered the essential HTML elements you need to start building simple web pages. Practice using these elements and experiment with their attributes to get comfortable with creating content-rich websites.</p>
+        </section>
+    </div>
 </body>
 </html>
-
