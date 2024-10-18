@@ -32,7 +32,7 @@ header h1 {
 h2 {
     font-size: 28px;
     color: #34495e;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reduced space */
     margin-left: 10px;  /* Align h2 with the list */
     display: inline-block; /* Makes the width fit the text */
     border-bottom: 3px solid #000; /* Short black underline */
@@ -42,8 +42,8 @@ h2 {
 /* Ordered List Styles */
 ol {
     max-width: 600px;
-    margin: 0 auto;
-    padding-left: 20px;
+    margin-left: 10px; /* Align the list with h2 */
+    padding-left: 20px;  /* Indent list slightly */
 }
 
 ol li {
@@ -82,4 +82,5 @@ ol li a:hover {
 .container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 20
+    padding: 20px;
+}
