@@ -1,13 +1,78 @@
-/* CSS to center the text on the page */
+/* Global Styles */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
-    font-family: Arial, sans-serif;
+    padding: 0;
+    color: #333;
 }
 
+/* Page Title */
 h1 {
     text-align: center;
+    margin-top: 20px;
+    font-size: 36px;
+    color: #2c3e50;
+}
+
+/* Section Titles */
+h2 {
+    font-size: 28px;
+    color: #34495e;
+    border-bottom: 2px solid #2980b9;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Ordered List Styles */
+ol {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 20px;
+}
+
+ol li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Links inside the list */
+ol li a {
+    text-decoration: none;
+    color: #2980b9;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+ol li a:hover {
+    color: #1abc9c;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    ol li {
+        font-size: 16px;
+    }
+}
+
+/* Container for layout adjustments */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Topic List */
+ol li::marker {
+    color: #1abc9c;
+    font-size: 1.2em;
 }
