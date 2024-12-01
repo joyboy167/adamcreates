@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Challenge</title>
+    <!-- Linking the CSS file -->
+    <link rel="stylesheet" href="math.index.css">
+</head>
+<body>
+    <header>
+        <h1>Math Challenge</h1>
+        <p>Can you beat your high score?</p>
+    </header>
+    <main>
+        <section id="game">
+            <p id="question">Press Start to Begin!</p>
+            <form id="game-form">
+                <input type="number" id="answer" placeholder="Your answer" disabled required>
+                <button type="submit" id="submit-btn" disabled>Submit</button>
+            </form>
+            <button id="start-btn">Start Game</button>
+            <p id="feedback"></p>
+        </section>
+        <section id="stats">
+            <h2>Stats</h2>
+            <p>Current Streak: <span id="current-streak">0</span></p>
+            <p>High Score: <span id="high-score">0</span></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Math Challenge. All Rights Reserved.</p>
+    </footer>
+    <!-- Linking the JavaScript file -->
+    <script src="math.index.js"></script>
+</body>
+</html>
