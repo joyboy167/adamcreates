@@ -3,25 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Challenge</title>
-    <!-- Linking the CSS file -->
-    <link rel="stylesheet" href="math-index.css">
+    <title>Math Challenge - Game</title>
+    <link rel="stylesheet" href="game.css">
 </head>
 <body>
     <header>
         <h1>Math Challenge</h1>
-        <p>Can you beat your high score?</p>
+        <p>Answer as many questions as possible! The difficulty increases with your score.</p>
     </header>
     <main>
-        <!-- Centered Start Game button -->
+        <!-- Prominent Level Indicator -->
+        <p id="level-indicator">Level: 1</p>
         <section id="game">
-            <button id="start-btn">Start Game</button>
+            <p id="question">Loading question...</p>
+            <form id="game-form">
+                <input type="number" id="answer" placeholder="Enter your answer" required>
+                <!-- Changed button label to "Enter" -->
+                <button type="submit" id="submit-btn">Enter</button>
+            </form>
+            <p id="feedback"></p>
+        </section>
+        <section id="stats">
+            <h2>Game Stats</h2>
+            <p>Current Score: <span id="current-score">0</span></p>
+            <p>High Score: <span id="high-score">0</span></p>
         </section>
     </main>
     <footer>
         <p>&copy; 2024 Math Challenge. All Rights Reserved.</p>
     </footer>
-    <!-- Linking the JavaScript file -->
-    <script src="math-index.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
