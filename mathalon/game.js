@@ -10,6 +10,7 @@ const feedbackElement = document.getElementById('feedback');
 const currentScoreElement = document.getElementById('current-score');
 const highScoreElement = document.getElementById('high-score');
 const gameForm = document.getElementById('game-form');
+const mainContainer = document.querySelector('main');
 
 // Initialize high score
 highScoreElement.textContent = highScore;
@@ -49,9 +50,6 @@ function checkAnswer(event) {
         difficulty++;
         generateQuestion(); // Load the next question directly
     } else {
-        // Display feedback for incorrect answers
-        feedbackElement.textContent = `Incorrect! The correct answer was ${currentQuestion.answer}.`;
-        feedbackElement.style.color = 'red';
         endGame();
     }
 
@@ -72,8 +70,14 @@ function updateStats() {
 
 // End the game
 function endGame() {
-    questionElement.textContent = 'Game Over! Reload to play again.';
-    gameForm.style.display = 'none'; // Hide the form to prevent further submissions
+    mainContainer.innerHTML = `
+        <h2>Game Over</h2>
+        <button id="restart-btn">Restart</button>
+    `;
+    const restartButton = document.getElementById('restart-btn');
+    restartButton.addEventListener('click', () => {
+        window.location.reload(); // Reload the page to restart the game
+    });
 }
 
 // Initialize the game
