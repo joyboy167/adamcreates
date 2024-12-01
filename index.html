@@ -7,12 +7,35 @@
     <title>Index Page with Links</title>
     <!-- Linking a CSS stylesheet -->
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Inline CSS for link styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        a {
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <!-- A link to the 'cheatsheet-home.html' page -->
-    <a href="webdev-cheatsheet/wdcs-home.html">webdev-cheatsheet</a>
-    
-    <!-- A new link to the 'mathalon/math-index.html' page -->
-    <a href="mathalon/math-index.html">Mathalon</a>
+    <ul>
+        <!-- Capitalized links with spacing -->
+        <li><a href="webdev-cheatsheet/wdcs-home.html">Webdev-Cheatsheet</a></li>
+        <li><a href="mathalon/math-index.html">Mathalon</a></li>
+    </ul>
 </body>
 </html>
