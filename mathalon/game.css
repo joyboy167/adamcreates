@@ -86,21 +86,28 @@ main {
 }
 
 /* Button Styling */
-#submit-btn {
+#submit-btn, #restart-btn {
     background: linear-gradient(90deg, #00c6ff, #0072ff); /* Bright gradient */
     border: none;
     color: #ffffff;
-    font-size: 1.2rem;
-    font-weight: 600;
-    padding: 10px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px 40px;
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.4s ease;
 }
 
-#submit-btn:hover {
+#submit-btn:hover, #restart-btn:hover {
     background: linear-gradient(90deg, #0072ff, #00c6ff);
     box-shadow: 0 5px 15px rgba(0, 114, 255, 0.5);
+}
+
+/* Game Over Screen Styling */
+main h2 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 20px;
 }
 
 /* Stats Section */
