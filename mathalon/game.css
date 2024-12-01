@@ -56,28 +56,17 @@ header p {
 
 /* Level Indicator Styling */
 #level-indicator {
-    font-size: 2.5rem; /* Bigger font size */
-    font-weight: 800; /* Extra bold */
-    color: #ffffff; /* Bright white text */
-    background: linear-gradient(90deg, #ff6a00, #ee0979); /* Vivid gradient background */
-    padding: 15px 30px; /* Extra padding for emphasis */
-    border: 3px solid #ffffff; /* White border for separation */
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Shadow for prominence */
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff; /* Soft white text */
+    background: linear-gradient(90deg, #2193b0, #6dd5ed); /* Subtle blue gradient */
+    padding: 10px 25px; /* Comfortable padding */
+    border: 2px solid #ffffff; /* Subtle white border */
+    border-radius: 15px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gentle shadow */
     text-align: center;
-    margin-bottom: 30px; /* Space below the level indicator */
+    margin-bottom: 20px; /* Add spacing below */
     display: inline-block;
-    animation: glow 1.5s infinite alternate; /* Glow animation */
-}
-
-/* Glow Animation for the Level Indicator */
-@keyframes glow {
-    from {
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 106, 0, 0.5);
-    }
-    to {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(238, 9, 121, 0.8);
-    }
 }
 
 /* Main Container Styling */
