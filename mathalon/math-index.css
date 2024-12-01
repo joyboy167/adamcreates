@@ -11,11 +11,13 @@ body {
     background: linear-gradient(135deg, #1d2671, #c33764); /* Vibrant gradient background */
     color: #f1f1f1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     text-align: center;
     overflow: hidden;
+    position: relative;
 }
 
 /* Decorative Background Textures */
@@ -34,7 +36,8 @@ body::before {
 
 /* Header Styling */
 header {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    z-index: 1;
 }
 
 header h1 {
@@ -44,6 +47,7 @@ header h1 {
     font-weight: 700;
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
 }
 
 header p {
@@ -54,16 +58,17 @@ header p {
 
 /* Main Container Styling */
 main {
-    background: rgba(255, 255, 255, 0.1); /* Frosted Glass Effect */
+    background: rgba(255, 255, 255, 0.15); /* Frosted Glass Effect */
     backdrop-filter: blur(15px);
-    padding: 40px 60px;
+    padding: 50px 70px;
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     z-index: 1;
     position: relative;
-    max-width: 600px;
-    width: 90%;
-    margin: 20px auto;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
     transition: transform 0.4s ease-in-out, box-shadow 0.4s;
 }
 
@@ -79,12 +84,15 @@ main:hover {
     color: #ffffff;
     font-size: 1.8rem;
     font-weight: 600;
-    padding: 15px 50px;
+    padding: 20px 60px;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.4s ease;
     position: relative;
     z-index: 1;
+    display: inline-block;
+    text-decoration: none;
+    overflow: hidden;
 }
 
 #start-btn:hover {
@@ -116,7 +124,7 @@ main:hover {
 /* Footer Styling */
 footer {
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
     font-size: 0.9rem;
     color: #d9d9d9;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
