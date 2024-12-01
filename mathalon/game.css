@@ -56,17 +56,18 @@ header p {
 
 /* Level Indicator Styling */
 #level-indicator {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #ffffff; /* Soft white text */
-    background: linear-gradient(90deg, #2193b0, #6dd5ed); /* Subtle blue gradient */
-    padding: 10px 25px; /* Comfortable padding */
-    border: 2px solid #ffffff; /* Subtle white border */
-    border-radius: 15px; /* Slightly rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gentle shadow */
+    font-size: 2rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1); /* Subtle frosted glass effect */
+    padding: 10px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.4); /* Transparent white border */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
     text-align: center;
-    margin-bottom: 20px; /* Add spacing below */
+    margin-bottom: 20px; /* Space below */
     display: inline-block;
+    backdrop-filter: blur(10px); /* Blur effect to enhance contrast */
 }
 
 /* Main Container Styling */
