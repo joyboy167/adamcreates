@@ -44,17 +44,18 @@ function checkAnswer(event) {
 
     const userAnswer = parseInt(answerInput.value);
     if (userAnswer === currentQuestion.answer) {
+        // Increase score and difficulty for correct answers
         currentScore++;
         difficulty++;
-        feedbackElement.textContent = 'Correct! 🎉';
-        feedbackElement.style.color = 'green';
-        generateQuestion();
+        generateQuestion(); // Load the next question directly
     } else {
+        // Display feedback for incorrect answers
         feedbackElement.textContent = `Incorrect! The correct answer was ${currentQuestion.answer}.`;
         feedbackElement.style.color = 'red';
         endGame();
     }
 
+    // Clear the input field and update stats
     answerInput.value = '';
     updateStats();
 }
@@ -72,7 +73,7 @@ function updateStats() {
 // End the game
 function endGame() {
     questionElement.textContent = 'Game Over! Reload to play again.';
-    gameForm.style.display = 'none';
+    gameForm.style.display = 'none'; // Hide the form to prevent further submissions
 }
 
 // Initialize the game
