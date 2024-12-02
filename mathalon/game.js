@@ -80,13 +80,31 @@ function checkAnswer(event) {
     updateStats();
 }
 
+// Level descriptions
+const levelDescriptions = {
+    1: "Addition and subtraction with small numbers.",
+    2: "Multiplication and division introduced.",
+    3: "Larger numbers in all operations.",
+    4: "Mix of operations and increased range.",
+    5: "Operations now involve numbers up to 50.",
+    6: "Challenging questions with all operators.",
+    7: "High numbers with complex calculations.",
+    8: "Precision division and multiplication.",
+    9: "Fast-paced mix of all operators.",
+    10: "Ultimate test with largest numbers!"
+};
+
 // Level up the game
 function levelUp() {
     level++; // Increase the level
     questionsAnswered = 0; // Reset questions answered for the new level
     levelElement.textContent = `Level: ${level}`; // Update the level display
-    feedbackElement.textContent = `Welcome to Level ${level}!`; // Show level-up feedback
+
+    // Update the yellow feedback text with level description
+    const description = levelDescriptions[level] || "New challenges ahead!";
+    feedbackElement.textContent = `Welcome to Level ${level}! ${description}`;
     feedbackElement.style.color = 'gold';
+
     generateQuestion(); // Start the new level
 }
 
