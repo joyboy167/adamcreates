@@ -16,6 +16,33 @@ const levelElement = document.getElementById('level-indicator'); // Use the exis
 // Initialize high score
 highScoreElement.textContent = highScore;
 
+// Create level modal
+const levelModal = document.createElement('div');
+levelModal.id = 'level-modal';
+levelModal.style.display = 'none'; // Hide initially
+levelModal.innerHTML = `
+    <div id="modal-content">
+        <h1 id="modal-title"></h1>
+        <p id="modal-description"></p>
+        <button id="continue-btn">Continue</button>
+    </div>
+`;
+document.body.appendChild(levelModal);
+
+// Level descriptions
+const levelDescriptions = {
+    1: "Addition and subtraction with small numbers.",
+    2: "Multiplication and division introduced.",
+    3: "Larger numbers in all operations.",
+    4: "Mix of operations and increased range.",
+    5: "Operations now involve numbers up to 50.",
+    6: "Challenging questions with all operators.",
+    7: "High numbers with complex calculations.",
+    8: "Precision division and multiplication.",
+    9: "Fast-paced mix of all operators.",
+    10: "Ultimate test with largest numbers!"
+};
+
 // Generate a random math question based on the current level
 function generateQuestion() {
     const min = 1;
@@ -80,32 +107,26 @@ function checkAnswer(event) {
     updateStats();
 }
 
-// Level descriptions
-const levelDescriptions = {
-    1: "Addition and subtraction with small numbers.",
-    2: "Multiplication and division introduced.",
-    3: "Larger numbers in all operations.",
-    4: "Mix of operations and increased range.",
-    5: "Operations now involve numbers up to 50.",
-    6: "Challenging questions with all operators.",
-    7: "High numbers with complex calculations.",
-    8: "Precision division and multiplication.",
-    9: "Fast-paced mix of all operators.",
-    10: "Ultimate test with largest numbers!"
-};
-
 // Level up the game
 function levelUp() {
     level++; // Increase the level
     questionsAnswered = 0; // Reset questions answered for the new level
     levelElement.textContent = `Level: ${level}`; // Update the level display
 
-    // Update the yellow feedback text with level description
-    const description = levelDescriptions[level] || "New challenges ahead!";
-    feedbackElement.textContent = `Welcome to Level ${level}! ${description}`;
-    feedbackElement.style.color = 'gold';
+    // Show level modal with description
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const continueButton = document.getElementById('continue-btn');
 
-    generateQuestion(); // Start the new level
+    modalTitle.textContent = `Level ${level}`;
+    modalDescription.textContent = levelDescriptions[level] || "New challenges ahead!";
+    levelModal.style.display = 'flex'; // Show the modal
+
+    // Pause game until user clicks "Continue"
+    continueButton.onclick = () => {
+        levelModal.style.display = 'none'; // Hide the modal
+        generateQuestion(); // Start the new level
+    };
 }
 
 // Update stats on the page
