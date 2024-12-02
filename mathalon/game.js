@@ -51,7 +51,7 @@ function checkAnswer(event) {
 
     const userAnswer = parseInt(answerInput.value);
 
-    // Validate input
+    // Handle empty or invalid inputs
     if (isNaN(userAnswer)) {
         feedbackElement.textContent = "Please enter a valid number.";
         feedbackElement.style.color = "orange";
@@ -97,24 +97,6 @@ function levelUp() {
     };
 }
 
-// Add a keydown listener for global "Enter" key handling
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        if (levelModal.classList.contains('show')) {
-            // If modal is visible, clicking Enter triggers "Continue" button
-            continueButton.click();
-            event.preventDefault(); // Prevent any unintended form submissions
-        } else if (document.activeElement === answerInput) {
-            // Let the form submit naturally when the input is focused
-            gameForm.dispatchEvent(new Event('submit'));
-        }
-    }
-});
-
 // Initialize the game
 gameForm.addEventListener('submit', checkAnswer);
-continueButton.addEventListener('click', () => {
-    levelModal.classList.remove('show');
-    generateQuestion();
-});
 generateQuestion();
