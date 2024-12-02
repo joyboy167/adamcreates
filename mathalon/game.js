@@ -43,6 +43,9 @@ function generateQuestion() {
 
     // Clear feedback only when a new question is generated
     feedbackElement.textContent = '';
+
+    // Automatically focus the input field for typing
+    answerInput.focus();
 }
 
 // Handle answer submission
@@ -69,6 +72,7 @@ function checkAnswer(event) {
     }
 
     answerInput.value = ''; // Clear input after each attempt
+    answerInput.focus(); // Ensure focus remains on the input field
 }
 
 // Level up the game
@@ -87,6 +91,7 @@ function levelUp() {
     continueButton.onclick = () => {
         levelModal.classList.remove('show');
         generateQuestion();
+        answerInput.focus(); // Automatically focus input field after closing modal
     };
 }
 
