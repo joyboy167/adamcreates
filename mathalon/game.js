@@ -43,7 +43,6 @@ function generateQuestion() {
 
     // Clear feedback only when a new question is generated
     feedbackElement.textContent = '';
-    feedbackElement.style.color = ''; // Reset color for feedback
 }
 
 // Handle answer submission
@@ -60,9 +59,9 @@ function checkAnswer(event) {
         progressBar.style.width = `${progress}%`;
 
         if (questionsAnswered === 8) {
-            setTimeout(levelUp, 500); // Reduced delay for feedback visibility
+            levelUp();
         } else {
-            setTimeout(generateQuestion, 500); // Reduced delay for feedback visibility
+            generateQuestion();
         }
     } else {
         feedbackElement.textContent = "Incorrect. Try again.";
@@ -84,13 +83,28 @@ function levelUp() {
     modalDescription.textContent = levelDescriptions[level] || "New challenges!";
     levelModal.classList.add('show');
 
-    // Wait for user to click "Continue"
-    continueButton.onclick = () => {
-        levelModal.classList.remove('show');
-        generateQuestion();
-    };
+    // Ensure Enter key only works for the "Continue" button when modal is open
+    continueButton.focus();
 }
+
+// Add a keydown listener for global "Enter" key handling
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        if (levelModal.classList.contains('show')) {
+            // If modal is visible, clicking Enter triggers "Continue" button
+            continueButton.click();
+            event.preventDefault(); // Prevent any unintended form submissions
+        } else if (document.activeElement === answerInput) {
+            // Let the form submit naturally when the input is focused
+            gameForm.dispatchEvent(new Event('submit'));
+        }
+    }
+});
 
 // Initialize the game
 gameForm.addEventListener('submit', checkAnswer);
+continueButton.addEventListener('click', () => {
+    levelModal.classList.remove('show');
+    generateQuestion();
+});
 generateQuestion();
