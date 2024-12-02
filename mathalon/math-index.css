@@ -54,92 +54,34 @@ header p {
     color: #eeeeee;
 }
 
-/* Level Indicator Styling */
-#level-indicator {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ffc107; /* Bright yellow for contrast */
-    background: linear-gradient(90deg, #ff8800, #ffcc00); /* Gradient background */
-    padding: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    margin-bottom: 20px;
-    display: inline-block;
-    animation: pulse 1.5s infinite ease-in-out; /* Optional animation for effect */
-}
-
-/* Animation for the Level Indicator */
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
-/* Main Container Styling */
-main {
-    background: rgba(255, 255, 255, 0.15); /* Frosted Glass Effect */
-    backdrop-filter: blur(15px);
-    padding: 40px 50px;
-    border-radius: 15px;
+/* Start Section Styling */
+#start-section {
+    background: rgba(255, 255, 255, 0.1); /* Frosted Glass Effect */
+    backdrop-filter: blur(10px);
+    padding: 40px 60px;
+    border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     z-index: 1;
     position: relative;
-    width: 90%;
-    max-width: 700px;
     text-align: center;
 }
 
-#game p {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-}
-
-/* Input Styling */
-#answer {
-    padding: 10px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    width: 80%;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Button Styling */
-#submit-btn, #restart-btn {
+#start-btn {
     background: linear-gradient(90deg, #00c6ff, #0072ff); /* Bright gradient */
     border: none;
     color: #ffffff;
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 15px 40px;
-    border-radius: 30px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 15px 50px;
+    border-radius: 50px;
     cursor: pointer;
     transition: all 0.4s ease;
 }
 
-#submit-btn:hover, #restart-btn:hover {
+#start-btn:hover {
     background: linear-gradient(90deg, #0072ff, #00c6ff);
-    box-shadow: 0 5px 15px rgba(0, 114, 255, 0.5);
-}
-
-/* Game Stats Section */
-#stats {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: #eeeeee;
-}
-
-/* Feedback */
-#feedback {
-    font-size: 1.2rem;
-    margin-top: 15px;
-    font-weight: bold;
+    transform: scale(1.1);
+    box-shadow: 0 10px 25px rgba(0, 114, 255, 0.5);
 }
 
 /* Footer Styling */
