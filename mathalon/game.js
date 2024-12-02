@@ -43,6 +43,7 @@ function generateQuestion() {
 
     // Clear feedback only when a new question is generated
     feedbackElement.textContent = '';
+    feedbackElement.style.color = ''; // Reset color for feedback
 }
 
 // Handle answer submission
@@ -59,9 +60,9 @@ function checkAnswer(event) {
         progressBar.style.width = `${progress}%`;
 
         if (questionsAnswered === 8) {
-            levelUp();
+            setTimeout(levelUp, 1000); // Delay for feedback visibility
         } else {
-            generateQuestion();
+            setTimeout(generateQuestion, 1000); // Delay for feedback visibility
         }
     } else {
         feedbackElement.textContent = "Incorrect. Try again.";
@@ -69,6 +70,9 @@ function checkAnswer(event) {
     }
 
     answerInput.value = ''; // Clear input after each attempt
+
+    // Debugging log to ensure feedback updates correctly
+    console.log("Feedback:", feedbackElement.textContent);
 }
 
 // Level up the game
