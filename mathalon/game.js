@@ -103,6 +103,7 @@ function checkAnswer(event) {
         feedbackElement.style.color = "green";
 
         if (questionsAnswered === 5) {
+            clearInterval(timerInterval); // Stop the timer when the level is completed
             levelUp();
         } else {
             generateQuestion();
@@ -125,9 +126,6 @@ function levelUp() {
     levelElement.textContent = `Level: ${level}`;
     feedbackElement.textContent = ""; // Clear feedback
 
-    clearInterval(timerInterval); // Stop the timer for the current level
-    startTimer(); // Start a new timer for the next level
-
     // Show modal with level description
     modalTitle.textContent = `Level ${level}`;
     modalDescription.textContent = levelDescriptions[level] || "New challenges ahead!";
@@ -140,6 +138,7 @@ function levelUp() {
         levelModal.classList.remove('show');
         gameForm.addEventListener('submit', checkAnswer);
         generateQuestion();
+        startTimer(); // Start the timer only after pressing "Continue"
     };
 }
 
@@ -185,4 +184,3 @@ function updateStats() {
 // Initialize the game
 generateQuestion();
 gameForm.addEventListener('submit', checkAnswer);
-startTimer(); // Start the timer for the first level
