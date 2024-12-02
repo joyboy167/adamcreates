@@ -11,14 +11,7 @@ const feedbackElement = document.getElementById('feedback');
 const currentScoreElement = document.getElementById('current-score');
 const highScoreElement = document.getElementById('high-score');
 const gameForm = document.getElementById('game-form');
-const mainContainer = document.querySelector('main');
-
-// Add Level Display
-const levelElement = document.createElement('p'); // To show the level
-levelElement.textContent = `Level: ${level}`;
-levelElement.style.fontSize = "1.5rem";
-levelElement.style.marginBottom = "20px";
-mainContainer.prepend(levelElement); // Add level display to the top of the main container
+const levelElement = document.getElementById('level-indicator'); // Use the existing level indicator from the HTML
 
 // Initialize high score
 highScoreElement.textContent = highScore;
