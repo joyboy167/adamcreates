@@ -50,16 +50,17 @@ main {
 
 /* Level Indicator Styling */
 #level-indicator {
-    font-size: 1.2rem; /* Made the font size smaller */
+    font-size: 1rem; /* Reduced font size */
     font-weight: bold;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 10px;
-    padding: 8px 15px; /* Adjust padding for smaller size */
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 12px;
+    padding: 6px 12px; /* Reduced padding for compactness */
+    background: rgba(50, 50, 150, 0.3); /* Slightly darker for contrast */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: inline-block;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* Question Styling */
