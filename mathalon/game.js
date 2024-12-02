@@ -105,11 +105,27 @@ function levelUp() {
     modalDescription.textContent = levelDescriptions[level] || "New challenges ahead!";
     levelModal.classList.add('show');
 
-    // Wait for user to click "Continue"
+    // Event listener for "Continue" button click
     continueButton.onclick = () => {
-        levelModal.classList.remove('show');
-        generateQuestion();
+        closeModalAndContinue();
     };
+
+    // Event listener for "Enter" key press
+    const handleEnterKey = (event) => {
+        if (event.key === "Enter") {
+            closeModalAndContinue();
+        }
+    };
+
+    // Close the modal and remove event listener for the "Enter" key
+    function closeModalAndContinue() {
+        levelModal.classList.remove('show');
+        document.removeEventListener('keydown', handleEnterKey); // Remove event listener
+        generateQuestion();
+    }
+
+    // Attach keydown event listener
+    document.addEventListener('keydown', handleEnterKey);
 }
 
 // Update stats on the page
