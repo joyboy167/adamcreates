@@ -41,7 +41,7 @@ function generateQuestion() {
     currentQuestion = { question: `${num1} ${operator} ${num2}`, answer };
     questionElement.textContent = currentQuestion.question;
 
-    // Clear feedback for the new question
+    // Clear feedback only when a new question is generated
     feedbackElement.textContent = '';
 }
 
@@ -52,6 +52,8 @@ function checkAnswer(event) {
     const userAnswer = parseInt(answerInput.value);
 
     if (userAnswer === currentQuestion.answer) {
+        feedbackElement.textContent = "Correct! Well done.";
+        feedbackElement.style.color = "green"; // Highlight positive feedback
         questionsAnswered++;
         progress = (questionsAnswered / 8) * 100;
         progressBar.style.width = `${progress}%`;
@@ -63,6 +65,7 @@ function checkAnswer(event) {
         }
     } else {
         feedbackElement.textContent = "Incorrect. Try again.";
+        feedbackElement.style.color = "red"; // Highlight negative feedback
     }
 
     answerInput.value = ''; // Clear input after each attempt
