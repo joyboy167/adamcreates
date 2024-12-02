@@ -9,10 +9,9 @@
 <body>
     <header>
         <h1>Math Challenge</h1>
-        <p>Answer as many questions as possible! The difficulty increases with your score.</p>
+        <p>Answer as many questions as possible! The difficulty increases with each level.</p>
     </header>
     <main>
-        <!-- Correct Level Indicator (only one) -->
         <p id="level-indicator">Level: 1</p>
         <section id="game">
             <p id="question">Loading question...</p>
@@ -21,14 +20,11 @@
                 <button type="submit" id="submit-btn">Enter</button>
             </form>
             <p id="feedback"></p>
-        </section>
-        <section id="stats">
-            <h2>Game Stats</h2>
-            <p>Current Score: <span id="current-score">0</span></p>
-            <p>High Score: <span id="high-score">0</span></p>
+            <div id="progress-container">
+                <div id="progress-bar"></div>
+            </div>
         </section>
     </main>
-    <!-- Modal for level-up transitions -->
     <div id="level-modal" class="hidden">
         <div id="modal-content">
             <h2 id="modal-title"></h2>
