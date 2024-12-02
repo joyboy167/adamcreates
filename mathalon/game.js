@@ -144,7 +144,7 @@ function levelUp() {
 // Start the level timer
 function startTimer() {
     clearInterval(timerInterval); // Clear any existing interval
-    timerElement.textContent = `Time Remaining: ${timeRemaining}s`;
+    timerElement.textContent = `Time Remaining: ${timeRemaining}s`; // Display timer immediately
     timerInterval = setInterval(() => {
         timeRemaining--;
         timerElement.textContent = `Time Remaining: ${timeRemaining}s`;
@@ -183,4 +183,5 @@ function updateStats() {
 
 // Initialize the game
 generateQuestion();
+startTimer(); // Start the timer for the first level
 gameForm.addEventListener('submit', checkAnswer);
