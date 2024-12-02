@@ -1,10 +1,4 @@
-// DOM Elements
-const startButton = document.getElementById('start-btn');
-
-// Function to redirect to the game page
-function startGame() {
-    window.location.href = 'game.html'; // Redirect to the game page
-}
-
-// Add event listener to the Start Game button
-startButton.addEventListener('click', startGame);
+// Redirect to the game page when "Start Game" button is clicked
+document.getElementById('start-btn').addEventListener('click', () => {
+    window.location.href = 'game.html';
+});
