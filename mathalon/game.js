@@ -51,6 +51,13 @@ function checkAnswer(event) {
 
     const userAnswer = parseInt(answerInput.value);
 
+    // Validate input
+    if (isNaN(userAnswer)) {
+        feedbackElement.textContent = "Please enter a valid number.";
+        feedbackElement.style.color = "orange";
+        return;
+    }
+
     if (userAnswer === currentQuestion.answer) {
         feedbackElement.textContent = "Correct! Well done.";
         feedbackElement.style.color = "green"; // Highlight positive feedback
@@ -83,8 +90,11 @@ function levelUp() {
     modalDescription.textContent = levelDescriptions[level] || "New challenges!";
     levelModal.classList.add('show');
 
-    // Ensure Enter key only works for the "Continue" button when modal is open
-    continueButton.focus();
+    // Wait for user to click "Continue"
+    continueButton.onclick = () => {
+        levelModal.classList.remove('show');
+        generateQuestion();
+    };
 }
 
 // Add a keydown listener for global "Enter" key handling
