@@ -3,6 +3,7 @@ let highScore = localStorage.getItem('highScore') || 0;
 let currentQuestion = {};
 let level = 1; // Start at Level 1
 let questionsAnswered = 0; // Tracks questions answered in the current level
+let firstAttempt = true; // Track the first attempt of each level
 
 // DOM Elements
 const questionElement = document.getElementById('question');
@@ -82,8 +83,13 @@ function generateQuestion() {
 function checkAnswer(event) {
     event.preventDefault();
 
-    const userAnswer = parseInt(answerInput.value);
+    if (firstAttempt) {
+        firstAttempt = false; // Ignore the first input and reset the flag
+        answerInput.value = ''; // Clear the input field
+        return;
+    }
 
+    const userAnswer = parseInt(answerInput.value);
     if (userAnswer === currentQuestion.answer) {
         currentScore++;
         questionsAnswered++;
@@ -108,6 +114,7 @@ function checkAnswer(event) {
 function levelUp() {
     level++;
     questionsAnswered = 0;
+    firstAttempt = true; // Reset the first attempt flag for the new level
     levelElement.textContent = `Level: ${level}`;
 
     // Show modal with level description
