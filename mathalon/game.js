@@ -36,6 +36,11 @@ const levelDescriptions = {
 // Initialize high score
 highScoreElement.textContent = highScore;
 
+// Disable scroll buttons and remove "required" validation for the answer input field
+answerInput.setAttribute('inputmode', 'numeric'); // Ensures numeric keyboard on mobile
+answerInput.setAttribute('type', 'text'); // Avoids up/down arrows
+answerInput.removeAttribute('required'); // Removes the "required" validation
+
 // Generate a random math question based on the current level
 function generateQuestion() {
     const min = 1;
