@@ -11,16 +11,19 @@ body {
     background: linear-gradient(135deg, #1d2671, #c33764);
     color: #f1f1f1;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Ensures header, main, and footer stack vertically */
+    justify-content: space-between; /* Push header to top and footer to bottom */
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Ensures full-height viewport */
     text-align: center;
+    padding: 20px 0; /* Add padding to top and bottom */
     overflow: hidden;
 }
 
 /* Header Styling */
 header {
-    margin-bottom: 20px;
+    width: 100%; /* Ensure it spans full width */
+    text-align: center; /* Center-align content */
 }
 
 header h1 {
@@ -46,16 +49,21 @@ main {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     width: 90%;
     max-width: 500px; /* Ensure it doesn’t exceed a reasonable width */
-    margin: 0 auto; /* Center the main container horizontally */
+    margin: 0 auto; /* Center horizontally */
+    flex: 1; /* Take up remaining vertical space between header and footer */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+    justify-content: center; /* Center the content within main */
 }
 
 /* Level Indicator Styling */
 #level-indicator {
-    font-size: 1rem; /* Reduced font size */
+    font-size: 1.1rem; /* Slightly reduced font size */
     font-weight: bold;
     color: rgba(255, 255, 255, 0.95);
     margin-bottom: 12px;
-    padding: 6px 12px; /* Adjusted padding */
+    padding: 6px 12px; /* Adjust padding for cleaner look */
     background: rgba(50, 50, 150, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 8px;
@@ -137,10 +145,10 @@ main {
 
 /* Footer Styling */
 footer {
-    margin-top: 20px;
+    width: 100%; /* Ensure footer spans full width */
+    text-align: center;
     font-size: 0.8rem;
     color: #cccccc;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    position: relative;
-    text-align: center; /* Ensure proper alignment */
+    margin-top: 20px;
 }
