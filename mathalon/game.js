@@ -60,9 +60,9 @@ function checkAnswer(event) {
         progressBar.style.width = `${progress}%`;
 
         if (questionsAnswered === 8) {
-            setTimeout(levelUp, 1000); // Delay for feedback visibility
+            setTimeout(levelUp, 500); // Reduced delay for feedback visibility
         } else {
-            setTimeout(generateQuestion, 1000); // Delay for feedback visibility
+            setTimeout(generateQuestion, 500); // Reduced delay for feedback visibility
         }
     } else {
         feedbackElement.textContent = "Incorrect. Try again.";
@@ -70,9 +70,6 @@ function checkAnswer(event) {
     }
 
     answerInput.value = ''; // Clear input after each attempt
-
-    // Debugging log to ensure feedback updates correctly
-    console.log("Feedback:", feedbackElement.textContent);
 }
 
 // Level up the game
