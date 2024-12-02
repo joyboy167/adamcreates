@@ -41,4 +41,75 @@ function generateQuestion() {
     currentQuestion = { question: `${num1} ${operator} ${num2}`, answer };
     questionElement.textContent = currentQuestion.question;
 
-    // Clear feedba
+    // Clear feedback only when a new question is generated
+    feedbackElement.textContent = '';
+    console.log('New question generated:', currentQuestion); // Debugging output
+}
+
+// Handle answer submission
+function checkAnswer(event) {
+    event.preventDefault();
+
+    const userAnswer = parseInt(answerInput.value);
+
+    if (userAnswer === currentQuestion.answer) {
+        feedbackElement.textContent = "Correct! Well done.";
+        feedbackElement.style.color = "green"; // Highlight positive feedback
+        questionsAnswered++;
+        progress = (questionsAnswered / 8) * 100;
+        progressBar.style.width = `${progress}%`;
+
+        if (questionsAnswered === 8) {
+            levelUp();
+        } else {
+            generateQuestion();
+        }
+    } else {
+        feedbackElement.textContent = "Incorrect. Try again.";
+        feedbackElement.style.color = "red"; // Highlight negative feedback
+    }
+
+    answerInput.value = ''; // Clear input after each attempt
+}
+
+// Level up the game
+function levelUp() {
+    level++;
+    questionsAnswered = 0;
+    progressBar.style.width = '0%';
+    levelElement.textContent = `Level: ${level}`;
+
+    // Show modal with level description
+    modalTitle.textContent = `Level ${level}`;
+    modalDescription.textContent = levelDescriptions[level] || "New challenges!";
+    levelModal.classList.add('show');
+
+    // Ensure the answer form doesn't interfere
+    answerInput.blur();
+
+    // Allow "Enter" or click for "Continue" button
+    continueButton.onclick = continueToNextLevel;
+    document.addEventListener('keydown', handleContinueKeyPress);
+}
+
+// Handle "Enter" for the Continue button
+function handleContinueKeyPress(event) {
+    if (event.key === 'Enter' && levelModal.classList.contains('show')) {
+        continueToNextLevel();
+    }
+}
+
+// Continue to the next level
+function continueToNextLevel() {
+    levelModal.classList.remove('show');
+    generateQuestion();
+
+    // Clean up event listener for "Enter" key to avoid overlap
+    document.removeEventListener('keydown', handleContinueKeyPress);
+}
+
+// Initialize the game
+gameForm.addEventListener('submit', checkAnswer);
+
+// Generate the initial question when the page loads
+generateQuestion();
