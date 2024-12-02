@@ -17,7 +17,6 @@ const gameForm = document.getElementById('game-form');
 const levelElement = document.getElementById('level-indicator');
 const timerElement = document.createElement('p'); // Create timer element
 timerElement.id = "timer";
-timerElement.textContent = `Time Remaining: ${timeRemaining}s`;
 levelElement.parentElement.appendChild(timerElement); // Append timer near level indicator
 
 // Modal Elements
@@ -144,6 +143,7 @@ function levelUp() {
 
 // Start the level timer
 function startTimer() {
+    clearInterval(timerInterval); // Clear any existing interval
     timerElement.textContent = `Time Remaining: ${timeRemaining}s`;
     timerInterval = setInterval(() => {
         timeRemaining--;
@@ -167,8 +167,8 @@ function resetLevel() {
     timeRemaining = 30;
     questionsAnswered = 0;
     feedbackElement.textContent = ""; // Clear feedback
-    startTimer();
     generateQuestion();
+    startTimer();
 }
 
 // Update stats on the page
