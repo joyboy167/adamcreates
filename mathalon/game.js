@@ -4,6 +4,8 @@ let currentQuestion = {};
 let level = 1; // Start at Level 1
 let questionsAnswered = 0; // Tracks questions answered in the current level
 let firstAttempt = true; // Track the first attempt of each level
+let timerInterval; // Holds the timer interval
+let timeRemaining = 30; // Time in seconds for the level
 
 // DOM Elements
 const questionElement = document.getElementById('question');
@@ -13,6 +15,10 @@ const currentScoreElement = document.getElementById('current-score');
 const highScoreElement = document.getElementById('high-score');
 const gameForm = document.getElementById('game-form');
 const levelElement = document.getElementById('level-indicator');
+const timerElement = document.createElement('p'); // Create timer element
+timerElement.id = "timer";
+timerElement.textContent = `Time Remaining: ${timeRemaining}s`;
+levelElement.parentElement.appendChild(timerElement); // Append timer near level indicator
 
 // Modal Elements
 const levelModal = document.getElementById('level-modal');
@@ -115,10 +121,12 @@ function levelUp() {
     level++;
     questionsAnswered = 0;
     firstAttempt = true; // Reset the first attempt flag for the new level
+    timeRemaining = 30; // Reset the timer for the new level
     levelElement.textContent = `Level: ${level}`;
+    feedbackElement.textContent = ""; // Clear feedback
 
-    // Clear the feedback message for the new level
-    feedbackElement.textContent = "";
+    clearInterval(timerInterval); // Stop the timer for the current level
+    startTimer(); // Start a new timer for the next level
 
     // Show modal with level description
     modalTitle.textContent = `Level ${level}`;
@@ -128,28 +136,40 @@ function levelUp() {
     // Temporarily disable form submission during the modal
     gameForm.removeEventListener('submit', checkAnswer);
 
-    // Event listener for "Continue" button click
     continueButton.onclick = () => {
-        closeModalAndContinue();
-    };
-
-    // Event listener for "Enter" key press
-    const handleEnterKey = (event) => {
-        if (event.key === "Enter") {
-            closeModalAndContinue();
-        }
-    };
-
-    // Close the modal and remove event listener for the "Enter" key
-    function closeModalAndContinue() {
         levelModal.classList.remove('show');
-        document.removeEventListener('keydown', handleEnterKey); // Remove event listener
+        gameForm.addEventListener('submit', checkAnswer);
         generateQuestion();
-        gameForm.addEventListener('submit', checkAnswer); // Re-enable form submission
-    }
+    };
+}
 
-    // Attach keydown event listener
-    document.addEventListener('keydown', handleEnterKey);
+// Start the level timer
+function startTimer() {
+    timerElement.textContent = `Time Remaining: ${timeRemaining}s`;
+    timerInterval = setInterval(() => {
+        timeRemaining--;
+        timerElement.textContent = `Time Remaining: ${timeRemaining}s`;
+
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            feedbackElement.textContent = "Time's up! Level failed.";
+            feedbackElement.style.color = "red";
+
+            // Reset level or allow retry
+            setTimeout(() => {
+                resetLevel();
+            }, 3000);
+        }
+    }, 1000);
+}
+
+// Reset the current level
+function resetLevel() {
+    timeRemaining = 30;
+    questionsAnswered = 0;
+    feedbackElement.textContent = ""; // Clear feedback
+    startTimer();
+    generateQuestion();
 }
 
 // Update stats on the page
@@ -165,3 +185,4 @@ function updateStats() {
 // Initialize the game
 generateQuestion();
 gameForm.addEventListener('submit', checkAnswer);
+startTimer(); // Start the timer for the first level
