@@ -43,9 +43,6 @@ function generateQuestion() {
 
     // Clear feedback only when a new question is generated
     feedbackElement.textContent = '';
-
-    // Automatically focus the input field
-    answerInput.focus();
 }
 
 // Handle answer submission
@@ -86,34 +83,12 @@ function levelUp() {
     modalDescription.textContent = levelDescriptions[level] || "New challenges!";
     levelModal.classList.add('show');
 
-    // Automatically focus the "Continue" button
-    continueButton.focus();
-
     // Wait for user to click "Continue"
     continueButton.onclick = () => {
         levelModal.classList.remove('show');
         generateQuestion();
-        answerInput.focus(); // Automatically focus after closing modal
     };
 }
-
-// Handle "Enter" key behavior
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        if (!levelModal.classList.contains('show')) {
-            // If modal is not visible, submit the form
-            gameForm.dispatchEvent(new Event('submit'));
-        } else {
-            // If modal is visible, trigger "Continue" button click
-            continueButton.click();
-        }
-    }
-});
-
-// Automatically focus input when the page loads
-window.onload = () => {
-    answerInput.focus();
-};
 
 // Initialize the game
 gameForm.addEventListener('submit', checkAnswer);
