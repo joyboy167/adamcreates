@@ -141,7 +141,7 @@ function updateStats() {
 
 // End the game
 function endGame() {
-    mainContainer.innerHTML = `
+    document.body.innerHTML = `
         <h2>Game Over</h2>
         <button id="restart-btn">Restart</button>
     `;
