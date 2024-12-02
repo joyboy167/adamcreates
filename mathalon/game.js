@@ -43,7 +43,9 @@ function generateQuestion() {
 
     // Clear feedback only when a new question is generated
     feedbackElement.textContent = '';
-    console.log('New question generated:', currentQuestion); // Debugging output
+
+    // Automatically focus the input field
+    answerInput.focus();
 }
 
 // Handle answer submission
@@ -84,32 +86,19 @@ function levelUp() {
     modalDescription.textContent = levelDescriptions[level] || "New challenges!";
     levelModal.classList.add('show');
 
-    // Ensure the answer form doesn't interfere
-    answerInput.blur();
-
-    // Allow "Enter" or click for "Continue" button
-    continueButton.onclick = continueToNextLevel;
-    document.addEventListener('keydown', handleContinueKeyPress);
+    // Wait for user to click "Continue"
+    continueButton.onclick = () => {
+        levelModal.classList.remove('show');
+        generateQuestion();
+        answerInput.focus(); // Automatically focus after closing modal
+    };
 }
 
-// Handle "Enter" for the Continue button
-function handleContinueKeyPress(event) {
-    if (event.key === 'Enter' && levelModal.classList.contains('show')) {
-        continueToNextLevel();
-    }
-}
-
-// Continue to the next level
-function continueToNextLevel() {
-    levelModal.classList.remove('show');
-    generateQuestion();
-
-    // Clean up event listener for "Enter" key to avoid overlap
-    document.removeEventListener('keydown', handleContinueKeyPress);
-}
+// Automatically focus input when the page loads
+window.onload = () => {
+    answerInput.focus();
+};
 
 // Initialize the game
 gameForm.addEventListener('submit', checkAnswer);
-
-// Generate the initial question when the page loads
 generateQuestion();
