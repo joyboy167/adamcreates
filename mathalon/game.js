@@ -115,6 +115,9 @@ function levelUp() {
     modalDescription.textContent = levelDescriptions[level] || "New challenges ahead!";
     levelModal.classList.add('show');
 
+    // Temporarily disable form submission during the modal
+    gameForm.removeEventListener('submit', checkAnswer);
+
     // Event listener for "Continue" button click
     continueButton.onclick = () => {
         closeModalAndContinue();
@@ -132,6 +135,7 @@ function levelUp() {
         levelModal.classList.remove('show');
         document.removeEventListener('keydown', handleEnterKey); // Remove event listener
         generateQuestion();
+        gameForm.addEventListener('submit', checkAnswer); // Re-enable form submission
     }
 
     // Attach keydown event listener
