@@ -117,6 +117,9 @@ function levelUp() {
     firstAttempt = true; // Reset the first attempt flag for the new level
     levelElement.textContent = `Level: ${level}`;
 
+    // Clear the feedback message for the new level
+    feedbackElement.textContent = "";
+
     // Show modal with level description
     modalTitle.textContent = `Level ${level}`;
     modalDescription.textContent = levelDescriptions[level] || "New challenges ahead!";
