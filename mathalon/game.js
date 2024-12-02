@@ -83,16 +83,21 @@ function checkAnswer(event) {
     event.preventDefault();
 
     const userAnswer = parseInt(answerInput.value);
+
     if (userAnswer === currentQuestion.answer) {
         currentScore++;
         questionsAnswered++;
+        feedbackElement.textContent = "Correct! Well done.";
+        feedbackElement.style.color = "green";
+
         if (questionsAnswered === 5) {
             levelUp();
         } else {
             generateQuestion();
         }
     } else {
-        endGame();
+        feedbackElement.textContent = "Incorrect. Try again.";
+        feedbackElement.style.color = "red";
     }
 
     answerInput.value = '';
@@ -141,18 +146,6 @@ function updateStats() {
         localStorage.setItem('highScore', highScore);
     }
     highScoreElement.textContent = highScore;
-}
-
-// End the game
-function endGame() {
-    document.body.innerHTML = `
-        <main>
-            <h2>Game Over</h2>
-            <p>Your final score: ${currentScore}</p>
-            <button id="restart-btn">Restart</button>
-        </main>
-    `;
-    document.getElementById('restart-btn').onclick = () => window.location.reload();
 }
 
 // Initialize the game
