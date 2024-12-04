@@ -26,20 +26,11 @@ const levelDescriptions = {
     4: "Mix of operations and increased range.",
 };
 
-// Function to add a hint to the modal
-function addModalHint() {
-    const hintMessage = document.createElement('p');
-    hintMessage.textContent = "(Press Enter to continue)";
-    hintMessage.style.fontSize = "0.9rem";
-    hintMessage.style.textAlign = "center";
-    hintMessage.style.color = "#666";
-    hintMessage.style.marginTop = "10px";
-
-    // Ensure the hint is added only once per modal instance
-    if (!continueButton.nextSibling) {
-        continueButton.parentNode.appendChild(hintMessage);
-    }
-}
+// Permanently disable clicking
+document.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+}, true); // Use the capture phase to block all clicks early
 
 // Function to show the Level 1 start modal
 function showLevelStartModal() {
@@ -47,14 +38,8 @@ function showLevelStartModal() {
     modalDescription.textContent = levelDescriptions[level] || "Get ready for new challenges!";
     levelModal.classList.add('show');
 
-    addModalHint(); // Add the hint to the modal
-
-    // Wait for user to click "Continue"
-    continueButton.onclick = () => {
-        levelModal.classList.remove('show');
-        generateQuestion(); // Start the first question
-        answerInput.focus(); // Automatically focus input field after closing modal
-    };
+    // Focus on the modal for keyboard interaction
+    continueButton.focus();
 }
 
 // Generate a random math question based on the current level
@@ -115,22 +100,18 @@ function levelUp() {
     modalDescription.textContent = levelDescriptions[level] || "New challenges!";
     levelModal.classList.add('show');
 
-    addModalHint(); // Add the hint to the modal
-
-    // Wait for user to click "Continue"
-    continueButton.onclick = () => {
-        levelModal.classList.remove('show');
-        generateQuestion();
-        answerInput.focus(); // Automatically focus input field after closing modal
-    };
+    // Focus on the modal for keyboard interaction
+    continueButton.focus();
 }
 
 // Detect Enter key for modals and form submission
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         if (levelModal.classList.contains('show')) {
-            // Modal is active, simulate continue button click
-            continueButton.click();
+            // Modal is active, close it and proceed
+            levelModal.classList.remove('show');
+            generateQuestion();
+            answerInput.focus(); // Automatically focus input field after closing modal
         } else {
             // If no modal is active, handle form submission normally
             gameForm.requestSubmit();
