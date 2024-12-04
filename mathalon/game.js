@@ -112,6 +112,19 @@ function levelUp() {
     };
 }
 
+// Detect Enter key for modals
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        if (levelModal.classList.contains('show')) {
+            // Modal is active, simulate continue button click
+            continueButton.click();
+        } else {
+            // If no modal is active, handle form submission normally
+            gameForm.requestSubmit();
+        }
+    }
+});
+
 // Initialize the game
 gameForm.addEventListener('submit', checkAnswer);
 
