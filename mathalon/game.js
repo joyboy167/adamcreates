@@ -7,7 +7,6 @@ let progress = 0;
 // DOM element references
 const questionElement = document.getElementById('question');
 const answerInput = document.getElementById('answer');
-const feedbackElement = document.getElementById('feedback');
 const gameForm = document.getElementById('game-form');
 const levelElement = document.getElementById('level-indicator');
 const progressBar = document.getElementById('progress-bar');
@@ -61,9 +60,6 @@ function generateQuestion() {
     currentQuestion = { question: `${num1} ${operator} ${num2}`, answer };
     questionElement.textContent = currentQuestion.question;
 
-    // Clear feedback only when a new question is generated
-    feedbackElement.textContent = '';
-
     // Automatically focus the input field for typing
     answerInput.focus();
 }
@@ -75,8 +71,6 @@ function checkAnswer(event) {
     const userAnswer = parseInt(answerInput.value);
 
     if (userAnswer === currentQuestion.answer) {
-        feedbackElement.textContent = "Correct! Well done.";
-        feedbackElement.style.color = "green"; // Highlight positive feedback
         questionsAnswered++;
         progress = (questionsAnswered / 8) * 100;
         progressBar.style.width = `${progress}%`;
@@ -86,9 +80,6 @@ function checkAnswer(event) {
         } else {
             generateQuestion();
         }
-    } else {
-        feedbackElement.textContent = "Incorrect. Try again.";
-        feedbackElement.style.color = "red"; // Highlight negative feedback
     }
 
     answerInput.value = ''; // Clear input after each attempt
