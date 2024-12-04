@@ -1,8 +1,10 @@
+// Global variables to manage the game's state
 let currentQuestion = {};
 let level = 1; 
 let questionsAnswered = 0; 
 let progress = 0;
 
+// DOM element references
 const questionElement = document.getElementById('question');
 const answerInput = document.getElementById('answer');
 const feedbackElement = document.getElementById('feedback');
@@ -14,12 +16,27 @@ const modalTitle = document.getElementById('modal-title');
 const modalDescription = document.getElementById('modal-description');
 const continueButton = document.getElementById('continue-btn');
 
+// Level descriptions
 const levelDescriptions = {
     1: "Addition and subtraction with small numbers.",
     2: "Multiplication and division introduced.",
     3: "Larger numbers in all operations.",
     4: "Mix of operations and increased range.",
 };
+
+// Function to show the Level 1 start modal
+function showLevelStartModal() {
+    modalTitle.textContent = `Level ${level}`;
+    modalDescription.textContent = levelDescriptions[level] || "Get ready for new challenges!";
+    levelModal.classList.add('show');
+
+    // Wait for user to click "Continue"
+    continueButton.onclick = () => {
+        levelModal.classList.remove('show');
+        generateQuestion(); // Start the first question
+        answerInput.focus(); // Automatically focus input field after closing modal
+    };
+}
 
 // Generate a random math question based on the current level
 function generateQuestion() {
@@ -75,7 +92,7 @@ function checkAnswer(event) {
     answerInput.focus(); // Ensure focus remains on the input field
 }
 
-// Level up the game
+// Function to handle level up
 function levelUp() {
     level++;
     questionsAnswered = 0;
@@ -97,4 +114,6 @@ function levelUp() {
 
 // Initialize the game
 gameForm.addEventListener('submit', checkAnswer);
-generateQuestion();
+
+// Show the Level 1 modal on start
+showLevelStartModal();
