@@ -16,6 +16,9 @@ const modalTitle = document.getElementById('modal-title');
 const modalDescription = document.getElementById('modal-description');
 const continueButton = document.getElementById('continue-btn');
 
+// Disable default HTML validation for the form
+gameForm.setAttribute('novalidate', 'true');
+
 // Level descriptions
 const levelDescriptions = {
     1: "Addition and subtraction with small numbers.",
@@ -112,7 +115,7 @@ function levelUp() {
     };
 }
 
-// Detect Enter key for modals
+// Detect Enter key for modals and form submission
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         if (levelModal.classList.contains('show')) {
