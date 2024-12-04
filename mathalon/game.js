@@ -26,11 +26,28 @@ const levelDescriptions = {
     4: "Mix of operations and increased range.",
 };
 
+// Function to add a hint to the modal
+function addModalHint() {
+    const hintMessage = document.createElement('p');
+    hintMessage.textContent = "(Press Enter to continue)";
+    hintMessage.style.fontSize = "0.9rem";
+    hintMessage.style.textAlign = "center";
+    hintMessage.style.color = "#666";
+    hintMessage.style.marginTop = "10px";
+
+    // Ensure the hint is added only once per modal instance
+    if (!continueButton.nextSibling) {
+        continueButton.parentNode.appendChild(hintMessage);
+    }
+}
+
 // Function to show the Level 1 start modal
 function showLevelStartModal() {
     modalTitle.textContent = `Level ${level}`;
     modalDescription.textContent = levelDescriptions[level] || "Get ready for new challenges!";
     levelModal.classList.add('show');
+
+    addModalHint(); // Add the hint to the modal
 
     // Wait for user to click "Continue"
     continueButton.onclick = () => {
@@ -97,6 +114,8 @@ function levelUp() {
     modalTitle.textContent = `Level ${level}`;
     modalDescription.textContent = levelDescriptions[level] || "New challenges!";
     levelModal.classList.add('show');
+
+    addModalHint(); // Add the hint to the modal
 
     // Wait for user to click "Continue"
     continueButton.onclick = () => {
