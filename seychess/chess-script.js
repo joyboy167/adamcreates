@@ -52,4 +52,23 @@ function displayRankings(rankings) {
                 <td>${index + 1}</td>
                 <td>${player.username}</td>
                 <td>${player.platform}</td>
-                <td>${player
+                <td>${player.rapid}</td>
+                <td>${player.blitz}</td>
+                <td>${player.bullet}</td>
+            </tr>
+            <tr class="details">
+                <td colspan="6">
+                    <strong>Average Rating:</strong> ${player.average}<br>
+                    <strong>Details:</strong> Rapid: ${player.rapid}, Blitz: ${player.blitz}, Bullet: ${player.bullet}
+                </td>
+            </tr>
+        `;
+        tableBody.insertAdjacentHTML("beforeend", mainRow);
+    });
+}
+
+// Toggle Details Row
+function toggleDetails(row) {
+    const detailsRow = row.nextElementSibling;
+    detailsRow.classList.toggle("expand");
+}
