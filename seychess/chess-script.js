@@ -31,16 +31,22 @@ async function fetchRankings() {
                     bullet: statsData.chess_bullet?.last?.rating || "N/A"
                 };
             }
-            // Fetch data from Lichess and normalize ratings
+            // Fetch data from Lichess and normalize ratings for the main table
             else if (player.platform === "lichess") {
                 const res = await fetch(`https://lichess.org/api/user/${player.username}`);
                 const data = await res.json();
 
-                originalLichessRating = data.perfs?.rapid?.rating || "N/A"; // Original rating
+                originalLichessRating = {
+                    rapid: data.perfs?.rapid?.rating || "N/A",
+                    blitz: data.perfs?.blitz?.rating || "N/A",
+                    bullet: data.perfs?.bullet?.rating || "N/A"
+                };
+
+                // Adjusted ratings only for the main table
                 ratingData = {
-                    rapid: originalLichessRating !== "N/A" ? originalLichessRating - 200 : "N/A",
-                    blitz: data.perfs?.blitz?.rating ? data.perfs.blitz.rating - 200 : "N/A",
-                    bullet: data.perfs?.bullet?.rating ? data.perfs.bullet.rating - 200 : "N/A"
+                    rapid: originalLichessRating.rapid !== "N/A" ? originalLichessRating.rapid - 200 : "N/A",
+                    blitz: originalLichessRating.blitz !== "N/A" ? originalLichessRating.blitz - 200 : "N/A",
+                    bullet: originalLichessRating.bullet !== "N/A" ? originalLichessRating.bullet - 200 : "N/A"
                 };
                 isAdjusted = true; // Mark as adjusted
             }
@@ -50,9 +56,9 @@ async function fetchRankings() {
                 name: realName,
                 username: player.username,
                 platform: player.platform === "lichess" ? "Lichess (Adjusted)" : "Chess.com",
-                rapid: ratingData.rapid,
-                originalLichessRating: originalLichessRating, // Keep the original Lichess rating
-                isAdjusted: isAdjusted, // Track if rating is adjusted
+                rapid: ratingData.rapid, // Adjusted for main table
+                originalLichess: originalLichessRating, // Store original Lichess ratings
+                isAdjusted: isAdjusted,
                 blitz: ratingData.blitz,
                 bullet: ratingData.bullet
             });
@@ -77,10 +83,10 @@ function displayRankings(rankings) {
     rankings.forEach((player, index) => {
         // Asterisk and tooltip logic for adjusted ratings
         let ratingDisplay = player.rapid;
-        if (player.isAdjusted && player.originalLichessRating !== "N/A") {
+        if (player.isAdjusted && player.originalLichess?.rapid !== "N/A") {
             ratingDisplay = `
                 ${player.rapid}
-                <span class="tooltip" data-tooltip="Adjusted from Lichess rating of ${player.originalLichessRating}">*</span>
+                <span class="tooltip" data-tooltip="Adjusted from Lichess rating of ${player.originalLichess.rapid}">*</span>
             `;
         }
 
@@ -97,9 +103,9 @@ function displayRankings(rankings) {
                     <div class="detail-platform">Platform: ${player.platform}</div>
                     <div class="detail-username">Username: ${player.username}</div>
                     <div class="detail-ratings">
-                        <span>Rapid: ${player.rapid}</span>
-                        <span>Blitz: ${player.blitz}</span>
-                        <span>Bullet: ${player.bullet}</span>
+                        <span>Rapid: ${player.originalLichess?.rapid || player.rapid}</span>
+                        <span>Blitz: ${player.originalLichess?.blitz || player.blitz}</span>
+                        <span>Bullet: ${player.originalLichess?.bullet || player.bullet}</span>
                     </div>
                 </td>
             </tr>
