@@ -1,18 +1,20 @@
-/* General Table Styling */
+/* General Body and Page Styling */
 body {
-    background-color: #121212;
-    color: #fff;
-    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #fff; /* Light text */
+    font-family: Arial, sans-serif; /* Default font */
     margin: 20px;
-    text-align: center;
+    text-align: center; /* Center-align content */
 }
 
+/* Table Styling */
 table {
     width: 80%;
     margin: auto;
     border-collapse: collapse;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow */
 }
 
 th, td {
@@ -24,11 +26,12 @@ th {
     background-color: #333;
     color: #fff;
     font-size: 1.2em;
+    text-transform: uppercase;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 tr:nth-child(even) {
-    background-color: #222;
+    background-color: #222; /* Alternating row background */
 }
 
 tr:nth-child(odd) {
@@ -36,12 +39,12 @@ tr:nth-child(odd) {
 }
 
 tr:hover {
-    background-color: #444;
+    background-color: #444; /* Hover effect */
     cursor: pointer;
 }
 
 .details {
-    display: none;
+    display: none; /* Hidden by default */
     background-color: #333;
     color: #ccc;
     font-size: 0.9em;
@@ -49,7 +52,7 @@ tr:hover {
     padding: 10px;
 }
 
-/* Cool Title Styling Inspired by Button */
+/* Title Styling with Cool Hover Effect */
 .title {
     --color: #00A97F;
     --color2: rgb(10, 25, 30);
@@ -61,13 +64,13 @@ tr:hover {
     position: relative;
     overflow: hidden;
     font-weight: 300;
-    font-size: 2em; /* Adjust font size as needed */
+    font-size: 2em; /* Large font for title */
     font-family: 'Roboto', 'Segoe UI', sans-serif;
     text-transform: uppercase;
     color: var(--color);
     text-align: center;
     margin: 20px auto;
-    display: inline-block; /* Center it nicely */
+    display: inline-block; /* Centers the title */
 }
 
 .title::after,
@@ -112,7 +115,7 @@ tr:hover {
 }
 
 .tooltip::before {
-    content: attr(data-tooltip);
+    content: attr(data-tooltip); /* Custom tooltip text */
     position: absolute;
     background-color: #333;
     color: #fff;
@@ -124,14 +127,14 @@ tr:hover {
     transform: translateX(-50%);
     font-size: 12px;
     z-index: 10;
-    display: none;
+    display: none; /* Hidden initially */
 }
 
 .tooltip:hover::before {
-    display: block;
+    display: block; /* Show tooltip on hover */
 }
 
-/* Ratings Details in Cascaded Rows */
+/* Cascaded Row Details */
 .detail-platform, .detail-username, .detail-ratings {
     margin: 10px 0;
     font-size: 0.9em;
@@ -142,4 +145,11 @@ tr:hover {
     display: inline-block;
     margin-right: 15px;
     font-size: 0.9em;
-    color
+    color: #bbb;
+}
+
+/* Subtle Horizontal Lines to Separate Table Content */
+th, td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
