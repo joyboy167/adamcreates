@@ -16,27 +16,23 @@ async function fetchRankings() {
             const res = await fetch(`https://api.chess.com/pub/player/${username}/stats`);
             const data = await res.json();
 
-            // Calculate Average of Rapid, Blitz, and Bullet Ratings
-            const rapid = data.chess_rapid?.last?.rating || 0;
-            const blitz = data.chess_blitz?.last?.rating || 0;
-            const bullet = data.chess_bullet?.last?.rating || 0;
-            const validRatings = [rapid, blitz, bullet].filter(rating => rating > 0);
-            const average = validRatings.length ? Math.round(validRatings.reduce((a, b) => a + b, 0) / validRatings.length) : "N/A";
+            // Fetch Only Rapid Rating
+            const rapid = data.chess_rapid?.last?.rating || "N/A";
 
             rankings.push({
                 username,
                 platform: "Chess.com",
-                rapid: rapid || "N/A",
-                blitz: blitz || "N/A",
-                bullet: bullet || "N/A",
-                average
+                rapid
             });
         } catch (error) {
             console.error(`Error fetching ${username}:`, error);
         }
     }
 
-    rankings.sort((a, b) => b.average - a.average); // Sort by Average Rating
+    // Sort Rankings by Rapid Rating
+    rankings.sort((a, b) => (b.rapid !== "N/A" ? b.rapid : 0) - (a.rapid !== "N/A" ? a.rapid : 0));
+
+    // Display the Rankings
     displayRankings(rankings);
 }
 
@@ -46,20 +42,18 @@ function displayRankings(rankings) {
     tableBody.innerHTML = "";
 
     rankings.forEach((player, index) => {
-        // Main Row (Collapsed by Default)
+        // Main Row (Default Display)
         const mainRow = `
             <tr onclick="toggleDetails(this)">
                 <td>${index + 1}</td>
                 <td>${player.username}</td>
-                <td>${player.average}</td>
+                <td>${player.rapid}</td>
             </tr>
             <!-- Hidden Details Row -->
             <tr class="details">
                 <td colspan="3">
                     <strong>Platform:</strong> ${player.platform}<br>
-                    <strong>Rapid Rating:</strong> ${player.rapid}<br>
-                    <strong>Blitz Rating:</strong> ${player.blitz}<br>
-                    <strong>Bullet Rating:</strong> ${player.bullet}
+                    <strong>Rapid Rating:</strong> ${player.rapid}
                 </td>
             </tr>
         `;
