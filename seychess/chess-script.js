@@ -2,6 +2,7 @@
 const players = [
     "adamo25",
     "Mordecai_6"
+    "MinusE1"
 ];
 
 // Fetch Rankings When Page Loads
