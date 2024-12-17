@@ -53,8 +53,8 @@ tr:hover {
     font-size: 12px;
 }
 
-.tooltip::after {
-    content: attr(title);
+.tooltip::before {
+    content: attr(data-tooltip); /* Use custom data-tooltip attribute */
     position: absolute;
     background-color: #333;
     color: #fff;
@@ -67,9 +67,8 @@ tr:hover {
     font-size: 12px;
     z-index: 10;
     display: none;
-    transition: none; /* Remove delay */
 }
 
-.tooltip:hover::after {
+.tooltip:hover::before {
     display: block;
 }
