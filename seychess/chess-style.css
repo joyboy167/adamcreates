@@ -1,95 +1,39 @@
-
-/* size of my entire page */
-*{margin: 0}
-
-
-/* background image properties */
-body html{height: 500px;}
-
-
-
-
-/* navbar */
-.header {
-  background: rgba(81, 74, 74, 0.39);
-  display: flex;
-  height: 74px;
-  padding-left: 6%;
-  padding-right: 6%;
-  gap: 10px;
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
 }
 
-
-
-li {
-  float: left;
+h1 {
+    color: #333;
+    margin: 20px 0;
 }
 
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 16px;
-  text-decoration: none;
-  margin-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
 }
 
-li a:hover {
-  background-color: #111111;
-  transition: 0.2s ease;
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
 }
 
-
-
-
-/* welcome guys */
-.tagline{color:white;
-  margin-top: 60px;
-  margin-left: 50px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: #1111113c;
-position: absolute;}
-
-
-/* journey start */
-.journey-start{color:white;
-  margin-top: 460px;
-  margin-left: 800px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: #1111113c;
-position: absolute;}
-
-
-
-/* link for jounrey start */
-a{color: white;
-  text-decoration: none;}
-
-a:hover{text-decoration: underline;}
-
-
-
-/* background image stuff */
-.bg {
-  background-image: url("./images/bg-img\ \(Medium\).jpg");
-  height: 700px;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-size: auto;
-
+th {
+    background-color: #333;
+    color: white;
 }
 
-
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
