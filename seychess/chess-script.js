@@ -16,11 +16,17 @@ async function fetchRankings() {
     for (let player of players) {
         try {
             let ratingData = { rapid: "N/A", blitz: "N/A", bullet: "N/A" };
+            let realName = player.username; // Default to username if no real name
 
-            // Fetch ratings from Chess.com
+            // Fetch data from Chess.com
             if (player.platform === "chesscom") {
+                const profileRes = await fetch(`https://api.chess.com/pub/player/${player.username}`);
                 const statsRes = await fetch(`https://api.chess.com/pub/player/${player.username}/stats`);
+
+                const profileData = await profileRes.json();
                 const statsData = await statsRes.json();
+
+                realName = profileData.name || player.username; // Prefer real name if available
 
                 ratingData = {
                     rapid: statsData.chess_rapid?.last?.rating || "N/A",
@@ -28,10 +34,12 @@ async function fetchRankings() {
                     bullet: statsData.chess_bullet?.last?.rating || "N/A"
                 };
             } 
-            // Fetch ratings from Lichess and normalize them
+            // Fetch data from Lichess and normalize ratings
             else if (player.platform === "lichess") {
                 const res = await fetch(`https://lichess.org/api/user/${player.username}`);
                 const data = await res.json();
+
+                realName = data.profile?.name || player.username; // Prefer real name if available
 
                 ratingData = {
                     rapid: data.perfs?.rapid?.rating ? data.perfs.rapid.rating - 200 : "N/A",
@@ -40,8 +48,9 @@ async function fetchRankings() {
                 };
             }
 
+            // Add the player's data to the rankings list
             rankings.push({
-                name: player.username, // Use the username as the fallback
+                name: realName,
                 username: player.username,
                 platform: player.platform === "lichess" ? "Lichess (Adjusted)" : "Chess.com",
                 rapid: ratingData.rapid,
