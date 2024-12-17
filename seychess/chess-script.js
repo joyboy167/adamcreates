@@ -1,8 +1,8 @@
 // Player List
 const players = [
-    "adamo25",
-    "Mordecai_6"
-    "MinusE1"
+    "adamo25",      // Existing Player
+    "Mordecai_6",   // Existing Player
+    "MinusE1"       // New Player: Rudolph Camille
 ];
 
 // Fetch Rankings When Page Loads
@@ -14,6 +14,7 @@ async function fetchRankings() {
 
     for (let username of players) {
         try {
+            // Fetch player profile and stats
             const res = await fetch(`https://api.chess.com/pub/player/${username}`);
             const statsRes = await fetch(`https://api.chess.com/pub/player/${username}/stats`);
 
@@ -25,6 +26,7 @@ async function fetchRankings() {
             const blitz = statsData.chess_blitz?.last?.rating || "N/A";
             const bullet = statsData.chess_bullet?.last?.rating || "N/A";
 
+            // Add player data to rankings list
             rankings.push({
                 name: profileData.name || username, // Real Name or Fallback to Username
                 username: username,
@@ -48,7 +50,7 @@ async function fetchRankings() {
 // Function to Display Rankings in Table
 function displayRankings(rankings) {
     const tableBody = document.getElementById("rankingsBody");
-    tableBody.innerHTML = "";
+    tableBody.innerHTML = ""; // Clear existing table rows
 
     rankings.forEach((player, index) => {
         // Main Row (Default Display)
