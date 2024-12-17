@@ -13,23 +13,27 @@ async function fetchRankings() {
 
     for (let username of players) {
         try {
-            const res = await fetch(`https://api.chess.com/pub/player/${username}/stats`);
-            const data = await res.json();
+            const res = await fetch(`https://api.chess.com/pub/player/${username}`);
+            const statsRes = await fetch(`https://api.chess.com/pub/player/${username}/stats`);
+
+            const profileData = await res.json();
+            const statsData = await statsRes.json();
 
             // Fetch Ratings
-            const rapid = data.chess_rapid?.last?.rating || "N/A";
-            const blitz = data.chess_blitz?.last?.rating || "N/A";
-            const bullet = data.chess_bullet?.last?.rating || "N/A";
+            const rapid = statsData.chess_rapid?.last?.rating || "N/A";
+            const blitz = statsData.chess_blitz?.last?.rating || "N/A";
+            const bullet = statsData.chess_bullet?.last?.rating || "N/A";
 
             rankings.push({
-                username,
+                name: profileData.name || username, // Real Name or Fallback to Username
+                username: username,
                 platform: "Chess.com",
                 rapid,
                 blitz,
                 bullet
             });
         } catch (error) {
-            console.error(`Error fetching ${username}:`, error);
+            console.error(`Error fetching data for ${username}:`, error);
         }
     }
 
@@ -50,7 +54,7 @@ function displayRankings(rankings) {
         const mainRow = `
             <tr onclick="toggleDetails(this)">
                 <td>${index + 1}</td>
-                <td>${player.username}</td>
+                <td>${player.name}</td>
                 <td>${player.rapid}</td>
             </tr>
             <!-- Hidden Details Row -->
