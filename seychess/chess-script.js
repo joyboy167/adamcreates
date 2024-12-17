@@ -1,9 +1,9 @@
-// Player List: Include platform and username
+// Player List: Include platform, username, and hardcoded real names
 const players = [
-    { username: "adamo25", platform: "chesscom" },   // Chess.com player
-    { username: "Mordecai_6", platform: "chesscom" }, // Chess.com player
-    { username: "MinusE1", platform: "chesscom" },   // Chess.com player
-    { username: "KingBen36", platform: "lichess" }   // Lichess player
+    { username: "adamo25", platform: "chesscom", realName: "Adam Smith" },          // Hardcoded real name
+    { username: "Mordecai_6", platform: "chesscom", realName: "Darius Hoareau" },   // Hardcoded real name
+    { username: "MinusE1", platform: "chesscom", realName: "Rudolph Camille" },     // Hardcoded real name
+    { username: "KingBen36", platform: "lichess", realName: "Benjamin Hoareau" }    // Hardcoded real name
 ];
 
 // Fetch Rankings When Page Loads
@@ -16,30 +16,23 @@ async function fetchRankings() {
     for (let player of players) {
         try {
             let ratingData = { rapid: "N/A", blitz: "N/A", bullet: "N/A" };
-            let realName = player.username; // Default to username if no real name
+            let realName = player.realName; // Prioritize hardcoded real name
 
             // Fetch data from Chess.com
             if (player.platform === "chesscom") {
-                const profileRes = await fetch(`https://api.chess.com/pub/player/${player.username}`);
                 const statsRes = await fetch(`https://api.chess.com/pub/player/${player.username}/stats`);
-
-                const profileData = await profileRes.json();
                 const statsData = await statsRes.json();
-
-                realName = profileData.name || player.username; // Prefer real name if available
 
                 ratingData = {
                     rapid: statsData.chess_rapid?.last?.rating || "N/A",
                     blitz: statsData.chess_blitz?.last?.rating || "N/A",
                     bullet: statsData.chess_bullet?.last?.rating || "N/A"
                 };
-            } 
+            }
             // Fetch data from Lichess and normalize ratings
             else if (player.platform === "lichess") {
                 const res = await fetch(`https://lichess.org/api/user/${player.username}`);
                 const data = await res.json();
-
-                realName = data.profile?.name || player.username; // Prefer real name if available
 
                 ratingData = {
                     rapid: data.perfs?.rapid?.rating ? data.perfs.rapid.rating - 200 : "N/A",
@@ -50,7 +43,7 @@ async function fetchRankings() {
 
             // Add the player's data to the rankings list
             rankings.push({
-                name: realName,
+                name: realName, // Use hardcoded real name
                 username: player.username,
                 platform: player.platform === "lichess" ? "Lichess (Adjusted)" : "Chess.com",
                 rapid: ratingData.rapid,
