@@ -1,8 +1,9 @@
-// Player List
+// Player List: Include platform and username
 const players = [
-    "adamo25",      // Existing Player
-    "Mordecai_6",   // Existing Player
-    "MinusE1"       // New Player: Rudolph Camille
+    { username: "adamo25", platform: "chesscom" },   // Chess.com player
+    { username: "Mordecai_6", platform: "chesscom" }, // Chess.com player
+    { username: "MinusE1", platform: "chesscom" },   // Chess.com player
+    { username: "KingBen36", platform: "lichess" }   // Lichess player
 ];
 
 // Fetch Rankings When Page Loads
@@ -12,31 +13,44 @@ window.onload = fetchRankings;
 async function fetchRankings() {
     const rankings = [];
 
-    for (let username of players) {
+    for (let player of players) {
         try {
-            // Fetch player profile and stats
-            const res = await fetch(`https://api.chess.com/pub/player/${username}`);
-            const statsRes = await fetch(`https://api.chess.com/pub/player/${username}/stats`);
+            let ratingData = { rapid: "N/A", blitz: "N/A", bullet: "N/A" };
 
-            const profileData = await res.json();
-            const statsData = await statsRes.json();
+            // Fetch ratings from Chess.com
+            if (player.platform === "chesscom") {
+                const statsRes = await fetch(`https://api.chess.com/pub/player/${player.username}/stats`);
+                const statsData = await statsRes.json();
 
-            // Fetch Ratings
-            const rapid = statsData.chess_rapid?.last?.rating || "N/A";
-            const blitz = statsData.chess_blitz?.last?.rating || "N/A";
-            const bullet = statsData.chess_bullet?.last?.rating || "N/A";
+                ratingData = {
+                    rapid: statsData.chess_rapid?.last?.rating || "N/A",
+                    blitz: statsData.chess_blitz?.last?.rating || "N/A",
+                    bullet: statsData.chess_bullet?.last?.rating || "N/A"
+                };
+            } 
+            // Fetch ratings from Lichess and normalize them
+            else if (player.platform === "lichess") {
+                const res = await fetch(`https://lichess.org/api/user/${player.username}`);
+                const data = await res.json();
 
-            // Add player data to rankings list
+                ratingData = {
+                    rapid: data.perfs?.rapid?.rating ? data.perfs.rapid.rating - 200 : "N/A",
+                    blitz: data.perfs?.blitz?.rating ? data.perfs.blitz.rating - 200 : "N/A",
+                    bullet: data.perfs?.bullet?.rating ? data.perfs.bullet.rating - 200 : "N/A"
+                };
+            }
+
             rankings.push({
-                name: profileData.name || username, // Real Name or Fallback to Username
-                username: username,
-                platform: "Chess.com",
-                rapid,
-                blitz,
-                bullet
+                name: player.username, // Use the username as the fallback
+                username: player.username,
+                platform: player.platform === "lichess" ? "Lichess (Adjusted)" : "Chess.com",
+                rapid: ratingData.rapid,
+                blitz: ratingData.blitz,
+                bullet: ratingData.bullet
             });
+
         } catch (error) {
-            console.error(`Error fetching data for ${username}:`, error);
+            console.error(`Error fetching data for ${player.username}:`, error);
         }
     }
 
