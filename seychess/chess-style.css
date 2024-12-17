@@ -4,6 +4,7 @@ body {
     color: #fff;
     font-family: Arial, sans-serif;
     margin: 20px;
+    text-align: center;
 }
 
 table {
@@ -23,6 +24,7 @@ th {
     background-color: #333;
     color: #fff;
     font-size: 1.2em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 tr:nth-child(even) {
@@ -40,9 +42,65 @@ tr:hover {
 
 .details {
     display: none;
-    background-color: #000;
+    background-color: #333;
     color: #ccc;
     font-size: 0.9em;
+    text-align: left;
+    padding: 10px;
+}
+
+/* Cool Title Styling Inspired by Button */
+.title {
+    --color: #00A97F;
+    --color2: rgb(10, 25, 30);
+    padding: 0.8em 1.75em;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 0.3px solid var(--color);
+    transition: 0.5s;
+    position: relative;
+    overflow: hidden;
+    font-weight: 300;
+    font-size: 2em; /* Adjust font size as needed */
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    color: var(--color);
+    text-align: center;
+    margin: 20px auto;
+    display: inline-block; /* Center it nicely */
+}
+
+.title::after,
+.title::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-50%, -50%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: 0.5s ease-out;
+    background-color: var(--color);
+}
+
+.title::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+}
+
+.title:hover::before {
+    transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+}
+
+.title:hover::after {
+    transform: skew(45deg) translate(-50%, -50%);
+}
+
+.title:hover {
+    color: var(--color2);
 }
 
 /* Tooltip Styling */
@@ -54,7 +112,7 @@ tr:hover {
 }
 
 .tooltip::before {
-    content: attr(data-tooltip); /* Use custom data-tooltip attribute */
+    content: attr(data-tooltip);
     position: absolute;
     background-color: #333;
     color: #fff;
@@ -72,3 +130,16 @@ tr:hover {
 .tooltip:hover::before {
     display: block;
 }
+
+/* Ratings Details in Cascaded Rows */
+.detail-platform, .detail-username, .detail-ratings {
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: #ddd;
+}
+
+.detail-ratings span {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 0.9em;
+    color
