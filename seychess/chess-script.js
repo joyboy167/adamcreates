@@ -7,6 +7,7 @@ const players = [
 // Fetch Rankings When Page Loads
 window.onload = fetchRankings;
 
+// Main Function to Fetch and Display Rankings
 async function fetchRankings() {
     const rankings = [];
 
@@ -36,30 +37,33 @@ async function fetchRankings() {
     displayRankings(rankings);
 }
 
+// Function to Calculate Average Rating
 function calculateAverage(ratings) {
     const validRatings = ratings.filter(rating => rating !== "N/A");
     const sum = validRatings.reduce((acc, rating) => acc + rating, 0);
     return validRatings.length ? Math.round(sum / validRatings.length) : "N/A";
 }
 
+// Function to Display Rankings in Table
 function displayRankings(rankings) {
     const tableBody = document.getElementById("rankingsBody");
     tableBody.innerHTML = "";
 
     rankings.forEach((player, index) => {
+        // Main Row (Collapsed by Default)
         const mainRow = `
             <tr onclick="toggleDetails(this)">
                 <td>${index + 1}</td>
                 <td>${player.username}</td>
-                <td>${player.platform}</td>
-                <td>${player.rapid}</td>
-                <td>${player.blitz}</td>
-                <td>${player.bullet}</td>
+                <td>${player.average}</td>
             </tr>
+            <!-- Hidden Details Row -->
             <tr class="details">
-                <td colspan="6">
-                    <strong>Average Rating:</strong> ${player.average}<br>
-                    <strong>Details:</strong> Rapid: ${player.rapid}, Blitz: ${player.blitz}, Bullet: ${player.bullet}
+                <td colspan="3">
+                    <strong>Platform:</strong> ${player.platform}<br>
+                    <strong>Rapid Rating:</strong> ${player.rapid}<br>
+                    <strong>Blitz Rating:</strong> ${player.blitz}<br>
+                    <strong>Bullet Rating:</strong> ${player.bullet}
                 </td>
             </tr>
         `;
@@ -67,8 +71,8 @@ function displayRankings(rankings) {
     });
 }
 
-// Toggle Details Row
+// Function to Toggle Hidden Details Row
 function toggleDetails(row) {
-    const detailsRow = row.nextElementSibling;
+    const detailsRow = row.nextElementSibling; // Get the next sibling row
     detailsRow.classList.toggle("expand");
 }
