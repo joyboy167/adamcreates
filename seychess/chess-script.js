@@ -1,6 +1,6 @@
 // Player List: Include platform, username, and hardcoded real names
 const players = [
-    { username: "adamo25", platform: "chesscom", realName: "Adam Smith" },          // Hardcoded real name
+    { username: "adamo25", platform: "chesscom", realName: "Adam Furneau" },          // Hardcoded real name
     { username: "Mordecai_6", platform: "chesscom", realName: "Darius Hoareau" },   // Hardcoded real name
     { username: "MinusE1", platform: "chesscom", realName: "Rudolph Camille" },     // Hardcoded real name
     { username: "KingBen36", platform: "lichess", realName: "Benjamin Hoareau" }    // Hardcoded real name
