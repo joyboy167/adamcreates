@@ -40,7 +40,8 @@ th {
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-bottom: 1px solid #444444; /* Faint Separator Line */
+    border-right: 1px solid #444444; /* Vertical Separator Line */
+    border-bottom: 1px solid #444444; /* Faint Separator */
 }
 
 /* Table Rows */
@@ -48,13 +49,12 @@ td {
     padding: 15px 10px;
     font-size: 1rem;
     color: #ffffff;
-    border-bottom: 1px solid #444444; /* Faint Line Between Rows */
+    border-bottom: 1px solid #444444; /* Faint Horizontal Separator */
+    border-right: 1px solid #444444; /* Vertical Separator Line */
 }
 
-/* Column Separation */
-td:not(:last-child),
-th:not(:last-child) {
-    border-right: 1px solid #333333; /* Faint Line Between Columns */
+td:last-child, th:last-child {
+    border-right: none; /* Remove right border for the last column */
 }
 
 /* Hover Effect for Rows */
@@ -69,6 +69,7 @@ tr:hover {
 
 /* Hidden Details Row */
 .details {
+    display: none; /* Hidden by default */
     background-color: #1c1c1c; /* Dark Background for Details */
     font-size: 0.9rem;
     color: #cccccc; /* Light Gray Text */
@@ -81,7 +82,7 @@ tr:hover {
 
 /* Expand Animation */
 .expand {
-    display: table-row;
+    display: table-row; /* Show the row */
     animation: slide-down 0.3s ease-in-out;
 }
 
