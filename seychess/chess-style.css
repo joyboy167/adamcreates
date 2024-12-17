@@ -1,44 +1,83 @@
-/* Reset Margins and Padding */
+/* General Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
-    font-family: Arial, sans-serif;  /* Set default font */
-    text-align: center;              /* Center all text */
-    background-color: #f4f4f4;       /* Light background */
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
 }
 
-/* Page Title Styling */
+/* Title */
 h1 {
-    color: #333;                    /* Dark text color */
-    margin: 20px 0;                 /* Add margin */
+    margin: 20px;
+    font-size: 2.5rem;
+    color: #333;
 }
 
-/* Table Styling */
+/* Table Styles */
 table {
-    width: 80%;                     /* Table width */
-    margin: 20px auto;              /* Center table */
-    border-collapse: collapse;      /* Remove border gaps */
-    background: white;              /* White background */
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Table Header Styling */
 th, td {
-    padding: 12px;                  /* Cell padding */
-    border: 1px solid #ddd;         /* Light border */
-    text-align: center;             /* Center text */
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
 }
 
 th {
-    background-color: #333;         /* Dark header background */
-    color: white;                   /* White header text */
+    background-color: #333;
+    color: #fff;
+    font-size: 1.1rem;
 }
 
-/* Alternate Row Background */
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;      /* Light gray row background */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+tr:hover {
+    background-color: #f0f8ff;
+}
+
+/* Collapsible Row Styles */
+.details {
+    display: none; /* Hidden initially */
+    background-color: #f1f1f1;
+    font-size: 0.9rem;
+}
+
+.details td {
+    padding: 10px;
+    text-align: left;
+    color: #555;
+}
+
+/* Expanded Animation */
+.expand {
+    display: table-row; /* Show the row */
+    animation: slide-down 0.3s ease-in-out;
+}
+
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
