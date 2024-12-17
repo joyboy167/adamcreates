@@ -16,17 +16,20 @@ async function fetchRankings() {
             const res = await fetch(`https://api.chess.com/pub/player/${username}/stats`);
             const data = await res.json();
 
+            // Calculate Average of Rapid, Blitz, and Bullet Ratings
+            const rapid = data.chess_rapid?.last?.rating || 0;
+            const blitz = data.chess_blitz?.last?.rating || 0;
+            const bullet = data.chess_bullet?.last?.rating || 0;
+            const validRatings = [rapid, blitz, bullet].filter(rating => rating > 0);
+            const average = validRatings.length ? Math.round(validRatings.reduce((a, b) => a + b, 0) / validRatings.length) : "N/A";
+
             rankings.push({
                 username,
                 platform: "Chess.com",
-                rapid: data.chess_rapid?.last?.rating || "N/A",
-                blitz: data.chess_blitz?.last?.rating || "N/A",
-                bullet: data.chess_bullet?.last?.rating || "N/A",
-                average: calculateAverage([
-                    data.chess_rapid?.last?.rating,
-                    data.chess_blitz?.last?.rating,
-                    data.chess_bullet?.last?.rating
-                ])
+                rapid: rapid || "N/A",
+                blitz: blitz || "N/A",
+                bullet: bullet || "N/A",
+                average
             });
         } catch (error) {
             console.error(`Error fetching ${username}:`, error);
@@ -35,13 +38,6 @@ async function fetchRankings() {
 
     rankings.sort((a, b) => b.average - a.average); // Sort by Average Rating
     displayRankings(rankings);
-}
-
-// Function to Calculate Average Rating
-function calculateAverage(ratings) {
-    const validRatings = ratings.filter(rating => rating !== "N/A");
-    const sum = validRatings.reduce((acc, rating) => acc + rating, 0);
-    return validRatings.length ? Math.round(sum / validRatings.length) : "N/A";
 }
 
 // Function to Display Rankings in Table
