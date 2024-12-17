@@ -1,6 +1,6 @@
 // Player List: Include platform, username, and hardcoded real names
 const players = [
-    { username: "adamo25", platform: "chesscom", realName: "Adam Furneau" },          // Hardcoded real name
+    { username: "adamo25", platform: "chesscom", realName: "Adam Smith" },          // Hardcoded real name
     { username: "Mordecai_6", platform: "chesscom", realName: "Darius Hoareau" },   // Hardcoded real name
     { username: "MinusE1", platform: "chesscom", realName: "Rudolph Camille" },     // Hardcoded real name
     { username: "KingBen36", platform: "lichess", realName: "Benjamin Hoareau" }    // Hardcoded real name
@@ -17,6 +17,8 @@ async function fetchRankings() {
         try {
             let ratingData = { rapid: "N/A", blitz: "N/A", bullet: "N/A" };
             let realName = player.realName; // Prioritize hardcoded real name
+            let isAdjusted = false; // Track if the rating is adjusted
+            let originalLichessRating = null; // Store original Lichess rating for the tooltip
 
             // Fetch data from Chess.com
             if (player.platform === "chesscom") {
@@ -34,19 +36,23 @@ async function fetchRankings() {
                 const res = await fetch(`https://lichess.org/api/user/${player.username}`);
                 const data = await res.json();
 
+                originalLichessRating = data.perfs?.rapid?.rating || "N/A"; // Original rating
                 ratingData = {
-                    rapid: data.perfs?.rapid?.rating ? data.perfs.rapid.rating - 200 : "N/A",
+                    rapid: originalLichessRating !== "N/A" ? originalLichessRating - 200 : "N/A",
                     blitz: data.perfs?.blitz?.rating ? data.perfs.blitz.rating - 200 : "N/A",
                     bullet: data.perfs?.bullet?.rating ? data.perfs.bullet.rating - 200 : "N/A"
                 };
+                isAdjusted = true; // Mark as adjusted
             }
 
             // Add the player's data to the rankings list
             rankings.push({
-                name: realName, // Use hardcoded real name
+                name: realName,
                 username: player.username,
                 platform: player.platform === "lichess" ? "Lichess (Adjusted)" : "Chess.com",
                 rapid: ratingData.rapid,
+                originalLichessRating: originalLichessRating, // Keep the original Lichess rating
+                isAdjusted: isAdjusted, // Track if rating is adjusted
                 blitz: ratingData.blitz,
                 bullet: ratingData.bullet
             });
@@ -69,12 +75,21 @@ function displayRankings(rankings) {
     tableBody.innerHTML = ""; // Clear existing table rows
 
     rankings.forEach((player, index) => {
+        // Asterisk and tooltip logic for adjusted ratings
+        let ratingDisplay = player.rapid;
+        if (player.isAdjusted && player.originalLichessRating !== "N/A") {
+            ratingDisplay = `
+                ${player.rapid}
+                <span class="tooltip" title="Adjusted from Lichess rating of ${player.originalLichessRating}">*</span>
+            `;
+        }
+
         // Main Row (Default Display)
         const mainRow = `
             <tr onclick="toggleDetails(this)">
                 <td>${index + 1}</td>
                 <td>${player.name}</td>
-                <td>${player.rapid}</td>
+                <td>${ratingDisplay}</td>
             </tr>
             <!-- Hidden Details Row -->
             <tr class="details">
