@@ -7,17 +7,45 @@
     <link rel="stylesheet" href="chess-style.css">
 </head>
 <body>
-    <h1 class="title">Seychelles Chess Rankings</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>RANK</th>
-                <th>NAME</th>
-                <th>RATING</th>
-            </tr>
-        </thead>
-        <tbody id="rankingsBody"></tbody>
-    </table>
+    <!-- Cool Title Section -->
+    <header>
+        <h1 class="title">Seychelles Chess Player Rankings</h1>
+    </header>
+
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+        <!-- Main Rankings Table -->
+        <section class="ranking-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>RANK</th>
+                        <th>NAME</th>
+                        <th>SEYCHESS RATING</th>
+                    </tr>
+                </thead>
+                <tbody id="rankingsBody">
+                    <!-- Table Rows Populated by JS -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <h2>About the Seychelles Chess Rankings</h2>
+            <p>
+                This table highlights the top chess players in Seychelles, combining ratings from platforms 
+                like <span class="highlight">Chess.com</span> and <span class="highlight">Lichess</span>. Ratings are updated regularly for accuracy.
+            </p>
+        </section>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; 2024 Seychelles Chess Federation. Designed with passion.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
     <script src="chess-script.js"></script>
 </body>
 </html>
