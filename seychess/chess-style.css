@@ -78,6 +78,30 @@ tr:hover {
 .details td {
     padding: 10px;
     text-align: left;
+    line-height: 1.5; /* Better spacing between lines */
+}
+
+/* Style for Individual Lines in the Details */
+.detail-platform {
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.detail-username {
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.detail-ratings {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    color: #cccccc;
+}
+
+.detail-ratings span {
+    margin-right: 15px; /* Add space between ratings */
 }
 
 /* Expand Animation */
