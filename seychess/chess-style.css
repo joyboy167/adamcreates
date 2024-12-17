@@ -40,14 +40,21 @@ th {
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    border-bottom: 1px solid #444444; /* Faint Separator Line */
 }
 
 /* Table Rows */
 td {
     padding: 15px 10px;
-    border-bottom: 1px solid #444; /* Subtle Border */
-    color: #ffffff;
     font-size: 1rem;
+    color: #ffffff;
+    border-bottom: 1px solid #444444; /* Faint Line Between Rows */
+}
+
+/* Column Separation */
+td:not(:last-child),
+th:not(:last-child) {
+    border-right: 1px solid #333333; /* Faint Line Between Columns */
 }
 
 /* Hover Effect for Rows */
@@ -62,13 +69,17 @@ tr:hover {
 
 /* Hidden Details Row */
 .details {
-    display: none; /* Keep hidden by default */
-    background-color: #1c1c1c; /* Dark background for details */
+    background-color: #1c1c1c; /* Dark Background for Details */
     font-size: 0.9rem;
-    color: #cccccc; /* Light gray text */
+    color: #cccccc; /* Light Gray Text */
 }
 
-/* Style the Expand Animation */
+.details td {
+    padding: 10px;
+    text-align: left;
+}
+
+/* Expand Animation */
 .expand {
     display: table-row;
     animation: slide-down 0.3s ease-in-out;
