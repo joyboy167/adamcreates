@@ -16,13 +16,17 @@ async function fetchRankings() {
             const res = await fetch(`https://api.chess.com/pub/player/${username}/stats`);
             const data = await res.json();
 
-            // Fetch Only Rapid Rating
+            // Fetch Ratings
             const rapid = data.chess_rapid?.last?.rating || "N/A";
+            const blitz = data.chess_blitz?.last?.rating || "N/A";
+            const bullet = data.chess_bullet?.last?.rating || "N/A";
 
             rankings.push({
                 username,
                 platform: "Chess.com",
-                rapid
+                rapid,
+                blitz,
+                bullet
             });
         } catch (error) {
             console.error(`Error fetching ${username}:`, error);
@@ -52,8 +56,13 @@ function displayRankings(rankings) {
             <!-- Hidden Details Row -->
             <tr class="details">
                 <td colspan="3">
-                    <strong>Platform:</strong> ${player.platform}<br>
-                    <strong>Rapid Rating:</strong> ${player.rapid}
+                    <div class="detail-platform">Platform: ${player.platform}</div>
+                    <div class="detail-username">Username: ${player.username}</div>
+                    <div class="detail-ratings">
+                        <span>Rapid: ${player.rapid}</span>
+                        <span>Blitz: ${player.blitz}</span>
+                        <span>Bullet: ${player.bullet}</span>
+                    </div>
                 </td>
             </tr>
         `;
@@ -64,5 +73,9 @@ function displayRankings(rankings) {
 // Function to Toggle Hidden Details Row
 function toggleDetails(row) {
     const detailsRow = row.nextElementSibling; // Get the next sibling row
-    detailsRow.classList.toggle("expand");
+    if (detailsRow.style.display === "table-row") {
+        detailsRow.style.display = "none"; // Hide the row
+    } else {
+        detailsRow.style.display = "table-row"; // Show the row
+    }
 }
