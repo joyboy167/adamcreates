@@ -45,16 +45,16 @@ tr:nth-child(even) {
 
 tr {
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: background-color 0.3s ease;
 }
 
 tr:hover {
     background-color: #f0f8ff;
 }
 
-/* Collapsible Row Styles */
+/* Collapsible Details Row */
 .details {
-    display: none; /* Hidden initially */
+    display: none; /* Hidden by default */
     background-color: #f1f1f1;
     font-size: 0.9rem;
 }
@@ -65,7 +65,7 @@ tr:hover {
     color: #555;
 }
 
-/* Expanded Animation */
+/* Expand Animation */
 .expand {
     display: table-row; /* Show the row */
     animation: slide-down 0.3s ease-in-out;
