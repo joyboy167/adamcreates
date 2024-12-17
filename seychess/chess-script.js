@@ -80,7 +80,7 @@ function displayRankings(rankings) {
         if (player.isAdjusted && player.originalLichessRating !== "N/A") {
             ratingDisplay = `
                 ${player.rapid}
-                <span class="tooltip" title="Adjusted from Lichess rating of ${player.originalLichessRating}">*</span>
+                <span class="tooltip" data-tooltip="Adjusted from Lichess rating of ${player.originalLichessRating}">*</span>
             `;
         }
 
