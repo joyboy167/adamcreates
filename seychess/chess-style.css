@@ -1,39 +1,44 @@
-/* General Styles */
+/* Reset Margins and Padding */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;  /* Set default font */
+    text-align: center;              /* Center all text */
+    background-color: #f4f4f4;       /* Light background */
 }
 
+/* Page Title Styling */
 h1 {
-    color: #333;
-    margin: 20px 0;
+    color: #333;                    /* Dark text color */
+    margin: 20px 0;                 /* Add margin */
 }
 
+/* Table Styling */
 table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    background: white;
+    width: 80%;                     /* Table width */
+    margin: 20px auto;              /* Center table */
+    border-collapse: collapse;      /* Remove border gaps */
+    background: white;              /* White background */
 }
 
+/* Table Header Styling */
 th, td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
+    padding: 12px;                  /* Cell padding */
+    border: 1px solid #ddd;         /* Light border */
+    text-align: center;             /* Center text */
 }
 
 th {
-    background-color: #333;
-    color: white;
+    background-color: #333;         /* Dark header background */
+    color: white;                   /* White header text */
 }
 
+/* Alternate Row Background */
 tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #f9f9f9;      /* Light gray row background */
 }
