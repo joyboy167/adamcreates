@@ -1,60 +1,55 @@
-// List of Players to Fetch (Chess.com usernames only)
+// Player List
 const players = [
-    "adamo25",       // Chess.com Username
-    "Mordecai_6"     // Chess.com Username
+    "adamo25",
+    "Mordecai_6"
 ];
 
-// Automatically Fetch Rankings When the Page Loads
+// Fetch Rankings When Page Loads
 window.onload = fetchRankings;
 
-// Main Function to Fetch and Display Rankings
 async function fetchRankings() {
-    const rankings = [];  // Array to Store Player Data
+    const rankings = [];
 
     for (let username of players) {
         try {
-            // Fetch Data from Chess.com API
-            const chessComRes = await fetch(`https://api.chess.com/pub/player/${username}/stats`);
-            const chessComData = await chessComRes.json();
+            const res = await fetch(`https://api.chess.com/pub/player/${username}/stats`);
+            const data = await res.json();
 
-            // Collect Player Data
             rankings.push({
-                platform: "Chess.com",    // Platform Name
-                username: username,      // Player Username
-                blitz: chessComData.chess_blitz?.last?.rating || "N/A",   // Blitz Rating
-                rapid: chessComData.chess_rapid?.last?.rating || "N/A",   // Rapid Rating
-                bullet: chessComData.chess_bullet?.last?.rating || "N/A"  // Bullet Rating
+                username,
+                platform: "Chess.com",
+                rapid: data.chess_rapid?.last?.rating || "N/A",
+                blitz: data.chess_blitz?.last?.rating || "N/A",
+                bullet: data.chess_bullet?.last?.rating || "N/A",
+                average: calculateAverage([
+                    data.chess_rapid?.last?.rating,
+                    data.chess_blitz?.last?.rating,
+                    data.chess_bullet?.last?.rating
+                ])
             });
-
         } catch (error) {
-            console.error(`Error fetching data for ${username}:`, error);  // Log Any Errors
+            console.error(`Error fetching ${username}:`, error);
         }
     }
 
-    // Sort Rankings by Rapid Rating (Highest First)
-    rankings.sort((a, b) => (b.rapid || 0) - (a.rapid || 0));
-
-    // Display Rankings in the Table
+    rankings.sort((a, b) => b.average - a.average); // Sort by Average Rating
     displayRankings(rankings);
 }
 
-// Function to Insert Table Rows Dynamically
+function calculateAverage(ratings) {
+    const validRatings = ratings.filter(rating => rating !== "N/A");
+    const sum = validRatings.reduce((acc, rating) => acc + rating, 0);
+    return validRatings.length ? Math.round(sum / validRatings.length) : "N/A";
+}
+
 function displayRankings(rankings) {
     const tableBody = document.getElementById("rankingsBody");
-    tableBody.innerHTML = "";  // Clear Previous Table Content
+    tableBody.innerHTML = "";
 
-    // Loop Through Each Player and Add to Table
     rankings.forEach((player, index) => {
-        const row = `
-            <tr>
-                <td>${index + 1}</td>             <!-- Player Rank -->
-                <td>${player.username}</td>      <!-- Player Username -->
-                <td>${player.platform}</td>      <!-- Platform -->
-                <td>${player.blitz}</td>         <!-- Blitz Rating -->
-                <td>${player.rapid}</td>         <!-- Rapid Rating -->
-                <td>${player.bullet}</td>        <!-- Bullet Rating -->
-            </tr>
-        `;
-        tableBody.insertAdjacentHTML("beforeend", row);  // Insert Row into Table
-    });
-}
+        const mainRow = `
+            <tr onclick="toggleDetails(this)">
+                <td>${index + 1}</td>
+                <td>${player.username}</td>
+                <td>${player.platform}</td>
+                <td>${player
