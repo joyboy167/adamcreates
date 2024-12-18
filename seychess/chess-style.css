@@ -1,27 +1,12 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Body */
-body {
-    background-color: #000; /* Solid black background */
-    color: white;
-    line-height: 1.6;
-}
-
 /* Hero Section */
 .hero-section {
     position: relative;
     background: 
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.2), #111 80%), 
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9) 85%), 
         url('bg-image.jpg') no-repeat center center/cover;
     color: #00A97F;
     text-align: center;
-    padding: 150px 20px 300px;
+    padding: 150px 20px 500px; /* Adjusted bottom padding for gradient effect */
 }
 
 .hero-section h1 {
@@ -34,48 +19,55 @@ body {
 .hero-section p {
     font-size: 1.2rem;
     color: #ddd;
+    margin-bottom: 0;
 }
 
 /* Content Section */
 .content-section {
     position: relative;
     background-color: #111;
-    padding: 40px 20px;
-    margin-top: -150px; /* Pull content into gradient */
-    z-index: 2;
-    border-radius: 8px;
+    padding: 60px 20px; /* More spacing at the top to push down the table */
+    margin-top: -150px; /* Pull content upwards smoothly into the gradient */
+    border-top: 2px solid #00A97F; /* Subtle visual separation */
 }
 
-/* Ranking Table */
-.ranking-table {
-    width: 90%;
+/* Table Styles */
+.table-container {
+    max-width: 1200px;
     margin: 0 auto;
-    background: #222;
+    background: #1a1a1a;
     border-radius: 8px;
     overflow: hidden;
-    color: white;
-    border: 1px solid #333;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-.ranking-table th,
-.ranking-table td {
-    padding: 15px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 16px;
     text-align: center;
-    border-bottom: 1px solid #333;
+    color: #ddd;
 }
 
-.ranking-table th {
-    background: #00A97F;
-    color: black;
+th {
+    background-color: #00A97F;
+    color: #000;
     font-weight: bold;
     text-transform: uppercase;
 }
 
-.ranking-table tr:nth-child(even) {
-    background: #181818;
+tr:nth-child(even) {
+    background-color: #222;
 }
 
-.ranking-table tr:hover {
-    background: #333;
-    cursor: pointer;
+tr:nth-child(odd) {
+    background-color: #1a1a1a;
+}
+
+tr:hover {
+    background-color: #333;
+    transition: 0.3s;
 }
