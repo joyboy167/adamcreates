@@ -44,39 +44,30 @@ body {
     color: #cccccc;
 }
 
-/* Description Section */
-.description-section {
-    margin: 2rem auto;
-    padding: 1rem;
-    max-width: 800px;
-    text-align: center;
-    color: #ddd;
-    font-size: 1.1rem;
-}
-
 /* Rankings Section */
 .rankings-section {
     margin: 2rem auto;
     padding: 1rem;
-    max-width: 900px;
-    background: #111;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 100%; /* Full width of the page */
 }
 
-/* Rankings Table */
 .rankings-table {
     width: 100%;
     border-collapse: collapse;
+    margin: 0 auto;
+    background: #111;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
 }
 
 /* Table Header - Button-Inspired */
 .rankings-table thead th {
-    background-color: #222; /* Dark background */
-    color: #5fd29d; /* Highlighted green */
+    background-color: #222;
+    color: #5fd29d;
     text-transform: uppercase;
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem;
     letter-spacing: 1px;
     font-weight: bold;
     position: relative;
@@ -100,12 +91,12 @@ body {
 }
 
 .rankings-table thead th:hover {
-    color: #ffffff; /* Text changes to white on hover */
+    color: #ffffff;
     background-color: #333;
-    box-shadow: 0 0 10px rgba(95, 210, 157, 0.7); /* Glow effect */
+    box-shadow: 0 0 10px rgba(95, 210, 157, 0.7);
 }
 
-/* Table Data */
+/* Table Rows */
 .rankings-table tbody tr {
     transition: background-color 0.3s ease;
 }
@@ -119,11 +110,11 @@ body {
 }
 
 .rankings-table tbody tr:hover {
-    background-color: #333; /* Row highlight */
+    background-color: #333;
 }
 
 .rankings-table tbody td {
-    padding: 1rem;
+    padding: 1.5rem;
     text-align: center;
     color: #ddd;
     font-size: 1rem;
