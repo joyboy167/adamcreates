@@ -7,69 +7,57 @@
 
 /* Body Styling */
 body {
-    background-color: #121212; /* Dark background */
-    color: #e0e0e0; /* Light text */
+    background-color: #121212; /* Dark theme */
+    color: #e0e0e0;
     font-family: 'Roboto', Arial, sans-serif;
     line-height: 1.6;
     text-align: center;
 }
 
-/* Title Section with Fixed Hover Effect */
-header {
-    margin: 30px 0;
-}
-
-.title {
-    --color: #00A97F;
-    --color2: #121212;
-    padding: 1em 2em;
-    background-color: transparent;
-    border: 1px solid var(--color);
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 2.5em;
-    color: var(--color);
-    text-transform: uppercase;
+/* Hero Section Styling */
+.hero-section {
     position: relative;
+    height: 400px; /* Adjust height as needed */
+    background: url('chess-photo.jpg') no-repeat center center/cover; /* Replace with your chess image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    color: #ffffff;
     z-index: 1;
-    overflow: hidden; /* Prevent pseudo-elements from spilling */
-    display: inline-block; /* Keep it centered and contained */
+    overflow: hidden;
 }
 
-.title::before,
-.title::after {
-    content: '';
+.hero-section::before {
+    content: "";
     position: absolute;
-    width: 150%; /* Larger width for smooth animation */
-    height: 150%;
-    background-color: var(--color);
-    transition: transform 0.5s ease-out;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), #121212); /* Gradient fade */
     z-index: -1;
 }
 
-.title::before {
-    top: 0;
-    left: 0;
-    transform: skew(45deg) translate(-120%, -50%);
+.hero-content {
+    max-width: 600px;
+    padding: 20px;
+    z-index: 2;
 }
 
-.title::after {
-    bottom: 0;
-    right: 0;
-    transform: skew(45deg) translate(120%, 50%);
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #00A97F; /* Green highlight */
+    letter-spacing: 2px;
 }
 
-.title:hover::before {
-    transform: skew(45deg) translate(-50%, -50%);
-}
-
-.title:hover::after {
-    transform: skew(45deg) translate(50%, 50%);
-}
-
-.title:hover {
-    color: var(--color2);
+.hero-content p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #e0e0e0;
 }
 
 /* Content Wrapper */
@@ -80,6 +68,7 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 40px;
+    margin-top: -50px; /* Overlapping effect */
 }
 
 /* Table Section */
@@ -124,12 +113,6 @@ td {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Highlighted Section */
-.highlight {
-    color: #00A97F;
-    font-weight: bold;
-}
-
 /* About Section */
 .about-section {
     background-color: #1e1e1e;
@@ -154,56 +137,16 @@ footer {
     font-size: 0.9em;
 }
 
-/* Tooltip Styling */
-.tooltip {
-    position: relative;
-    cursor: pointer;
-    color: #ffcc00;
-}
-
-.tooltip::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 5px 8px;
-    border-radius: 5px;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-size: 0.9em;
-    z-index: 10;
-    display: none;
-}
-
-.tooltip:hover::before {
-    display: block;
-}
-
-/* Cascaded Row Details */
-.detail-platform, .detail-username, .detail-ratings {
-    margin: 10px 0;
-    font-size: 0.9em;
-    color: #ddd;
-}
-
-.detail-ratings span {
-    display: inline-block;
-    margin-right: 15px;
-    font-size: 0.9em;
-    color: #bbb;
-}
-
-/* Subtle Horizontal Lines to Separate Table Content */
-th, td {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* Highlighted Section */
+.highlight {
+    color: #00A97F;
+    font-weight: bold;
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-    .title {
-        font-size: 1.8em;
+    .hero-content h1 {
+        font-size: 2.2rem;
     }
 
     table {
@@ -216,8 +159,12 @@ th, td {
 }
 
 @media screen and (max-width: 480px) {
-    .title {
-        font-size: 1.5em;
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
     }
 
     .about-section h2 {
