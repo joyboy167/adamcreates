@@ -1,145 +1,114 @@
-/* General Reset */
+/* General reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
 }
 
+/* Body styling */
 body {
+    font-family: Arial, sans-serif;
     background-color: #000;
     color: #fff;
     line-height: 1.6;
-    font-size: 1rem;
 }
 
 /* Hero Section */
 .hero-section {
     position: relative;
-    width: 100%;
-    height: 60vh;
-    background: url('bg-image.jpg') no-repeat center center/cover;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, #000), 
+                url('your-background-image.jpg') no-repeat center center/cover;
     display: flex;
+    align-items: flex-end;
     justify-content: center;
-    align-items: center;
     text-align: center;
+    padding-bottom: 4rem;
+    color: #fff;
 }
 
 .hero-content {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
+    background: none; /* Remove unintended box */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin: 0 auto;
 }
 
 .title {
     font-size: 3rem;
     font-weight: bold;
-    color: #ffffff;
     line-height: 1.2;
     margin-bottom: 0.5rem;
 }
 
 .subtitle {
     font-size: 1.2rem;
-    color: #cccccc;
 }
 
-/* Rankings Section */
+/* Description Section */
+.description-section {
+    text-align: center;
+    margin: 3rem 2rem;
+    font-size: 1.1rem;
+}
+
+/* Rankings Table Section */
 .rankings-section {
-    margin: 2rem auto;
-    padding: 1rem;
-    width: 100%; /* Full width of the page */
+    width: 100%;
+    margin: 4rem auto; /* Adds space between hero section and table */
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
 }
 
 .rankings-table {
     width: 100%;
+    max-width: 1200px;
     border-collapse: collapse;
-    margin: 0 auto;
-    background: #111;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: #111;
+    color: #ddd;
+    border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-/* Table Header - Button-Inspired */
-.rankings-table thead th {
-    background-color: #222;
-    color: #5fd29d;
-    text-transform: uppercase;
+.rankings-table thead tr {
+    background-color: #1a1a1a;
+    color: #88d18a; /* Matching the theme green */
     text-align: center;
-    padding: 1.5rem;
-    letter-spacing: 1px;
+    text-transform: uppercase;
     font-weight: bold;
     position: relative;
-    overflow: hidden;
 }
 
-.rankings-table thead th::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    left: -10%;
-    width: 50%;
-    height: 150%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: rotate(45deg);
-    transition: all 0.5s ease;
+.rankings-table thead th {
+    padding: 1rem;
+    font-size: 1.1rem;
+    position: relative;
 }
 
-.rankings-table thead th:hover::before {
-    left: 110%;
-}
-
-.rankings-table thead th:hover {
-    color: #ffffff;
-    background-color: #333;
-    box-shadow: 0 0 10px rgba(95, 210, 157, 0.7);
-}
-
-/* Table Rows */
 .rankings-table tbody tr {
-    transition: background-color 0.3s ease;
+    text-align: center;
+    transition: background 0.3s ease;
 }
 
 .rankings-table tbody tr:nth-child(even) {
-    background-color: #1a1a1a;
-}
-
-.rankings-table tbody tr:nth-child(odd) {
-    background-color: #0f0f0f;
+    background-color: #151515;
 }
 
 .rankings-table tbody tr:hover {
-    background-color: #333;
+    background-color: #222;
 }
 
-.rankings-table tbody td {
-    padding: 1.5rem;
-    text-align: center;
-    color: #ddd;
+.rankings-table td {
+    padding: 1rem;
     font-size: 1rem;
-    border-bottom: 1px solid #444;
+    color: #fff;
+    border-bottom: 1px solid #333;
 }
 
-.rankings-table tbody tr:last-child td {
-    border-bottom: none;
+/* Adjustments to make table full width */
+.rankings-section table {
+    width: 100%;
+    margin: 0 auto;
 }
 
-/* Footer Section */
-.footer {
-    margin-top: 2rem;
-    text-align: center;
-    padding: 1rem 0;
-    background-color: #111;
-    color: #999;
-    font-size: 0.9rem;
-}
-
-.footer a {
-    color: #5fd29d;
-    text-decoration: none;
-}
-
-.footer a:hover {
-    text-decoration: underline;
-}
