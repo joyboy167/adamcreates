@@ -7,14 +7,14 @@
 
 /* Body Styling */
 body {
-    background-color: #121212;
-    color: #e0e0e0;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text */
     font-family: 'Roboto', Arial, sans-serif;
     line-height: 1.6;
     text-align: center;
 }
 
-/* Title Section */
+/* Title Section with Fixed Hover Effect */
 header {
     margin: 30px 0;
 }
@@ -30,26 +30,42 @@ header {
     font-size: 2.5em;
     color: var(--color);
     text-transform: uppercase;
-    display: inline-block;
     position: relative;
-    transition: color 0.5s;
+    text-align: center;
+    z-index: 1;
+    overflow: hidden; /* Prevent pseudo-elements from spilling */
+    display: inline-block; /* Keep it centered and contained */
 }
 
 .title::before,
 .title::after {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 150%; /* Larger width for smooth animation */
+    height: 150%;
     background-color: var(--color);
-    transform: skew(45deg) translate(-50%, -50%);
-    transition: 0.5s ease-out;
+    transition: transform 0.5s ease-out;
     z-index: -1;
 }
 
 .title::before {
     top: 0;
     left: 0;
+    transform: skew(45deg) translate(-120%, -50%);
+}
+
+.title::after {
+    bottom: 0;
+    right: 0;
+    transform: skew(45deg) translate(120%, 50%);
+}
+
+.title:hover::before {
+    transform: skew(45deg) translate(-50%, -50%);
+}
+
+.title:hover::after {
+    transform: skew(45deg) translate(50%, 50%);
 }
 
 .title:hover {
@@ -163,4 +179,48 @@ footer {
 
 .tooltip:hover::before {
     display: block;
+}
+
+/* Cascaded Row Details */
+.detail-platform, .detail-username, .detail-ratings {
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: #ddd;
+}
+
+.detail-ratings span {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 0.9em;
+    color: #bbb;
+}
+
+/* Subtle Horizontal Lines to Separate Table Content */
+th, td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 1.8em;
+    }
+
+    table {
+        font-size: 0.9em;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 1.5em;
+    }
+
+    .about-section h2 {
+        font-size: 1.5em;
+    }
 }
