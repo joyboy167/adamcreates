@@ -13,79 +13,82 @@ body {
     overflow-x: hidden;
 }
 
-/* Header Background Section */
-.header-container {
+/* Hero Section Background */
+.hero-section {
     position: relative;
     width: 100%;
     height: 100vh; /* Full viewport height */
     background: url('bg-image.jpg') no-repeat center center/cover;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 3rem 5%;
     overflow: hidden;
 }
 
-.header-container::after {
+.hero-section::after {
     content: '';
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(to bottom, rgba(13, 13, 13, 0), #0d0d0d 80%);
     z-index: 1;
 }
 
-/* Title Section */
-.title-container {
-    position: absolute;
-    bottom: 10%; /* Adjust placement */
-    left: 5%; /* Left-aligned */
+/* Hero Content */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
     text-align: left;
-    color: #ffffff; /* Strong white title */
+    max-width: 800px;
+    margin-bottom: 50px; /* Space before content starts */
+}
+
+.hero-content .title {
     font-size: 3.5rem;
     font-weight: 700;
-    text-transform: uppercase;
+    margin-bottom: 1rem;
     letter-spacing: 2px;
-    line-height: 1.2;
-    z-index: 10;
 }
 
-.title-container p {
-    font-size: 1.2rem;
+.hero-content .subtitle {
+    font-size: 1.3rem;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.8); /* Softer white for description */
-    margin-top: 0.5rem;
 }
 
-/* Welcome Section */
-.welcome-section {
+/* Description Section */
+.description-section {
     text-align: center;
-    margin: 50px auto 0 auto;
+    margin: 50px auto;
     padding: 20px;
     color: #ffffff;
-    font-size: 1.1rem;
-    max-width: 90%;
+    font-size: 1.2rem;
     line-height: 1.8;
     background-color: #111111;
     border-radius: 8px;
+    max-width: 80%;
 }
 
-/* Table Container */
-.table-container {
-    margin: 60px auto;
+/* Rankings Table */
+.rankings-section {
+    margin: 80px auto;
     width: 90%;
-    background-color: #0d0d0d;
+    background-color: #111111;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     color: #ffffff;
-    background: #111111;
+    background: #1c1c1c;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -110,49 +113,22 @@ table td {
     font-size: 1rem;
 }
 
-/* Alternating Rows */
 table tr:nth-child(even) {
-    background-color: #1c1c1c; /* Slightly lighter row */
+    background-color: #2a2a2a;
 }
 
 table tr:hover {
-    background-color: #2a2a2a; /* Hover effect */
-}
-
-/* Tooltip Styling */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 200px;
-    background-color: #111111;
-    color: #ffffff;
-    text-align: center;
-    padding: 5px 10px;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 10;
-    bottom: 125%; /* Position above the text */
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+    background-color: #333333; /* Subtle hover effect */
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-    .title-container {
+    .hero-content .title {
         font-size: 2.5rem;
-        bottom: 15%;
+    }
+
+    .hero-content .subtitle {
+        font-size: 1rem;
     }
 
     table th,
