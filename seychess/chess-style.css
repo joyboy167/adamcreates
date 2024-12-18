@@ -18,7 +18,7 @@ body {
 .hero-section {
     position: relative;
     height: 400px; /* Adjust height as needed */
-    background: url('chess-photo.jpg') no-repeat center center/cover; /* Replace with your chess image */
+    background: url('bg-image.jpg') no-repeat center center/cover; /* Replace with your chess image */
     display: flex;
     align-items: center;
     justify-content: center;
