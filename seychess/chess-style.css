@@ -11,84 +11,66 @@ body {
     background-color: #000;
     color: #fff;
     line-height: 1.6;
+    margin: 0;
 }
 
 /* Hero Section */
 .hero-section {
     position: relative;
     height: 100vh;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, #000), 
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, #000), 
                 url('your-background-image.jpg') no-repeat center center/cover;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     text-align: center;
-    padding-bottom: 4rem;
     color: #fff;
 }
 
 .hero-content {
-    background: none; /* Remove unintended box */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    margin: 0 auto;
 }
 
 .title {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: bold;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
 }
 
 .subtitle {
-    font-size: 1.2rem;
-}
-
-/* Description Section */
-.description-section {
-    text-align: center;
-    margin: 3rem 2rem;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
 }
 
 /* Rankings Table Section */
 .rankings-section {
+    margin: 2rem auto;
     width: 100%;
-    margin: 4rem auto; /* Adds space between hero section and table */
-    padding: 0 2rem;
-    display: flex;
-    justify-content: center;
+    max-width: 1200px;
 }
 
 .rankings-table {
     width: 100%;
-    max-width: 1200px;
     border-collapse: collapse;
-    background-color: #111;
-    color: #ddd;
     border-radius: 8px;
     overflow: hidden;
+    background-color: #111;
+    color: #ddd;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
 .rankings-table thead tr {
     background-color: #1a1a1a;
-    color: #88d18a; /* Matching the theme green */
+    color: #88d18a;
     text-align: center;
-    text-transform: uppercase;
     font-weight: bold;
-    position: relative;
 }
 
-.rankings-table thead th {
+.rankings-table th, 
+.rankings-table td {
     padding: 1rem;
-    font-size: 1.1rem;
-    position: relative;
-}
-
-.rankings-table tbody tr {
     text-align: center;
-    transition: background 0.3s ease;
+    border-bottom: 1px solid #333;
 }
 
 .rankings-table tbody tr:nth-child(even) {
@@ -98,17 +80,3 @@ body {
 .rankings-table tbody tr:hover {
     background-color: #222;
 }
-
-.rankings-table td {
-    padding: 1rem;
-    font-size: 1rem;
-    color: #fff;
-    border-bottom: 1px solid #333;
-}
-
-/* Adjustments to make table full width */
-.rankings-section table {
-    width: 100%;
-    margin: 0 auto;
-}
-
