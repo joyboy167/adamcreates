@@ -3,128 +3,116 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
 }
 
 body {
-    background-color: #0d0d0d; /* Dark background */
-    color: #ffffff; /* Default white text */
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    background-color: #000000;
     line-height: 1.6;
     overflow-x: hidden;
+    margin: 0;
 }
 
-/* Hero Section Background */
+/* Hero Section */
 .hero-section {
     position: relative;
-    width: 100%;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
     background: url('bg-image.jpg') no-repeat center center/cover;
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* Adjusted to center */
+    justify-content: center;
     align-items: center;
     text-align: center;
-    overflow: hidden;
+    color: #ffffff;
 }
 
-.hero-section::after {
+.hero-section::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(13, 13, 13, 0), #0d0d0d 90%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 60%, #000000 100%);
     z-index: 1;
 }
 
-/* Hero Content */
 .hero-content {
     position: relative;
     z-index: 2;
-    color: #ffffff;
-    max-width: 800px;
-    margin-top: -50px; /* Moves the title and description up */
 }
 
 .hero-content .title {
-    font-size: 3.5rem;
+    font-size: 3.5rem; /* Title size */
     font-weight: 700;
-    margin-bottom: 1rem;
     letter-spacing: 2px;
+    margin-bottom: 0.5rem; /* Reduce bottom space */
+    line-height: 1.1; /* Reduce space between title lines */
+    text-align: center;
 }
 
 .hero-content .subtitle {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.8); /* Softer white for description */
+    margin-top: 1rem;
+    text-align: center;
 }
 
-/* Description Section - Removed Bubble */
+/* Description Section */
 .description-section {
-    display: none; /* Hides the central bubble section */
+    padding: 2rem 10%;
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
 }
 
-/* Rankings Table */
+/* Rankings Section */
 .rankings-section {
-    margin: 50px auto;
-    width: 90%;
-    background-color: #111111;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 3rem 5%;
+    background-color: #000000;
 }
 
-table {
+.rankings-table {
     width: 100%;
     border-collapse: collapse;
     color: #ffffff;
-    background: #1c1c1c;
-    border-radius: 8px;
-    overflow: hidden;
+    font-size: 1rem;
+    margin-top: 1.5rem;
 }
 
-/* Table Header */
-table th {
-    background-color: #2ebd8e; /* Cool green header */
-    color: #0d0d0d;
-    padding: 15px;
-    text-align: center;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 2px solid #0d0d0d;
-}
-
-/* Table Rows */
-table td {
-    padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid #1c1c1c;
+.rankings-table thead th {
+    background-color: #5fd29d;
+    color: #000000;
+    padding: 1rem;
+    text-align: left;
     font-size: 1rem;
 }
 
-table tr:nth-child(even) {
-    background-color: #2a2a2a;
+.rankings-table tbody td {
+    padding: 1rem;
+    border-bottom: 1px solid #333333;
 }
 
-table tr:hover {
-    background-color: #333333; /* Subtle hover effect */
+.rankings-table tbody tr:nth-child(odd) {
+    background-color: #111111;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .hero-content .title {
-        font-size: 2.5rem;
-    }
+.rankings-table tbody tr:nth-child(even) {
+    background-color: #000000;
+}
 
-    .hero-content .subtitle {
-        font-size: 1rem;
-    }
+.rankings-table tbody tr:hover {
+    background-color: #222222;
+    transition: background-color 0.3s ease;
+}
 
-    table th,
-    table td {
-        font-size: 0.9rem;
-        padding: 10px;
-    }
+/* Footer Section */
+.footer {
+    padding: 1rem;
+    text-align: center;
+    color: #888888;
+    font-size: 0.9rem;
+    background-color: #000000;
 }
