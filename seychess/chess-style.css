@@ -1,73 +1,110 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body */
+body {
+    background-color: #000; /* Black base */
+    color: #e0e0e0; /* Light gray text */
+    line-height: 1.6;
+}
+
 /* Hero Section */
 .hero-section {
     position: relative;
-    background: 
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9) 85%), 
-        url('bg-image.jpg') no-repeat center center/cover;
-    color: #00A97F;
+    background: url('bg-image.jpg') no-repeat center center/cover;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 150px 20px 500px; /* Adjusted bottom padding for gradient effect */
+    color: #63c89c; /* Green text color */
 }
 
-.hero-section h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #00A97F;
-}
-
-.hero-section p {
-    font-size: 1.2rem;
-    color: #ddd;
-    margin-bottom: 0;
-}
-
-/* Content Section */
-.content-section {
-    position: relative;
-    background-color: #111;
-    padding: 60px 20px; /* More spacing at the top to push down the table */
-    margin-top: -150px; /* Pull content upwards smoothly into the gradient */
-    border-top: 2px solid #00A97F; /* Subtle visual separation */
-}
-
-/* Table Styles */
-.table-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: #1a1a1a;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
-}
-
-table {
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
     width: 100%;
-    border-collapse: collapse;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, #000 100%);
+    z-index: 1;
 }
 
-th, td {
-    padding: 12px 16px;
-    text-align: center;
-    color: #ddd;
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
-th {
-    background-color: #00A97F;
-    color: #000;
+.title {
+    font-size: 3rem;
     font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* Description Section */
+.description-section {
+    padding: 4rem 2rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    color: #b0b0b0; /* Slightly lighter gray */
+}
+
+/* Rankings Section */
+.rankings-section {
+    padding: 4rem 2rem;
+    background: #000; /* Maintain the black background */
+    text-align: center;
+}
+
+.rankings-table {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.rankings-table thead {
+    background-color: #3f735b; /* Green header */
+    color: #fff;
     text-transform: uppercase;
+    font-size: 1rem;
 }
 
-tr:nth-child(even) {
-    background-color: #222;
+.rankings-table th,
+.rankings-table td {
+    padding: 1.2rem;
+    text-align: center;
+    border-bottom: 1px solid #3f735b;
 }
 
-tr:nth-child(odd) {
-    background-color: #1a1a1a;
+.rankings-table tr:nth-child(odd) {
+    background-color: #121212; /* Slightly lighter black for rows */
 }
 
-tr:hover {
-    background-color: #333;
-    transition: 0.3s;
+.rankings-table tr:nth-child(even) {
+    background-color: #1c1c1c; /* Dark gray */
+}
+
+.rankings-table tr:hover {
+    background-color: #2e2e2e;
+    cursor: pointer;
+}
+
+.rankings-table td {
+    color: #e0e0e0;
+    font-size: 1rem;
 }
