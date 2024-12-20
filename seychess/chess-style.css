@@ -110,3 +110,24 @@ body {
     background-color: #222;
     transition: background-color 0.3s ease;
 }
+
+/* Evolution Column Styling */
+.rank-up {
+    color: #6ef2a4; /* Green */
+    font-weight: bold;
+}
+
+.rank-down {
+    color: #e57373; /* Red */
+    font-weight: bold;
+}
+
+.rank-same {
+    color: #ffffff; /* Neutral white */
+    font-weight: bold;
+}
+
+.rank-new {
+    color: #4fc3f7; /* Blue for new entries */
+    font-weight: bold;
+}
