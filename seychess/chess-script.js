@@ -9,10 +9,10 @@ const players = [
 
 // Simulated previous rankings for the evolution column
 const previousRankings = [
-    { username: "KingBen36", rank: 2 },
-    { username: "MinusE1", rank: 1 },
-    { username: "adamo25", rank: 4 },
-    { username: "Mordecai_6", rank: 3 }
+    { username: "KingBen36", rank: 1 },
+    { username: "MinusE1", rank: 2 },
+    { username: "adamo25", rank: 3 },
+    { username: "Mordecai_6", rank: 4 }
 ];
 
 // Fetch Rankings When Page Loads
