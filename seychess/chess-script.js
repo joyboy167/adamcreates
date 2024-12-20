@@ -18,6 +18,8 @@ async function fetchAndUpdateRankings() {
     try {
         // Fetch the rankings.json file
         const response = await fetch(jsonURL);
+        if (!response.ok) throw new Error("Failed to fetch rankings.json");
+
         const rankingsData = await response.json();
 
         // Extract previous and current rankings
@@ -53,6 +55,7 @@ async function fetchCurrentRankings() {
             // Fetch data from Chess.com
             if (player.platform === "chesscom") {
                 const statsRes = await fetch(`https://api.chess.com/pub/player/${player.username}/stats`);
+                if (!statsRes.ok) throw new Error(`Failed to fetch data for ${player.username}`);
                 const statsData = await statsRes.json();
 
                 ratingData = {
@@ -64,6 +67,7 @@ async function fetchCurrentRankings() {
             // Fetch data from Lichess
             else if (player.platform === "lichess") {
                 const res = await fetch(`https://lichess.org/api/user/${player.username}`);
+                if (!res.ok) throw new Error(`Failed to fetch data for ${player.username}`);
                 const data = await res.json();
 
                 originalLichessRating = {
@@ -141,14 +145,7 @@ function displayRankings(rankings) {
 
 // Update rankings.json file
 async function updateRankingsFile(updatedData) {
-    // POST request to update JSON file dynamically (requires server support)
-    const response = await fetch("/update-json-endpoint", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedData)
-    });
-
-    if (!response.ok) {
-        console.error("Failed to update rankings.json");
-    }
+    // Placeholder for server-based POST request
+    console.log("Updated rankings.json:", updatedData);
+    // Example: POST to a server endpoint to update the JSON file
 }
