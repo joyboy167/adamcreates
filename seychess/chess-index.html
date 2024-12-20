@@ -26,78 +26,13 @@
                     <th>SEYCHESS RATING</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="evolution"></td>
-                    <td>Benjamin Hoareau</td>
-                    <td>1911 *</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="evolution"></td>
-                    <td>Rudolph Camille</td>
-                    <td>1462</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="evolution"></td>
-                    <td>Adam Furneau</td>
-                    <td>945</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td class="evolution"></td>
-                    <td>Darius Hoareau</td>
-                    <td>912</td>
-                </tr>
+            <tbody id="rankingsBody">
+                <!-- Dynamic rows will be inserted here via JavaScript -->
             </tbody>
         </table>
     </section>
 
     <!-- JavaScript -->
-    <script>
-        // Mock previous rankings data
-        const previousRankings = [
-            { name: "Benjamin Hoareau", rank: 2 },
-            { name: "Rudolph Camille", rank: 1 },
-            { name: "Adam Furneau", rank: 3 },
-            { name: "Darius Hoareau", rank: 6 }
-        ];
-
-        // Get all rows from the table body
-        const rows = document.querySelectorAll(".rankings-table tbody tr");
-
-        // Update the evolution column dynamically
-        rows.forEach((row) => {
-            const rankCell = row.children[0]; // First cell (RANK)
-            const nameCell = row.children[2]; // Third cell (NAME)
-            const evolutionCell = row.children[1]; // Second cell (EVOLUTION)
-
-            const currentRank = parseInt(rankCell.textContent);
-            const playerName = nameCell.textContent.trim();
-
-            // Find the player in the previous rankings
-            const previousData = previousRankings.find(
-                (player) => player.name === playerName
-            );
-
-            if (previousData) {
-                const previousRank = previousData.rank;
-
-                // Determine evolution
-                if (currentRank < previousRank) {
-                    evolutionCell.innerHTML = `<span class="rank-up">↑ +${previousRank - currentRank}</span>`;
-                } else if (currentRank > previousRank) {
-                    evolutionCell.innerHTML = `<span class="rank-down">↓ -${currentRank - previousRank}</span>`;
-                } else {
-                    evolutionCell.innerHTML = `<span class="rank-same">=</span>`;
-                }
-            } else {
-                // If no previous data, display "New"
-                evolutionCell.innerHTML = `<span class="rank-new">New</span>`;
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
