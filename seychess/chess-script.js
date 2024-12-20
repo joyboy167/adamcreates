@@ -8,7 +8,7 @@ const players = [
 ];
 
 // Hosted JSON URL
-const jsonURL = "https://your-username.github.io/your-repo/rankings.json";
+const jsonURL = "./rankings.json"; // Corrected to point to the local file in the same directory
 
 // Fetch Rankings When Page Loads
 window.onload = fetchAndUpdateRankings;
@@ -145,7 +145,5 @@ function displayRankings(rankings) {
 
 // Update rankings.json file
 async function updateRankingsFile(updatedData) {
-    // Placeholder for server-based POST request
     console.log("Updated rankings.json:", updatedData);
-    // Example: POST to a server endpoint to update the JSON file
 }
