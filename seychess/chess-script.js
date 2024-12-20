@@ -7,6 +7,14 @@ const players = [
     { username: "Jeremy_Raguain", platform: "chesscom", realName: "Jeremy Raguain" } // New player
 ];
 
+// Simulated previous rankings for the evolution column
+const previousRankings = [
+    { username: "KingBen36", rank: 2 },
+    { username: "MinusE1", rank: 1 },
+    { username: "adamo25", rank: 4 },
+    { username: "Mordecai_6", rank: 3 }
+];
+
 // Fetch Rankings When Page Loads
 window.onload = fetchRankings;
 
@@ -82,6 +90,20 @@ function displayRankings(rankings) {
     tableBody.innerHTML = ""; // Clear existing table rows
 
     rankings.forEach((player, index) => {
+        // Calculate Evolution
+        const previousRank = previousRankings.find((r) => r.username === player.username)?.rank;
+        let evolution = `<span class="rank-new">New</span>`;
+        if (previousRank) {
+            const change = previousRank - (index + 1);
+            if (change > 0) {
+                evolution = `<span class="rank-up">↑ ${Math.abs(change)}</span>`;
+            } else if (change < 0) {
+                evolution = `<span class="rank-down">↓ ${Math.abs(change)}</span>`;
+            } else {
+                evolution = `<span class="rank-same">↔</span>`;
+            }
+        }
+
         // Asterisk and tooltip logic for adjusted ratings
         let ratingDisplay = player.rapid;
         if (player.isAdjusted && player.originalLichess?.rapid !== "N/A") {
@@ -97,10 +119,11 @@ function displayRankings(rankings) {
                 <td>${index + 1}</td>
                 <td>${player.name}</td>
                 <td>${ratingDisplay}</td>
+                <td>${evolution}</td>
             </tr>
             <!-- Hidden Details Row -->
             <tr class="details">
-                <td colspan="3">
+                <td colspan="4">
                     <div class="detail-platform">Platform: ${player.platform}</div>
                     <div class="detail-username">Username: ${player.username}</div>
                     <div class="detail-ratings">
