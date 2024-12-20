@@ -69,32 +69,17 @@ body {
     font-weight: bold;
 }
 
-.rankings-table th {
+.rankings-table th, .rankings-table td {
     padding: 1rem;
     text-align: center;
-    border-bottom: 2px solid #333;
+    border-bottom: 1px solid #222; /* Row dividers */
+    border-right: 1px solid #333; /* Column dividers */
     position: relative;
 }
 
-.rankings-table th::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 0;
-    height: 60%;
-    width: 2px;
-    background: #333;
-    transform: translateY(-50%);
-}
-
-.rankings-table th:last-child::after {
-    display: none;
-}
-
-.rankings-table td {
-    padding: 1rem;
-    text-align: center;
-    border-bottom: 1px solid #222;
+.rankings-table th:last-child,
+.rankings-table td:last-child {
+    border-right: none; /* Remove the divider for the last column */
 }
 
 .rankings-table tr:nth-child(even) {
