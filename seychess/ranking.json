@@ -1,0 +1,46 @@
+{
+    "previousRankings": [
+        {
+            "rank": 1,
+            "name": "Benjamin Hoareau",
+            "rating": 1911
+        },
+        {
+            "rank": 2,
+            "name": "Rudolph Camille",
+            "rating": 1462
+        },
+        {
+            "rank": 3,
+            "name": "Adam Furneau",
+            "rating": 945
+        },
+        {
+            "rank": 4,
+            "name": "Darius Hoareau",
+            "rating": 912
+        }
+    ],
+    "currentRankings": [
+        {
+            "rank": 1,
+            "name": "Benjamin Hoareau",
+            "rating": 1911
+        },
+        {
+            "rank": 2,
+            "name": "Rudolph Camille",
+            "rating": 1462
+        },
+        {
+            "rank": 3,
+            "name": "Adam Furneau",
+            "rating": 945
+        },
+        {
+            "rank": 4,
+            "name": "Darius Hoareau",
+            "rating": 912
+        }
+    ]
+}
