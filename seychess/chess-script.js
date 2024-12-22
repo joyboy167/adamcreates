@@ -4,7 +4,6 @@ const players = [
     { username: "Mordecai_6", platform: "chesscom", realName: "Darius Hoareau" },
     { username: "MinusE1", platform: "chesscom", realName: "Rudolph Camille" },
     { username: "KingBen36", platform: "lichess", realName: "Benjamin Hoareau" },
-    { username: "Jeremy_Raguain", platform: "chesscom", realName: "Jeremy Raguain" }
 ];
 
 // Hosted JSON URL
