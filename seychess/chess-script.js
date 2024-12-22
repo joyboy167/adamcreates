@@ -46,7 +46,7 @@ async function fetchCurrentRankings() {
 
     for (let player of players) {
         try {
-            let ratingData = { rapid: "N/A", blitz: "N/A", bullet: "N/A" };
+            let ratingData = { rapid: "N/A", blitz: "N/A", bullet: "N/A", seychelles: Math.floor(Math.random() * 1000 + 800) };
             let realName = player.realName;
             let isAdjusted = false;
             let originalLichessRating = null;
@@ -58,6 +58,7 @@ async function fetchCurrentRankings() {
                 const statsData = await statsRes.json();
 
                 ratingData = {
+                    ...ratingData,
                     rapid: statsData.chess_rapid?.last?.rating || "N/A",
                     blitz: statsData.chess_blitz?.last?.rating || "N/A",
                     bullet: statsData.chess_bullet?.last?.rating || "N/A"
@@ -78,7 +79,8 @@ async function fetchCurrentRankings() {
                 ratingData = {
                     rapid: originalLichessRating.rapid !== "N/A" ? originalLichessRating.rapid - 200 : "N/A",
                     blitz: originalLichessRating.blitz !== "N/A" ? originalLichessRating.blitz - 200 : "N/A",
-                    bullet: originalLichessRating.bullet !== "N/A" ? originalLichessRating.bullet - 200 : "N/A"
+                    bullet: originalLichessRating.bullet !== "N/A" ? originalLichessRating.bullet - 200 : "N/A",
+                    seychelles: Math.floor(Math.random() * 1000 + 800) // Simulated Seychelles rating
                 };
                 isAdjusted = true;
             }
@@ -88,8 +90,7 @@ async function fetchCurrentRankings() {
                 username: player.username,
                 rank: 0, // Will be determined after sorting
                 platform: player.platform === "lichess" ? "Lichess (Adjusted)" : "Chess.com",
-                rapid: ratingData.rapid,
-                originalLichess: originalLichessRating,
+                ...ratingData,
                 isAdjusted: isAdjusted
             });
         } catch (error) {
@@ -135,7 +136,10 @@ function displayRankings(rankings) {
                 <td>${player.rank}</td>
                 <td>${player.evolution}</td>
                 <td>${player.name}</td>
+                <td>${player.bullet}</td>
+                <td>${player.blitz}</td>
                 <td>${player.rapid}</td>
+                <td>${player.seychelles}</td>
             </tr>
         `;
         tableBody.insertAdjacentHTML("beforeend", row);
