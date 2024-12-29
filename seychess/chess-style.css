@@ -118,7 +118,7 @@ body {
 @media (max-width: 768px) {
     .hero-section {
         min-height: 100vh;
-        width: 100%; /* Reset to default */
+        width: 100% + 5rem; /* Reset to default */
         margin: 0 auto;
         padding: 0;
     }
