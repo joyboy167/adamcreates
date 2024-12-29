@@ -27,7 +27,9 @@ body {
     justify-content: center;
     text-align: center;
     color: #fff;
-    width: 100%; /* Full width for hero */
+    width: calc(100% - 2rem); /* Match the table's width including padding */
+    margin: 0 auto; /* Center the hero section horizontally */
+    overflow: hidden; /* Prevent overflow */
 }
 
 .hero-content {
@@ -55,7 +57,7 @@ body {
 }
 
 .rankings-table {
-    width: 100%; /* Ensure table spans the full width of the section */
+    width: calc(100% - 2rem); /* Match the hero section's width including padding */
     border-collapse: collapse;
     background-color: #111;
     color: #ddd;
@@ -118,7 +120,8 @@ body {
 @media (max-width: 768px) {
     .hero-section {
         min-height: 100vh; /* Match full height for consistency */
-        width: 100%; /* Match full width for consistency */
+        width: calc(100% - 2rem); /* Match the table width for consistency */
+        margin: 0 auto; /* Center the hero section */
     }
 
     .title {
@@ -135,7 +138,7 @@ body {
     }
 
     .rankings-table {
-        width: 100%; /* Ensure the table spans the viewport width */
+        width: calc(100% - 1rem); /* Slight padding for mobile view */
     }
 
     .rankings-table th, .rankings-table td {
