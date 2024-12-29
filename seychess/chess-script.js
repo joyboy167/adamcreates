@@ -145,6 +145,9 @@ function displayRankings(rankings) {
     tableBody.innerHTML = "";
 
     rankings.forEach(player => {
+        // Format SeyChess rating to 1 decimal place unless it's "N/A"
+        const seychessRating = player.seychelles === "N/A" ? "N/A" : player.seychelles.toFixed(1);
+
         const row = `
             <tr>
                 <td>${player.rank}</td>
@@ -153,7 +156,7 @@ function displayRankings(rankings) {
                 <td>${player.bullet === "N/A" ? "N/A" : player.bullet}</td>
                 <td>${player.blitz === "N/A" ? "N/A" : player.blitz}</td>
                 <td>${player.rapid === "N/A" ? "N/A" : player.rapid}</td>
-                <td>${player.seychelles === "N/A" ? "N/A" : player.seychelles}</td>
+                <td>${seychessRating}</td>
             </tr>
         `;
         tableBody.insertAdjacentHTML("beforeend", row);
