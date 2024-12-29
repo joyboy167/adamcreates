@@ -12,12 +12,15 @@ body {
     color: #fff;
     line-height: 1.6;
     margin: 0;
+    width: 100vw; /* Full viewport width */
+    overflow-x: hidden; /* Prevent horizontal scrolling issues */
 }
 
 /* Hero Section */
 .hero-section {
+    width: 100%; /* Full-width hero section */
     position: relative;
-    height: 100vh;
+    height: 50vh; /* Adjusted for a proportional height */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 60%, #000),
                 url('bg-image.jpg') no-repeat center center/cover;
     display: flex;
@@ -33,7 +36,7 @@ body {
 }
 
 .title {
-    font-size: 3rem; /* Adjusted for smaller screens */
+    font-size: 3.5rem; /* Scalable title */
     font-weight: bold;
     line-height: 1.1;
     margin-bottom: 1rem;
@@ -46,20 +49,20 @@ body {
 
 /* Rankings Table Section */
 .rankings-section {
+    width: 100%; /* Full width */
+    max-width: 1200px; /* Fixed width for large screens */
     margin: 2rem auto;
-    width: 100%;
-    max-width: 95%;
-    padding: 1rem;
-    overflow-x: auto; /* Enable horizontal scrolling for smaller screens */
+    padding: 0 1rem;
 }
 
 .rankings-table {
-    width: 100%;
+    width: 100%; /* Full width of the section */
     border-collapse: collapse;
     background-color: #111;
     color: #ddd;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    overflow: hidden;
 }
 
 .rankings-table thead {
@@ -70,13 +73,13 @@ body {
 }
 
 .rankings-table th {
-    padding: 0.8rem; /* Reduced padding for smaller screens */
+    padding: 0.8rem;
     text-align: center;
     border-bottom: 2px solid #333;
 }
 
 .rankings-table td {
-    padding: 0.8rem; /* Reduced padding for smaller screens */
+    padding: 0.8rem;
     text-align: center;
     border-bottom: 1px solid #222;
 }
@@ -88,27 +91,6 @@ body {
 .rankings-table tr:hover {
     background-color: #222;
     transition: background-color 0.3s ease;
-}
-
-/* Evolution Column Styling */
-.rank-up {
-    color: #6ef2a4;
-    font-weight: bold;
-}
-
-.rank-down {
-    color: #e57373;
-    font-weight: bold;
-}
-
-.rank-same {
-    color: #ffffff;
-    font-weight: bold;
-}
-
-.rank-new {
-    color: #4fc3f7;
-    font-weight: bold;
 }
 
 /* Responsive Design */
@@ -123,14 +105,14 @@ body {
         font-size: 1rem;
     }
 
-    .rankings-section {
-        margin: 1rem auto;
-    }
-
     .rankings-table th,
     .rankings-table td {
-        padding: 0.6rem; /* Further reduce padding */
+        padding: 0.6rem; /* Reduced padding */
         font-size: 0.9rem; /* Adjust font size */
+    }
+
+    .hero-section {
+        height: 40vh; /* Adjust height for smaller screens */
     }
 }
 
@@ -146,18 +128,7 @@ body {
 
     .rankings-table th,
     .rankings-table td {
-        font-size: 0.8rem; /* Even smaller font size */
-    }
-
-    /* Make the table scrollable horizontally */
-    .rankings-section {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    /* Optionally hide less important columns */
-    .rankings-table td:nth-child(2), /* Evolution */
-    .rankings-table th:nth-child(2) {
-        display: none;
+        font-size: 0.8rem; /* Further reduce font size */
+        padding: 0.4rem;
     }
 }
