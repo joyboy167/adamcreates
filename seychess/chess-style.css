@@ -118,7 +118,7 @@ body {
 @media (max-width: 768px) {
     .hero-section {
         min-height: 100vh; /* Match full height for consistency */
-        width: calc(100% + 15rem); /* Slightly larger than the viewport */
+        width: calc(100% + 13rem); /* Slightly larger than the viewport */
         margin: 0 auto; /* Center the hero section */
         padding: 0; /* Ensure no extra padding */
     }
