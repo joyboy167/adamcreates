@@ -20,17 +20,15 @@ body {
     position: relative;
     min-height: 100vh; /* Ensure it spans the full viewport height */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 60%, #000),
-                url('bg-image.jpg') no-repeat center center;
+                url('bg-image.jpg') no-repeat center center/cover;
     background-size: cover; /* Fill the container */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
-    width: 100vw; /* Force full viewport width */
-    max-width: 100%; /* Prevent overflow on mobile */
+    width: 100%; /* Full width for hero */
     margin: 0; /* No extra margin */
-    padding: 0; /* No extra padding */
 }
 
 .hero-content {
@@ -140,14 +138,9 @@ body {
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
-    body {
-        overflow-x: hidden; /* Ensure no horizontal scroll */
-    }
-
     .hero-section {
         min-height: 100vh; /* Match full height for consistency */
-        width: 100vw; /* Match full width for consistency */
-        max-width: 100%; /* Prevent scaling or overflow */
+        width: 100%; /* Match full width for consistency */
     }
 
     .title {
