@@ -117,32 +117,55 @@ body {
 /* Mobile Adjustments */
 @media (max-width: 768px) {
     .hero-section {
-        min-height: 100vh; /* Match full height for consistency */
-        width: calc(100% + 9rem); /* Slightly larger than the viewport */
-        margin: 0 auto; /* Center the hero section */
-        padding: 0; /* Ensure no extra padding */
+        min-height: 100vh;
+        width: calc(100% + 9rem); /* Specific adjustment for iPhone 15 */
+        margin: 0 auto;
+        padding: 0;
     }
-
     .title {
-        font-size: 2.5rem; /* Adjust title size for smaller screens */
+        font-size: 2.5rem;
     }
-
     .subtitle {
-        font-size: 1rem; /* Adjust subtitle size */
+        font-size: 1rem;
     }
-
     .rankings-section {
-        margin: 2rem auto; /* Reduce margins for mobile */
-        padding: 0.5rem; /* Smaller padding for black space */
+        margin: 2rem auto;
+        padding: 0.5rem;
     }
-
     .rankings-table {
-        width: calc(100% - 1rem); /* Ensure the table spans the viewport width */
+        width: calc(100% - 1rem);
     }
-
     .rankings-table th, .rankings-table td {
-        padding: 0.5rem; /* Reduce cell padding */
-        font-size: 0.9rem; /* Adjust font size for mobile */
-        word-wrap: break-word; /* Ensure long text wraps within cells */
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        word-wrap: break-word;
+    }
+}
+
+/* Media Query for Redmi Note 10 Pro (1080x2400) */
+@media (max-width: 414px) {
+    .hero-section {
+        width: calc(100% + 7rem); /* Adjust for Redmi Note's screen size */
+    }
+}
+
+/* Media Query for iPhone SE (375x667) */
+@media (max-width: 375px) {
+    .hero-section {
+        width: calc(100% + 6rem); /* Adjust for iPhone SE's screen size */
+    }
+}
+
+/* Media Query for Samsung Galaxy A32 (720x1600) */
+@media (max-width: 360px) {
+    .hero-section {
+        width: calc(100% + 8rem); /* Adjust for Galaxy A32 screen size */
+    }
+}
+
+/* Media Query for Pixel 5 (393x851) */
+@media (max-width: 393px) {
+    .hero-section {
+        width: calc(100% + 7rem); /* Adjust for Pixel 5 screen size */
     }
 }
