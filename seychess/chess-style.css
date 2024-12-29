@@ -28,6 +28,8 @@ body {
     text-align: center;
     color: #fff;
     width: 100%; /* Full width for hero */
+    margin: 0;
+    padding: 0; /* Ensure no extra space around the hero */
 }
 
 .hero-content {
@@ -118,7 +120,9 @@ body {
 @media (max-width: 768px) {
     .hero-section {
         min-height: 100vh; /* Match full height for consistency */
-        width: 100%; /* Match full width for consistency */
+        width: calc(100% - 1rem); /* Match the table width */
+        margin: 0 auto; /* Center the hero section */
+        padding: 0; /* Ensure no extra padding */
     }
 
     .title {
@@ -135,11 +139,12 @@ body {
     }
 
     .rankings-table {
-        width: calc(100% - 1rem); /* Adjust width for smaller screens with padding */
+        width: calc(100% - 1rem); /* Ensure the table spans the viewport width */
     }
 
     .rankings-table th, .rankings-table td {
         padding: 0.5rem; /* Reduce cell padding */
         font-size: 0.9rem; /* Adjust font size for mobile */
+        word-wrap: break-word; /* Ensure long text wraps within cells */
     }
 }
