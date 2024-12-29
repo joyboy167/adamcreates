@@ -17,7 +17,7 @@ body {
 /* Hero Section */
 .hero-section {
     position: relative;
-    height: 100vh;
+    min-height: 100vh; /* Use min-height to ensure it fills the viewport */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 60%, #000),
                 url('bg-image.jpg') no-repeat center center/cover;
     display: flex;
@@ -50,18 +50,18 @@ body {
 .rankings-section {
     width: 100%; /* Full width */
     margin: 4rem auto;
-    padding: 0 1rem; /* Add slight padding for black space around the table */
+    padding: 0 1rem; /* Maintain black space around the table */
 }
 
 .rankings-table {
-    width: calc(100% - 2rem); /* Slight padding to maintain black space on both sides */
+    width: calc(100% - 2rem); /* Slight padding for black space on both sides */
     border-collapse: collapse;
     background-color: #111;
     color: #ddd;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     overflow: hidden;
-    margin: 0 auto; /* Center the table within the section */
+    margin: 0 auto; /* Center the table */
 }
 
 .rankings-table thead {
@@ -136,12 +136,16 @@ body {
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
+    .hero-section {
+        min-height: calc(100vh - 60px); /* Account for browser UI height */
+    }
+
     .title {
         font-size: 2.5rem; /* Adjust title size for smaller screens */
     }
 
     .subtitle {
-        font-size: 1rem; /* Adjust subtitle size for smaller screens */
+        font-size: 1rem; /* Adjust subtitle size */
     }
 
     .rankings-section {
