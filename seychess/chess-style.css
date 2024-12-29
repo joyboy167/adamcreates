@@ -12,27 +12,24 @@ body {
     color: #fff;
     line-height: 1.6;
     margin: 0;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden; /* Prevent horizontal scroll caused by any overflow */
 }
 
 /* Hero Section */
 .hero-section {
     position: relative;
     min-height: 100vh; /* Ensure it spans the full viewport height */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 60%, #000), 
-                url('bg-image.jpg') no-repeat center center;
-    background-size: cover; /* Ensure the image fills the container */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 60%, #000),
+                url('bg-image.jpg') no-repeat center center/cover;
+    background-size: cover; /* Fill the container */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
-    width: 100%; /* Full width */
-    padding: 0 1rem; /* Add some padding to match the table width */
-    box-sizing: border-box; /* Ensure padding is included in the width */
+    width: 100%; /* Full width for hero */
 }
 
-/* Ensure hero content is centered */
 .hero-content {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     padding: 0 1rem;
@@ -54,12 +51,11 @@ body {
 .rankings-section {
     width: 100%; /* Full width */
     margin: 4rem auto;
-    padding: 0 1rem; /* Add padding for consistency */
-    box-sizing: border-box; /* Include padding in the width */
+    padding: 0 1rem; /* Maintain black space around the table */
 }
 
 .rankings-table {
-    width: 100%; /* Full width of the parent */
+    width: calc(100% - 2rem); /* Slight padding for black space on both sides */
     border-collapse: collapse;
     background-color: #111;
     color: #ddd;
@@ -76,11 +72,16 @@ body {
     font-weight: bold;
 }
 
-.rankings-table th, .rankings-table td {
+.rankings-table th {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 2px solid #333;
+}
+
+.rankings-table td {
     padding: 1rem;
     text-align: center;
     border-bottom: 1px solid #222;
-    word-wrap: break-word; /* Ensure content wraps */
 }
 
 .rankings-table tr:nth-child(even) {
@@ -92,12 +93,32 @@ body {
     transition: background-color 0.3s ease;
 }
 
+/* Evolution Column Styling */
+.rank-up {
+    color: #6ef2a4; /* Green */
+    font-weight: bold;
+}
+
+.rank-down {
+    color: #e57373; /* Red */
+    font-weight: bold;
+}
+
+.rank-same {
+    color: #ffffff; /* Neutral white */
+    font-weight: bold;
+}
+
+.rank-new {
+    color: #4fc3f7; /* Blue for new entries */
+    font-weight: bold;
+}
+
 /* Mobile Adjustments */
 @media (max-width: 768px) {
     .hero-section {
-        min-height: 100vh; /* Maintain full height */
+        min-height: 100vh; /* Match full height for consistency */
         width: 100%; /* Match full width for consistency */
-        padding: 0.5rem; /* Adjust padding for smaller screens */
     }
 
     .title {
@@ -110,16 +131,15 @@ body {
 
     .rankings-section {
         margin: 2rem auto; /* Reduce margins for mobile */
-        padding: 0.5rem; /* Adjust padding for smaller screens */
+        padding: 0.5rem; /* Smaller padding for black space */
     }
 
     .rankings-table {
-        width: 100%; /* Ensure the table matches viewport width */
-        padding: 0; /* Remove extra padding */
+        width: calc(100% - 1rem); /* Adjust width for smaller screens with padding */
     }
 
     .rankings-table th, .rankings-table td {
         padding: 0.5rem; /* Reduce cell padding */
-        font-size: 0.9rem; /* Adjust font size for smaller screens */
+        font-size: 0.9rem; /* Adjust font size for mobile */
     }
 }
