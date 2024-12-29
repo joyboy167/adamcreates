@@ -25,6 +25,10 @@ body {
     justify-content: center;
     text-align: center;
     color: #fff;
+    width: 100%; /* Full width for hero */
+    max-width: 1200px; /* Consistent with the table */
+    margin: 0 auto; /* Center horizontally */
+    padding: 0 1rem; /* Slight padding on sides */
 }
 
 .hero-content {
@@ -46,20 +50,21 @@ body {
 
 /* Rankings Table Section */
 .rankings-section {
+    width: 100%; /* Full width of the section */
+    max-width: 1200px; /* Consistent with the hero section */
     margin: 4rem auto;
-    width: 100%; /* Keep the width of the section responsive */
-    max-width: 1200px; /* Limit maximum width for large screens */
-    padding: 1rem;
+    padding: 0 1rem; /* Add slight padding for black space */
 }
 
 .rankings-table {
-    width: 100%; /* Ensure the table takes up full section width */
+    width: 100%; /* Ensure the table spans the section */
     border-collapse: collapse;
     background-color: #111;
     color: #ddd;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     overflow: hidden;
+    margin: 0 auto; /* Center the table within the section */
 }
 
 .rankings-table thead {
@@ -144,7 +149,7 @@ body {
 
     .rankings-section {
         margin: 2rem auto; /* Reduce margins for mobile */
-        padding: 0.5rem;
+        padding: 0.5rem; /* Smaller padding for black space */
     }
 
     .rankings-table th, .rankings-table td {
