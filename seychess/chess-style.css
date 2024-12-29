@@ -27,7 +27,7 @@ body {
     justify-content: center;
     text-align: center;
     color: #fff;
-    width: 100%; /* Full width for hero */
+    width: 100%; /* Default full width for hero */
 }
 
 .hero-content {
@@ -55,7 +55,7 @@ body {
 }
 
 .rankings-table {
-    width: calc(100% - 2rem); /* Slight padding for black space on both sides */
+    width: 100%; /* Default full width for table */
     border-collapse: collapse;
     background-color: #111;
     color: #ddd;
@@ -118,7 +118,7 @@ body {
 @media (max-width: 768px) {
     .hero-section {
         min-height: 100vh;
-        width: calc(100% - 5rem); /* Specific adjustment for iPhone 15 */
+        width: 100%; /* Reset to default */
         margin: 0 auto;
         padding: 0;
     }
@@ -133,7 +133,7 @@ body {
         padding: 0.5rem;
     }
     .rankings-table {
-        width: calc(100% - 1rem);
+        width: 100%; /* Reset to default */
     }
     .rankings-table th, .rankings-table td {
         padding: 0.5rem;
@@ -146,7 +146,7 @@ body {
 @media (max-width: 393px) {
     .hero-section {
         min-height: 100vh;
-        width: calc(100% + 9rem); /* Specific adjustment for Redmi Note 9 */
+        width: 100%; /* Reset to default */
         margin: 0 auto;
         padding: 0;
     }
@@ -161,7 +161,7 @@ body {
         padding: 0.5rem;
     }
     .rankings-table {
-        width: calc(100% + 1rem);
+        width: 100%; /* Reset to default */
     }
     .rankings-table th, .rankings-table td {
         padding: 0.4rem;
