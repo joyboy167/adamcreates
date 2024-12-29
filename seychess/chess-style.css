@@ -166,6 +166,5 @@ body {
     .rankings-table th, .rankings-table td {
         padding: 0.4rem;
         font-size: 0.8rem;
-        word-wrap: break-word;
     }
 }
