@@ -133,7 +133,7 @@ body {
         padding: 0.5rem;
     }
     .rankings-table {
-        width: calc(100%);
+        width: calc(100%+1);
     }
     .rankings-table th, .rankings-table td {
         padding: 0.5rem;
