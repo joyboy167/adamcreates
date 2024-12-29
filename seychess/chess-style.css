@@ -28,8 +28,6 @@ body {
     text-align: center;
     color: #fff;
     width: 100%; /* Full width for hero */
-    margin: 0;
-    padding: 0; /* Ensure no extra space around the hero */
 }
 
 .hero-content {
@@ -120,7 +118,7 @@ body {
 @media (max-width: 768px) {
     .hero-section {
         min-height: 100vh; /* Match full height for consistency */
-        width: calc(100% - 1rem); /* Match the table width */
+        width: calc(100% + 2rem); /* Slightly larger than the viewport */
         margin: 0 auto; /* Center the hero section */
         padding: 0; /* Ensure no extra padding */
     }
