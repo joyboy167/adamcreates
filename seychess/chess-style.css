@@ -118,7 +118,7 @@ body {
 @media (max-width: 768px) {
     .hero-section {
         min-height: 100vh;
-        width: calc(100%); /* Specific adjustment for iPhone 15 */
+        width: calc(100% - 5rem); /* Specific adjustment for iPhone 15 */
         margin: 0 auto;
         padding: 0;
     }
@@ -133,7 +133,7 @@ body {
         padding: 0.5rem;
     }
     .rankings-table {
-        width: calc(100% + 15rem);
+        width: calc(100% - 1rem);
     }
     .rankings-table th, .rankings-table td {
         padding: 0.5rem;
