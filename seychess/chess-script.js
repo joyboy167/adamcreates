@@ -91,7 +91,7 @@ async function fetchCurrentRankings() {
             const calculatedRapid = ratingData.rapid === "N/A" ? 0 : ratingData.rapid;
 
             // Calculate the SEYCHESS rating with a weighted formula
-            const seyChessRating = (calculatedBullet * 0.3) + (calculatedBlitz * 0.3) + (calculatedRapid * 0.4);
+            const seyChessRating = (calculatedBullet * 0.15) + (calculatedBlitz * 0.35) + (calculatedRapid * 0.5);
 
             // Push the processed data
             rankings.push({
