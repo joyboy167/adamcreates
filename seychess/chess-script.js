@@ -90,8 +90,8 @@ async function fetchCurrentRankings() {
             const calculatedBlitz = ratingData.blitz === "N/A" ? 0 : ratingData.blitz;
             const calculatedRapid = ratingData.rapid === "N/A" ? 0 : ratingData.rapid;
 
-            // Calculate the SEYCHESS rating with a weighted formula
-            const seyChessRating = (calculatedBullet * 0.15) + (calculatedBlitz * 0.35) + (calculatedRapid * 0.5);
+            // Calculate the SEYCHESS rating with the new weighted formula
+            const seyChessRating = (calculatedBullet * 0.05) + (calculatedBlitz * 0.35) + (calculatedRapid * 0.6);
 
             // Push the processed data
             rankings.push({
