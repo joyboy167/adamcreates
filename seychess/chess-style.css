@@ -12,25 +12,25 @@ body {
     color: #fff;
     line-height: 1.6;
     margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll caused by any overflow */
 }
 
 /* Hero Section */
 .hero-section {
     position: relative;
-    width: 100vw; /* Full viewport width */
-    min-width: 100vw; /* Prevent shrinkage */
-    height: 100vh; /* Full viewport height */
-    min-height: 100vh; /* Ensure it spans the entire height */
+    min-height: 100vh; /* Ensure it spans the full viewport height */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 60%, #000),
                 url('bg-image.jpg') no-repeat center center;
-    background-size: cover; /* Ensure background scales correctly */
+    background-size: cover; /* Fill the container */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
-    margin: 0; /* No extra margin around hero */
-    padding: 0; /* Ensure no padding */
+    width: 100vw; /* Force full viewport width */
+    max-width: 100%; /* Prevent overflow on mobile */
+    margin: 0; /* No extra margin */
+    padding: 0; /* No extra padding */
 }
 
 .hero-content {
@@ -140,9 +140,14 @@ body {
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
+    body {
+        overflow-x: hidden; /* Ensure no horizontal scroll */
+    }
+
     .hero-section {
         min-height: 100vh; /* Match full height for consistency */
         width: 100vw; /* Match full width for consistency */
+        max-width: 100%; /* Prevent scaling or overflow */
     }
 
     .title {
