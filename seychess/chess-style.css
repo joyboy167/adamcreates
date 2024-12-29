@@ -114,7 +114,7 @@ body {
     font-weight: bold;
 }
 
-/* Mobile Adjustments */
+/* Media Query for iPhone 15 */
 @media (max-width: 768px) {
     .hero-section {
         min-height: 100vh;
@@ -142,30 +142,30 @@ body {
     }
 }
 
-/* Media Query for Redmi Note 10 Pro (1080x2400) */
-@media (max-width: 414px) {
-    .hero-section {
-        width: calc(100% + 7rem); /* Adjust for Redmi Note's screen size */
-    }
-}
-
-/* Media Query for iPhone SE (375x667) */
-@media (max-width: 375px) {
-    .hero-section {
-        width: calc(100% + 6rem); /* Adjust for iPhone SE's screen size */
-    }
-}
-
-/* Media Query for Samsung Galaxy A32 (720x1600) */
-@media (max-width: 360px) {
-    .hero-section {
-        width: calc(100% + 8rem); /* Adjust for Galaxy A32 screen size */
-    }
-}
-
-/* Media Query for Pixel 5 (393x851) */
+/* Media Query for Redmi Note 9 */
 @media (max-width: 393px) {
     .hero-section {
-        width: calc(100% + 7rem); /* Adjust for Pixel 5 screen size */
+        min-height: 100vh;
+        width: calc(100% + 7rem); /* Specific adjustment for Redmi Note 9 */
+        margin: 0 auto;
+        padding: 0;
+    }
+    .title {
+        font-size: 2.3rem;
+    }
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    .rankings-section {
+        margin: 1.5rem auto;
+        padding: 0.5rem;
+    }
+    .rankings-table {
+        width: calc(100% - 1rem);
+    }
+    .rankings-table th, .rankings-table td {
+        padding: 0.4rem;
+        font-size: 0.8rem;
+        word-wrap: break-word;
     }
 }
