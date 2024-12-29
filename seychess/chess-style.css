@@ -12,7 +12,7 @@ body {
     color: #fff;
     line-height: 1.6;
     margin: 0;
-    overflow-x: hidden; /* Prevent horizontal scroll caused by any overflow */
+    overflow-x: hidden; /* Prevent horizontal scroll caused by overflow */
 }
 
 /* Hero Section */
@@ -27,8 +27,15 @@ body {
     justify-content: center;
     text-align: center;
     color: #fff;
-    width: 100%; /* Full width for hero */
+    width: 100vw; /* Ensure the hero section spans the full viewport width */
     margin: 0; /* No extra margin */
+    padding: 0; /* No padding to avoid narrowing the section */
+}
+
+/* Ensure there's no scaling issue */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .hero-content {
@@ -66,81 +73,11 @@ body {
     margin: 0 auto; /* Center the table */
 }
 
-.rankings-table thead {
-    background-color: #1b1b1b;
-    color: #ffffff; /* Updated to bright white */
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.rankings-table th {
-    padding: 1rem;
-    text-align: center;
-    border-bottom: 2px solid #333;
-    position: relative;
-}
-
-.rankings-table th::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 0;
-    height: 60%;
-    width: 2px;
-    background: #333;
-    transform: translateY(-50%);
-}
-
-.rankings-table th:last-child::after {
-    display: none;
-}
-
-.rankings-table td {
-    padding: 1rem;
-    text-align: center;
-    border-bottom: 1px solid #222;
-    border-right: 1px solid #333; /* Adds faint column separators */
-}
-
-.rankings-table td:last-child {
-    border-right: none;
-}
-
-.rankings-table tr:nth-child(even) {
-    background-color: #181818;
-}
-
-.rankings-table tr:hover {
-    background-color: #222;
-    transition: background-color 0.3s ease;
-}
-
-/* Evolution Column Styling */
-.rank-up {
-    color: #6ef2a4; /* Green */
-    font-weight: bold;
-}
-
-.rank-down {
-    color: #e57373; /* Red */
-    font-weight: bold;
-}
-
-.rank-same {
-    color: #ffffff; /* Neutral white */
-    font-weight: bold;
-}
-
-.rank-new {
-    color: #4fc3f7; /* Blue for new entries */
-    font-weight: bold;
-}
-
 /* Mobile Adjustments */
 @media (max-width: 768px) {
     .hero-section {
         min-height: 100vh; /* Match full height for consistency */
-        width: 100%; /* Match full width for consistency */
+        width: 100vw; /* Match full width for consistency */
     }
 
     .title {
