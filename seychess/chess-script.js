@@ -46,7 +46,7 @@ async function fetchCurrentRankings() {
 
     for (let player of players) {
         try {
-            let ratingData = { rapid: "N/A", blitz: "N/A", bullet: "N/A", seychelles: Math.floor(Math.random() * 1000 + 800) };
+            let ratingData = { rapid: "N/A", blitz: "N/A", bullet: "N/A", seychelles: "N/A" };
             let realName = player.realName;
             let isAdjusted = false;
             let originalLichessRating = null;
@@ -80,26 +80,40 @@ async function fetchCurrentRankings() {
                     rapid: originalLichessRating.rapid !== "N/A" ? originalLichessRating.rapid - 200 : "N/A",
                     blitz: originalLichessRating.blitz !== "N/A" ? originalLichessRating.blitz - 200 : "N/A",
                     bullet: originalLichessRating.bullet !== "N/A" ? originalLichessRating.bullet - 200 : "N/A",
-                    seychelles: Math.floor(Math.random() * 1000 + 800) // Simulated Seychelles rating
+                    seychelles: "N/A" // Hardcoded as N/A for Seychelles rating
                 };
                 isAdjusted = true;
             }
 
+            // Use 0 for calculation if value is N/A
+            const calculatedBullet = ratingData.bullet === "N/A" ? 0 : ratingData.bullet;
+            const calculatedBlitz = ratingData.blitz === "N/A" ? 0 : ratingData.blitz;
+            const calculatedRapid = ratingData.rapid === "N/A" ? 0 : ratingData.rapid;
+
+            // Calculate the SEYCHESS rating with a weighted formula
+            const seyChessRating = (calculatedBullet * 0.3) + (calculatedBlitz * 0.3) + (calculatedRapid * 0.4);
+
+            // Push the processed data
             rankings.push({
                 name: realName,
                 username: player.username,
                 rank: 0, // Will be determined after sorting
                 platform: player.platform === "lichess" ? "Lichess (Adjusted)" : "Chess.com",
-                ...ratingData,
-                isAdjusted: isAdjusted
+                bullet: ratingData.bullet,
+                blitz: ratingData.blitz,
+                rapid: ratingData.rapid,
+                seychelles: seyChessRating, // Display Seychelles Rating (calculated)
+                calculatedBullet,
+                calculatedBlitz,
+                calculatedRapid,
             });
         } catch (error) {
             console.error(`Error fetching data for ${player.username}:`, error);
         }
     }
 
-    // Sort Rankings by Rapid Rating
-    rankings.sort((a, b) => (b.rapid !== "N/A" ? b.rapid : 0) - (a.rapid !== "N/A" ? a.rapid : 0));
+    // Sort Rankings by SEYCHESS Rating
+    rankings.sort((a, b) => b.seychelles - a.seychelles); // Sort by SEYCHESS rating now
 
     // Assign ranks
     rankings.forEach((player, index) => player.rank = index + 1);
@@ -136,10 +150,10 @@ function displayRankings(rankings) {
                 <td>${player.rank}</td>
                 <td>${player.evolution}</td>
                 <td>${player.name}</td>
-                <td>${player.bullet}</td>
-                <td>${player.blitz}</td>
-                <td>${player.rapid}</td>
-                <td>${player.seychelles}</td>
+                <td>${player.bullet === "N/A" ? "N/A" : player.bullet}</td>
+                <td>${player.blitz === "N/A" ? "N/A" : player.blitz}</td>
+                <td>${player.rapid === "N/A" ? "N/A" : player.rapid}</td>
+                <td>${player.seychelles === "N/A" ? "N/A" : player.seychelles}</td>
             </tr>
         `;
         tableBody.insertAdjacentHTML("beforeend", row);
