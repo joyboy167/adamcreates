@@ -138,7 +138,6 @@ body {
     .rankings-table th, .rankings-table td {
         padding: 0.5rem;
         font-size: 0.9rem;
-        word-wrap: break-word;
     }
 }
 
