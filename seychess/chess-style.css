@@ -17,16 +17,20 @@ body {
 /* Hero Section */
 .hero-section {
     position: relative;
-    min-height: 100vh; /* Use min-height to ensure it fills the viewport */
+    width: 100vw; /* Full viewport width */
+    min-width: 100vw; /* Prevent shrinkage */
+    height: 100vh; /* Full viewport height */
+    min-height: 100vh; /* Ensure it spans the entire height */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 60%, #000),
-                url('bg-image.jpg') no-repeat center center/cover;
+                url('bg-image.jpg') no-repeat center center;
+    background-size: cover; /* Ensure background scales correctly */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: #fff;
-    width: 100%; /* Full width for hero */
     margin: 0; /* No extra margin around hero */
+    padding: 0; /* Ensure no padding */
 }
 
 .hero-content {
@@ -137,7 +141,8 @@ body {
 /* Mobile Adjustments */
 @media (max-width: 768px) {
     .hero-section {
-        min-height: calc(100vh - 60px); /* Account for browser UI height */
+        min-height: 100vh; /* Match full height for consistency */
+        width: 100vw; /* Match full width for consistency */
     }
 
     .title {
