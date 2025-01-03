@@ -21,13 +21,55 @@
         <table class="rankings-table">
             <thead>
                 <tr>
-                    <th>RANK</th>
-                    <th>AVATAR</th> <!-- Added Avatar Column -->
-                    <th>NAME</th>
-                    <th>BULLET</th>
-                    <th>BLITZ</th>
-                    <th>RAPID</th>
-                    <th>AVG. RATING</th>
+                    <th>
+                        RANK
+                        <button class="tooltip-btn">
+                            <span class="tooltip-text">Player ranking based on calculated average rating.</span>
+                            ?
+                        </button>
+                    </th>
+                    <th>
+                        AVATAR
+                        <button class="tooltip-btn">
+                            <span class="tooltip-text">Player's profile picture from their platform.</span>
+                            ?
+                        </button>
+                    </th>
+                    <th>
+                        NAME
+                        <button class="tooltip-btn">
+                            <span class="tooltip-text">Player's real name/username.</span>
+                            ?
+                        </button>
+                    </th>
+                    <th>
+                        BULLET
+                        <button class="tooltip-btn">
+                            <span class="tooltip-text">Rating for fast-paced games under 3 minutes(5% of AVG).</span>
+                            ?
+                        </button>
+                    </th>
+                    <th>
+                        BLITZ
+                        <button class="tooltip-btn">
+                            <span class="tooltip-text">Rating for games lasting 3–10 minutes(25% of AVG)</span>
+                            ?
+                        </button>
+                    </th>
+                    <th>
+                        RAPID
+                        <button class="tooltip-btn">
+                            <span class="tooltip-text">Rating for games lasting 10+ minutes(70% of AVG)</span>
+                            ?
+                        </button>
+                    </th>
+                    <th>
+                        AVG. RATING
+                        <button class="tooltip-btn">
+                            <span class="tooltip-text">Average rating calculated using a weighted formula.</span>
+                            ?
+                        </button>
+                    </th>
                 </tr>
             </thead>
             <tbody id="rankingsBody">
