@@ -3,7 +3,9 @@ const players = [
     { username: "adamo25", platform: "chesscom", realName: "Adam Furneau" },
     { username: "Mordecai_6", platform: "chesscom", realName: "Darius Hoareau" },
     { username: "MinusE1", platform: "chesscom", realName: "Rudolph Camille" },
-    { username: "Jeremy_Raguain", platform: "chesscom", realName: "Jeremy Raguain" } // New player added
+    { username: "Jeremy_Raguain", platform: "chesscom", realName: "Jeremy Raguain" },
+    { username: "Buumpliz", platform: "chesscom", realName: "Alex Jovanovic" }, // Corrected Player Added
+    { username: "durupa", platform: "chesscom", realName: "Alexander Durup" } // New player added
 ];
 
 // Fetch Rankings When Page Loads
@@ -35,29 +37,21 @@ async function fetchCurrentRankings() {
 
             // Fetch data from Chess.com
             if (player.platform === "chesscom") {
-                const statsRes = await fetch(`https://api.chess.com/pub/player/${player.username}`);
-                if (!statsRes.ok) throw new Error(`Failed to fetch data for ${player.username}`);
+                const profileRes = await fetch(`https://api.chess.com/pub/player/${player.username}`);
+                if (!profileRes.ok) throw new Error(`Failed to fetch profile for ${player.username}`);
+                const profileData = await profileRes.json();
+
+                avatar = profileData.avatar || "default-avatar.png";
+
+                const statsRes = await fetch(`https://api.chess.com/pub/player/${player.username}/stats`);
+                if (!statsRes.ok) throw new Error(`Failed to fetch stats for ${player.username}`);
                 const statsData = await statsRes.json();
 
-                avatar = statsData.avatar || "default-avatar.png"; // Use avatar if available
                 ratingData = {
                     rapid: statsData.chess_rapid?.last?.rating || "N/A",
                     blitz: statsData.chess_blitz?.last?.rating || "N/A",
                     bullet: statsData.chess_bullet?.last?.rating || "N/A"
                 };
-            }
-            // Fetch data from Lichess
-            else if (player.platform === "lichess") {
-                const res = await fetch(`https://lichess.org/api/user/${player.username}`);
-                if (!res.ok) throw new Error(`Failed to fetch data for ${player.username}`);
-                const data = await res.json();
-
-                ratingData = {
-                    rapid: data.perfs?.rapid?.rating || "N/A",
-                    blitz: data.perfs?.blitz?.rating || "N/A",
-                    bullet: data.perfs?.bullet?.rating || "N/A"
-                };
-                avatar = data.profile?.avatar || "default-avatar.png";
             }
 
             // Use 0 for calculation if value is N/A
@@ -72,7 +66,7 @@ async function fetchCurrentRankings() {
             rankings.push({
                 name: realName,
                 username: player.username,
-                rank: 0, // Will be determined after sorting
+                rank: 0,
                 platform: player.platform === "lichess" ? "Lichess (Adjusted)" : "Chess.com",
                 avatar: avatar,
                 bullet: ratingData.bullet,
@@ -81,15 +75,12 @@ async function fetchCurrentRankings() {
                 seychelles: seyChessRating
             });
         } catch (error) {
-            console.error(`Error fetching data for ${player.username}:`, error);
+            console.error(`Error processing ${player.username}:`, error);
         }
     }
 
-    // Sort Rankings by SEYCHESS Rating
-    rankings.sort((a, b) => b.seychelles - a.seychelles); // Sort by SEYCHESS rating now
-
-    // Assign ranks
-    rankings.forEach((player, index) => player.rank = index + 1);
+    rankings.sort((a, b) => b.seychelles - a.seychelles); // Sort by SEYCHESS rating
+    rankings.forEach((player, index) => (player.rank = index + 1));
 
     return rankings;
 }
@@ -113,7 +104,7 @@ function displayRankings(rankings) {
                         class="avatar-img"
                         onerror="this.src='default-avatar.png';">
                 </td>
-                <td>${player.name}</td>
+                <td>${player.username}</td>
                 <td>${player.bullet === "N/A" ? "N/A" : player.bullet}</td>
                 <td>${player.blitz === "N/A" ? "N/A" : player.blitz}</td>
                 <td>${player.rapid === "N/A" ? "N/A" : player.rapid}</td>
