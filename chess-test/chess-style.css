@@ -114,7 +114,7 @@ body {
 .tooltip-btn {
     position: absolute;
     top: 50%; /* Center vertically in header */
-    right: -10px; /* Adjust for spacing closer to the text */
+    right: 2px; /* Move buttons as close as possible */
     transform: translateY(-50%);
     width: 20px; /* Smaller size */
     height: 20px; /* Round button */
