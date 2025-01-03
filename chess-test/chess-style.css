@@ -160,7 +160,7 @@ body {
     transform: translateX(-50%);
     white-space: normal; /* Allow text to wrap */
     word-wrap: break-word; /* Break long words */
-    max-width: 300px; /* Increased max width for a wider rectangle */
+    max-width: 500px; /* Increased max width for a wider rectangle */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 9999; /* Ensure tooltip appears above everything */
     transition: opacity 0.2s ease, transform 0.2s ease;
