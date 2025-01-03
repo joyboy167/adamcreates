@@ -49,6 +49,7 @@ body {
 
 /* Rankings Table Section */
 .rankings-section {
+    position: relative; /* Ensure tooltips stack properly */
     width: 100%; /* Full width */
     margin: 4rem auto;
     padding: 0 1rem; /* Maintain black space around the table */
@@ -157,8 +158,8 @@ body {
     transform: translateX(-50%);
     white-space: nowrap;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 9999; /* Ensure tooltip appears above everything */
     transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 10;
 }
 
 /* Show tooltip on hover */
