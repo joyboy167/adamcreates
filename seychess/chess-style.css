@@ -93,25 +93,20 @@ body {
     transition: background-color 0.3s ease;
 }
 
-/* Evolution Column Styling */
-.rank-up {
-    color: #6ef2a4; /* Green */
-    font-weight: bold;
+/* Avatar Column Styling */
+.avatar-cell {
+    text-align: center;
+    vertical-align: middle; /* Center vertically in the cell */
 }
 
-.rank-down {
-    color: #e57373; /* Red */
-    font-weight: bold;
-}
-
-.rank-same {
-    color: #ffffff; /* Neutral white */
-    font-weight: bold;
-}
-
-.rank-new {
-    color: #4fc3f7; /* Blue for new entries */
-    font-weight: bold;
+/* Avatar Image Styling */
+.avatar-img {
+    width: 50px; /* Set width for avatar */
+    height: 50px; /* Set height for avatar */
+    border-radius: 50%; /* Make avatar circular */
+    object-fit: cover; /* Ensure image scales properly */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for a polished look */
+    margin: auto; /* Center image inside the cell */
 }
 
 /* Media Query for iPhone 15 */
