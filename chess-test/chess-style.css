@@ -150,7 +150,7 @@ body {
     opacity: 0;
     background-color: #333;
     color: #fff;
-    text-align: center;
+    text-align: left; /* Align text to left for better readability */
     padding: 8px 12px;
     border-radius: 6px;
     font-size: 0.8rem;
@@ -158,7 +158,9 @@ body {
     top: 30px; /* Position tooltip below the button */
     left: 50%;
     transform: translateX(-50%);
-    white-space: nowrap;
+    white-space: normal; /* Allow text to wrap */
+    word-wrap: break-word; /* Break long words */
+    max-width: 220px; /* Set max width for tooltip */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 9999; /* Ensure tooltip appears above everything */
     transition: opacity 0.2s ease, transform 0.2s ease;
