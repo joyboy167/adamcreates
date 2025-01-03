@@ -114,25 +114,26 @@ body {
 .tooltip-btn {
     position: absolute;
     top: 50%; /* Center vertically in header */
-    right: -20px; /* Adjust for spacing */
+    right: -10px; /* Adjust for spacing closer to the text */
     transform: translateY(-50%);
-    width: 25px; /* Small size */
-    height: 25px; /* Round button */
-    background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-    border: 0;
+    width: 20px; /* Smaller size */
+    height: 20px; /* Round button */
+    background-color: #000; /* Black fill color */
+    border: 2px solid; /* Border with gradient color */
+    border-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb) 1;
     border-radius: 50%;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 10px 20px -5px;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 12px; /* Smaller text */
     font-weight: bold;
     text-align: center;
-    line-height: 25px; /* Vertically align the question mark */
+    line-height: 20px; /* Vertically align the question mark */
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .tooltip-btn:hover {
-    transform: translateY(-50%) scale(1.1); /* Slight zoom effect */
+    transform: translateY(-50%) scale(1.2); /* Slight zoom effect */
+    background-color: #1b1b1b; /* Slightly lighter black on hover */
 }
 
 .tooltip-btn:active {
@@ -188,7 +189,8 @@ body {
     .rankings-table {
         width: 100%; /* Reset to default */
     }
-    .rankings-table th, .rankings-table td {
+    .rankings-table th,
+    .rankings-table td {
         padding: 0.5rem;
         font-size: 0.9rem;
     }
@@ -215,7 +217,8 @@ body {
     .rankings-table {
         width: 100%; /* Reset to default */
     }
-    .rankings-table th, .rankings-table td {
+    .rankings-table th,
+    .rankings-table td {
         padding: 0.4rem;
         font-size: 0.8rem;
     }
