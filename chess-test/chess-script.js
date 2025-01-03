@@ -1,117 +1,165 @@
 
-// Player List: Include platform, username, and hardcoded real names
-const players = [
-    { username: "adamo25", platform: "chesscom", realName: "Adam Furneau" },
-    { username: "Mordecai_6", platform: "chesscom", realName: "Darius Hoareau" },
-    { username: "MinusE1", platform: "chesscom", realName: "Rudolph Camille" },
-    { username: "Jeremy_Raguain", platform: "chesscom", realName: "Jeremy Raguain" },
-    { username: "Buumpliz", platform: "chesscom", realName: "Alex Jovanovic" }, // Corrected Player Added
-    { username: "durupa", platform: "chesscom", realName: "Alexander Durup" } // New player added
-];
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-// Fetch Rankings When Page Loads
-window.onload = fetchAndUpdateRankings;
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    line-height: 1.6;
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll caused by any overflow */
+}
 
-// Main Function to Fetch and Display Rankings
-async function fetchAndUpdateRankings() {
-    try {
-        // Fetch current rankings
-        const currentRankings = await fetchCurrentRankings();
+/* Hero Section */
+.hero-section {
+    position: relative;
+    min-height: 100vh; /* Ensure it spans the full viewport height */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 60%, #000),
+                url('bg-image.jpg') no-repeat center center/cover;
+    background-size: cover; /* Fill the container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    width: 100%; /* Default full width for hero */
+}
 
-        // Display updated rankings in the table
-        displayRankings(currentRankings);
+.hero-content {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    padding: 0 1rem;
+}
 
-    } catch (error) {
-        console.error("Error fetching or updating rankings:", error);
+.title {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+}
+
+/* Rankings Table Section */
+.rankings-section {
+    width: 100%; /* Full width */
+    margin: 4rem auto;
+    padding: 0 1rem; /* Maintain black space around the table */
+}
+
+.rankings-table {
+    width: 100%; /* Default full width for table */
+    border-collapse: collapse;
+    background-color: #111;
+    color: #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto; /* Center the table */
+}
+
+.rankings-table thead {
+    background-color: #1b1b1b;
+    color: #ffffff; /* Updated to bright white */
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.rankings-table th {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 2px solid #333;
+}
+
+.rankings-table td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #222;
+}
+
+.rankings-table tr:nth-child(even) {
+    background-color: #181818;
+}
+
+.rankings-table tr:hover {
+    background-color: #222;
+    transition: background-color 0.3s ease;
+}
+
+/* Avatar Column Styling */
+.avatar-cell {
+    text-align: center;
+    vertical-align: middle; /* Center vertically in the cell */
+}
+
+/* Avatar Image Styling */
+.avatar-img {
+    width: 50px; /* Set width for avatar */
+    height: 50px; /* Set height for avatar */
+    border-radius: 50%; /* Make avatar circular */
+    object-fit: cover; /* Ensure image scales properly */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for a polished look */
+    margin: auto; /* Center image inside the cell */
+}
+
+/* Media Query for iPhone 15 */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 100vh;
+        width: calc(100% + 0.5rem); /* Reset to default */
+        margin: 0 auto;
+        padding: 0;
+    }
+    .title {
+        font-size: 2.5rem;
+    }
+    .subtitle {
+        font-size: 1rem;
+    }
+    .rankings-section {
+        margin: 2rem auto;
+        padding: 0.5rem;
+    }
+    .rankings-table {
+        width: 100%; /* Reset to default */
+    }
+    .rankings-table th, .rankings-table td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
     }
 }
 
-// Fetch current rankings from Chess.com and Lichess
-async function fetchCurrentRankings() {
-    const rankings = [];
-
-    for (let player of players) {
-        try {
-            let ratingData = { rapid: "N/A", blitz: "N/A", bullet: "N/A", seychelles: "N/A" };
-            let avatar = "default-avatar.png"; // Fallback for missing avatars
-            let realName = player.realName;
-
-            // Fetch data from Chess.com
-            if (player.platform === "chesscom") {
-                const profileRes = await fetch(`https://api.chess.com/pub/player/${player.username}`);
-                if (!profileRes.ok) throw new Error(`Failed to fetch profile for ${player.username}`);
-                const profileData = await profileRes.json();
-
-                avatar = profileData.avatar || "default-avatar.png";
-
-                const statsRes = await fetch(`https://api.chess.com/pub/player/${player.username}/stats`);
-                if (!statsRes.ok) throw new Error(`Failed to fetch stats for ${player.username}`);
-                const statsData = await statsRes.json();
-
-                ratingData = {
-                    rapid: statsData.chess_rapid?.last?.rating || "N/A",
-                    blitz: statsData.chess_blitz?.last?.rating || "N/A",
-                    bullet: statsData.chess_bullet?.last?.rating || "N/A"
-                };
-            }
-
-            // Use 0 for calculation if value is N/A
-            const calculatedBullet = ratingData.bullet === "N/A" ? 0 : ratingData.bullet;
-            const calculatedBlitz = ratingData.blitz === "N/A" ? 0 : ratingData.blitz;
-            const calculatedRapid = ratingData.rapid === "N/A" ? 0 : ratingData.rapid;
-
-            // Calculate the SEYCHESS rating with the new weighted formula
-            const seyChessRating = (calculatedBullet * 0.05) + (calculatedBlitz * 0.35) + (calculatedRapid * 0.6);
-
-            // Push the processed data
-            rankings.push({
-                name: realName,
-                username: player.username,
-                rank: 0,
-                platform: player.platform === "lichess" ? "Lichess (Adjusted)" : "Chess.com",
-                avatar: avatar,
-                bullet: ratingData.bullet,
-                blitz: ratingData.blitz,
-                rapid: ratingData.rapid,
-                seychelles: seyChessRating
-            });
-        } catch (error) {
-            console.error(`Error processing ${player.username}:`, error);
-        }
+/* Media Query for Redmi Note 9 */
+@media (max-width: 393px) {
+    .hero-section {
+        min-height: 100vh;
+        width: calc(100% + 6rem); /* Reset to default */
+        margin: 0 auto;
+        padding: 0;
     }
-
-    rankings.sort((a, b) => b.seychelles - a.seychelles); // Sort by SEYCHESS rating
-    rankings.forEach((player, index) => (player.rank = index + 1));
-
-    return rankings;
-}
-
-// Display rankings in the table
-function displayRankings(rankings) {
-    const tableBody = document.getElementById("rankingsBody");
-    tableBody.innerHTML = "";
-
-    rankings.forEach(player => {
-        // Format SeyChess rating to 1 decimal place unless it's "N/A"
-        const seychessRating = player.seychelles === "N/A" ? "N/A" : player.seychelles.toFixed(1);
-
-        const row = `
-            <tr>
-                <td>${player.rank}</td>
-                <td class="avatar-cell">
-                    <img 
-                        src="${player.avatar}" 
-                        alt="${player.name}'s Avatar" 
-                        class="avatar-img"
-                        onerror="this.src='default-avatar.png';">
-                </td>
-                <td>${player.username}</td>
-                <td>${player.bullet === "N/A" ? "N/A" : player.bullet}</td>
-                <td>${player.blitz === "N/A" ? "N/A" : player.blitz}</td>
-                <td>${player.rapid === "N/A" ? "N/A" : player.rapid}</td>
-                <td>${seychessRating}</td>
-            </tr>
-        `;
-        tableBody.insertAdjacentHTML("beforeend", row);
-    });
+    .title {
+        font-size: 2.3rem;
+    }
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    .rankings-section {
+        margin: 1.5rem auto;
+        padding: 0.5rem;
+    }
+    .rankings-table {
+        width: 100%; /* Reset to default */
+    }
+    .rankings-table th, .rankings-table td {
+        padding: 0.4rem;
+        font-size: 0.8rem;
+    }
 }
