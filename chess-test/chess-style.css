@@ -155,7 +155,7 @@ body {
     border-radius: 6px;
     font-size: 0.8rem;
     position: absolute;
-    top: -40px; /* Position tooltip above the button */
+    top: 30px; /* Position tooltip below the button */
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
@@ -168,7 +168,7 @@ body {
 .tooltip-btn:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
-    transform: translate(-50%, -10px); /* Slight upward movement for effect */
+    transform: translate(-50%, 5px); /* Slight downward movement for effect */
 }
 
 /* Media Query for iPhone 15 */
