@@ -151,7 +151,7 @@ body {
     background-color: #333;
     color: #fff;
     text-align: left; /* Align text to left for better readability */
-    padding: 8px 12px;
+    padding: 8px 16px; /* Increased padding for better spacing */
     border-radius: 6px;
     font-size: 0.8rem;
     position: absolute;
@@ -160,7 +160,7 @@ body {
     transform: translateX(-50%);
     white-space: normal; /* Allow text to wrap */
     word-wrap: break-word; /* Break long words */
-    max-width: 220px; /* Set max width for tooltip */
+    max-width: 300px; /* Increased max width for a wider rectangle */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 9999; /* Ensure tooltip appears above everything */
     transition: opacity 0.2s ease, transform 0.2s ease;
