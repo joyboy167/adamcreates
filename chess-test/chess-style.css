@@ -72,7 +72,6 @@ body {
     color: #ffffff; /* Updated to bright white */
     text-transform: uppercase;
     font-weight: bold;
-    position: relative;
 }
 
 .rankings-table th {
@@ -81,6 +80,39 @@ body {
     border-bottom: 2px solid #333;
     position: relative; /* Allow tooltip buttons to be positioned properly */
     border-right: 1px solid #444; /* Add right border to th cells */
+}
+
+.rankings-table td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid #222;
+    border-right: 1px solid #444; /* Add right border to td cells */
+}
+
+.rankings-table tr:nth-child(even) {
+    background-color: #181818;
+}
+
+.rankings-table tr:hover {
+    background-color: #222;
+    transition: background-color 0.3s ease;
+}
+
+/* Avatar Column Styling */
+.avatar-cell {
+    text-align: center;
+    vertical-align: middle; /* Center vertically in the cell */
+}
+
+/* Avatar Image Styling */
+.avatar-img {
+    width: 50px; /* Set width for avatar */
+    height: 50px; /* Set height for avatar */
+    border-radius: 50%; /* Make avatar circular */
+    object-fit: cover; /* Ensure image scales properly */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for a polished look */
+    display: block; /* Ensure the image behaves like a block element */
+    margin: 0 auto; /* Center image inside the cell */
 }
 
 /* Tooltip Button Styling */
@@ -139,15 +171,6 @@ body {
     visibility: visible;
     opacity: 1;
     transform: translate(-50%, -10px);
-}
-
-/* Rankings Table Borders */
-.rankings-table td {
-    border-right: 1px solid #444;
-}
-
-.rankings-table th {
-    border-right: 1px solid #444;
 }
 
 /* Media Query for iPhone 15 */
