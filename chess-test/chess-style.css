@@ -76,6 +76,7 @@ body {
     padding: 1rem;
     text-align: center;
     border-bottom: 2px solid #333;
+    position: relative; /* Allow tooltip buttons to be positioned properly */
 }
 
 .rankings-table td {
@@ -107,6 +108,63 @@ body {
     object-fit: cover; /* Ensure image scales properly */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for a polished look */
     margin: auto; /* Center image inside the cell */
+}
+
+/* Tooltip Button Styling */
+.tooltip-btn {
+    position: absolute;
+    top: 50%; /* Center vertically in header */
+    right: -20px; /* Adjust for spacing */
+    transform: translateY(-50%);
+    width: 25px; /* Small size */
+    height: 25px; /* Round button */
+    background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+    border: 0;
+    border-radius: 50%;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 10px 20px -5px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 25px; /* Vertically align the question mark */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tooltip-btn:hover {
+    transform: translateY(-50%) scale(1.1); /* Slight zoom effect */
+}
+
+.tooltip-btn:active {
+    transform: translateY(-50%) scale(0.9); /* Pressed effect */
+}
+
+/* Tooltip Text Styling */
+.tooltip-btn .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    position: absolute;
+    top: -40px; /* Position tooltip above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+/* Show tooltip on hover or focus */
+.tooltip-btn:hover .tooltip-text,
+.tooltip-btn:focus .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -10px);
 }
 
 /* Media Query for iPhone 15 */
