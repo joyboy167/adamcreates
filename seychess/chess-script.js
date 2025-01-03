@@ -3,7 +3,6 @@ const players = [
     { username: "adamo25", platform: "chesscom", realName: "Adam Furneau" },
     { username: "Mordecai_6", platform: "chesscom", realName: "Darius Hoareau" },
     { username: "MinusE1", platform: "chesscom", realName: "Rudolph Camille" },
-    { username: "KingBen36", platform: "lichess", realName: "Benjamin Hoareau" },
     { username: "Jeremy_Raguain", platform: "chesscom", realName: "Jeremy Raguain" } // New player added
 ];
 
@@ -31,18 +30,17 @@ async function fetchCurrentRankings() {
     for (let player of players) {
         try {
             let ratingData = { rapid: "N/A", blitz: "N/A", bullet: "N/A", seychelles: "N/A" };
+            let avatar = "default-avatar.png"; // Fallback for missing avatars
             let realName = player.realName;
-            let isAdjusted = false;
-            let originalLichessRating = null;
 
             // Fetch data from Chess.com
             if (player.platform === "chesscom") {
-                const statsRes = await fetch(`https://api.chess.com/pub/player/${player.username}/stats`);
+                const statsRes = await fetch(`https://api.chess.com/pub/player/${player.username}`);
                 if (!statsRes.ok) throw new Error(`Failed to fetch data for ${player.username}`);
                 const statsData = await statsRes.json();
 
+                avatar = statsData.avatar || "default-avatar.png"; // Use avatar if available
                 ratingData = {
-                    ...ratingData,
                     rapid: statsData.chess_rapid?.last?.rating || "N/A",
                     blitz: statsData.chess_blitz?.last?.rating || "N/A",
                     bullet: statsData.chess_bullet?.last?.rating || "N/A"
@@ -54,19 +52,12 @@ async function fetchCurrentRankings() {
                 if (!res.ok) throw new Error(`Failed to fetch data for ${player.username}`);
                 const data = await res.json();
 
-                originalLichessRating = {
+                ratingData = {
                     rapid: data.perfs?.rapid?.rating || "N/A",
                     blitz: data.perfs?.blitz?.rating || "N/A",
                     bullet: data.perfs?.bullet?.rating || "N/A"
                 };
-
-                ratingData = {
-                    rapid: originalLichessRating.rapid !== "N/A" ? originalLichessRating.rapid - 200 : "N/A",
-                    blitz: originalLichessRating.blitz !== "N/A" ? originalLichessRating.blitz - 200 : "N/A",
-                    bullet: originalLichessRating.bullet !== "N/A" ? originalLichessRating.bullet - 200 : "N/A",
-                    seychelles: "N/A" // Hardcoded as N/A for Seychelles rating
-                };
-                isAdjusted = true;
+                avatar = data.profile?.avatar || "default-avatar.png";
             }
 
             // Use 0 for calculation if value is N/A
@@ -83,13 +74,11 @@ async function fetchCurrentRankings() {
                 username: player.username,
                 rank: 0, // Will be determined after sorting
                 platform: player.platform === "lichess" ? "Lichess (Adjusted)" : "Chess.com",
+                avatar: avatar,
                 bullet: ratingData.bullet,
                 blitz: ratingData.blitz,
                 rapid: ratingData.rapid,
-                seychelles: seyChessRating, // Display Seychelles Rating (calculated)
-                calculatedBullet,
-                calculatedBlitz,
-                calculatedRapid,
+                seychelles: seyChessRating
             });
         } catch (error) {
             console.error(`Error fetching data for ${player.username}:`, error);
@@ -114,14 +103,16 @@ function displayRankings(rankings) {
         // Format SeyChess rating to 1 decimal place unless it's "N/A"
         const seychessRating = player.seychelles === "N/A" ? "N/A" : player.seychelles.toFixed(1);
 
-        // Placeholder for Avatar URL
-        const avatarURL = `https://api.chess.com/pub/player/${player.username}/avatar`; // Fetches avatar from Chess.com
-        const avatarImg = `<img src="${avatarURL}" alt="${player.name}'s Avatar" class="avatar-img" onerror="this.src='default-avatar.png';">`;
-
         const row = `
             <tr>
                 <td>${player.rank}</td>
-                <td class="avatar-cell">${avatarImg}</td> <!-- Avatar Column -->
+                <td class="avatar-cell">
+                    <img 
+                        src="${player.avatar}" 
+                        alt="${player.name}'s Avatar" 
+                        class="avatar-img"
+                        onerror="this.src='default-avatar.png';">
+                </td>
                 <td>${player.name}</td>
                 <td>${player.bullet === "N/A" ? "N/A" : player.bullet}</td>
                 <td>${player.blitz === "N/A" ? "N/A" : player.blitz}</td>
