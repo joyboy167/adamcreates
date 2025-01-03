@@ -141,10 +141,6 @@ body {
     background-color: #1b1b1b; /* Slightly lighter black on hover */
 }
 
-.tooltip-btn:active {
-    transform: translate(100%, -50%) scale(0.9); /* Pressed effect */
-}
-
 /* Tooltip Text Styling */
 .tooltip-btn .tooltip-text {
     visibility: hidden;
@@ -165,12 +161,11 @@ body {
     z-index: 10;
 }
 
-/* Show tooltip on hover or focus */
-.tooltip-btn:hover .tooltip-text,
-.tooltip-btn:focus .tooltip-text {
+/* Show tooltip on hover */
+.tooltip-btn:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
-    transform: translate(-50%, -10px);
+    transform: translate(-50%, -10px); /* Slight upward movement for effect */
 }
 
 /* Media Query for iPhone 15 */
