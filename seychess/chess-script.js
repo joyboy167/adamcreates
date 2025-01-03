@@ -7,30 +7,17 @@ const players = [
     { username: "Jeremy_Raguain", platform: "chesscom", realName: "Jeremy Raguain" } // New player added
 ];
 
-// Hosted JSON URL
-const jsonURL = "./rankings.json"; // Corrected to point to the local file in the same directory
-
 // Fetch Rankings When Page Loads
 window.onload = fetchAndUpdateRankings;
 
 // Main Function to Fetch and Display Rankings
 async function fetchAndUpdateRankings() {
     try {
-        // Fetch the rankings.json file
-        const response = await fetch(jsonURL);
-        if (!response.ok) throw new Error("Failed to fetch rankings.json");
-
-        const rankingsData = await response.json();
-
         // Fetch current rankings
         const currentRankings = await fetchCurrentRankings();
 
         // Display updated rankings in the table
         displayRankings(currentRankings);
-
-        // Update rankings.json with the latest rankings
-        rankingsData.previousRankings = [...currentRankings];
-        await updateRankingsFile(rankingsData);
 
     } catch (error) {
         console.error("Error fetching or updating rankings:", error);
@@ -127,9 +114,14 @@ function displayRankings(rankings) {
         // Format SeyChess rating to 1 decimal place unless it's "N/A"
         const seychessRating = player.seychelles === "N/A" ? "N/A" : player.seychelles.toFixed(1);
 
+        // Placeholder for Avatar URL
+        const avatarURL = `https://api.chess.com/pub/player/${player.username}/avatar`; // Fetches avatar from Chess.com
+        const avatarImg = `<img src="${avatarURL}" alt="${player.name}'s Avatar" class="avatar-img" onerror="this.src='default-avatar.png';">`;
+
         const row = `
             <tr>
                 <td>${player.rank}</td>
+                <td class="avatar-cell">${avatarImg}</td> <!-- Avatar Column -->
                 <td>${player.name}</td>
                 <td>${player.bullet === "N/A" ? "N/A" : player.bullet}</td>
                 <td>${player.blitz === "N/A" ? "N/A" : player.blitz}</td>
@@ -139,9 +131,4 @@ function displayRankings(rankings) {
         `;
         tableBody.insertAdjacentHTML("beforeend", row);
     });
-}
-
-// Update rankings.json file
-async function updateRankingsFile(updatedData) {
-    console.log("Updated rankings.json:", updatedData);
 }
