@@ -22,15 +22,11 @@ async function fetchAndUpdateRankings() {
 
         const rankingsData = await response.json();
 
-        // Extract previous and current rankings
-        const previousRankings = rankingsData.previousRankings || [];
+        // Fetch current rankings
         const currentRankings = await fetchCurrentRankings();
 
-        // Calculate ranking changes
-        const updatedRankings = calculateRankingChanges(previousRankings, currentRankings);
-
         // Display updated rankings in the table
-        displayRankings(updatedRankings);
+        displayRankings(currentRankings);
 
         // Update rankings.json with the latest rankings
         rankingsData.previousRankings = [...currentRankings];
@@ -122,24 +118,6 @@ async function fetchCurrentRankings() {
     return rankings;
 }
 
-// Calculate ranking changes
-function calculateRankingChanges(previous, current) {
-    return current.map(player => {
-        const previousPlayer = previous.find(p => p.username === player.username);
-        let evolution = "=";
-
-        if (previousPlayer) {
-            const rankDifference = previousPlayer.rank - player.rank;
-            if (rankDifference > 0) evolution = `↑ ${rankDifference}`;
-            else if (rankDifference < 0) evolution = `↓ ${Math.abs(rankDifference)}`;
-        } else {
-            evolution = "New";
-        }
-
-        return { ...player, evolution };
-    });
-}
-
 // Display rankings in the table
 function displayRankings(rankings) {
     const tableBody = document.getElementById("rankingsBody");
@@ -152,7 +130,6 @@ function displayRankings(rankings) {
         const row = `
             <tr>
                 <td>${player.rank}</td>
-                <td>${player.evolution}</td>
                 <td>${player.name}</td>
                 <td>${player.bullet === "N/A" ? "N/A" : player.bullet}</td>
                 <td>${player.blitz === "N/A" ? "N/A" : player.blitz}</td>
